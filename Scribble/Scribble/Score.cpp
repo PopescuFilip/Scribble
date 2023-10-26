@@ -1,5 +1,7 @@
 #include "Score.h"
 
+std::vector<int8_t> Score::m_times;
+
 Score::Score(): m_score(0)
 {}
 
