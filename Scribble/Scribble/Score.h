@@ -1,12 +1,16 @@
 #pragma once
-#include <chrono>
+#include <cstdint>
 #include <vector>
 class Score
 {
 public:
-	float CalculateScoreGuesser(std::chrono::seconds);
-	float CalculateScorePainter(std::vector<Score>);
+	void CalculateScoreGuesser(uint8_t);
+	void CalculateScorePainter(std::vector<Score>);
 private:
-	int score;
+	int16_t score;
+	static const uint8_t BONUS_THRESHHOLD = 30;
+	static const uint8_t MAX_ROUND_LENGTH = 60;
+	static const uint8_t MAX_POINTS = 100;
+	uint8_t ScoreFormula(uint8_t);
 };
 
