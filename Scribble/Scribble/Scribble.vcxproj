@@ -101,6 +101,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Word.cpp" />
+    <ClCompile Include="Word.cppm" />
     <QtRcc Include="Scribble.qrc" />
     <QtUic Include="Scribble.ui" />
     <QtMoc Include="Scribble.h" />

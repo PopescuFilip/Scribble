@@ -49,6 +49,12 @@
     <ClCompile Include="Round.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Word.cppm">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Word.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
