@@ -8,14 +8,14 @@ Score::Score(): m_score(0)
 void Score::CalculateScoreGuesser(uint8_t time)
 {
 	Score::m_times.push_back(time);
-	if (time <= Score::BONUS_THRESHHOLD)
+	if (time <= Score::kBONUS_THRESHHOLD)
 	{
-		m_score += Score::MAX_POINTS;
+		m_score += Score::kMAX_POINTS;
 		return;
 	}
-	if (time == Score::MAX_ROUND_LENGTH)
+	if (time == Score::kMAX_ROUND_LENGTH)
 	{
-		m_score -= Score::MAX_POINTS / 2;
+		m_score -= Score::kMAX_POINTS / 2;
 		return;
 	}
 	uint8_t scoreGained = ScoreFormula(time);
@@ -28,7 +28,7 @@ void Score::CalculateScorePainter()
 	int16_t averageTime = 0;
 	for (const int8_t& time : Score::m_times)
 	{
-		if (time != Score::MAX_ROUND_LENGTH)
+		if (time != Score::kMAX_ROUND_LENGTH)
 			atLeastOneGuessed = true;
 		averageTime += time;
 	}
@@ -40,10 +40,10 @@ void Score::CalculateScorePainter()
 		m_score += scoreGained;
 		return;
 	}
-	m_score -= Score::MAX_POINTS;
+	m_score -= Score::kMAX_POINTS;
 }
 
 uint8_t Score::ScoreFormula(uint8_t duration)
 {
-	return (Score::MAX_ROUND_LENGTH - duration) * Score::MAX_POINTS * 2 / Score::MAX_ROUND_LENGTH;
+	return (Score::kMAX_ROUND_LENGTH - duration) * Score::kMAX_POINTS * 2 / Score::kMAX_ROUND_LENGTH;
 }
