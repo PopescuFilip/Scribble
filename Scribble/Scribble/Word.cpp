@@ -1,5 +1,4 @@
-module wordModule;
+module word;
 
-import <format>;
 
 using Scribble::Word;

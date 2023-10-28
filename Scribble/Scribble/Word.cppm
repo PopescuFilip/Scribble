@@ -4,11 +4,11 @@ import <string>;
 import <random>;
 import <set>;
 
-export module wordModule;
+export module word;
 
 namespace Scribble
 {
-    class Word
+    export class Word
     {
     public:
         std::string word;

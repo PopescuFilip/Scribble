@@ -101,20 +101,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Word.cpp" />
-    <ClCompile Include="Word.cppm" />
+    <ClCompile Include="round.cpp" />
+    <ClCompile Include="round.cppm" />
+    <ClCompile Include="word.cpp" />
+    <ClCompile Include="word.cppm" />
     <QtRcc Include="Scribble.qrc" />
     <QtUic Include="Scribble.ui" />
     <QtMoc Include="Scribble.h" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Round.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Scribble.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Round.h" />
     <ClInclude Include="Score.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
