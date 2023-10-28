@@ -40,9 +40,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Score.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -58,11 +55,14 @@
     <ClCompile Include="word.cppm">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="player.cppm">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Score.h">
       <Filter>Header Files</Filter>
     </ClInclude>

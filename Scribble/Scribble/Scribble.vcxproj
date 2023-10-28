@@ -101,6 +101,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="player.cppm" />
     <ClCompile Include="round.cpp" />
     <ClCompile Include="round.cppm" />
     <ClCompile Include="word.cpp" />
@@ -108,13 +110,11 @@
     <QtRcc Include="Scribble.qrc" />
     <QtUic Include="Scribble.ui" />
     <QtMoc Include="Scribble.h" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Scribble.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h" />
     <ClInclude Include="Score.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
