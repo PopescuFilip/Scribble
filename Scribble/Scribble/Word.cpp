@@ -3,10 +3,10 @@ module word;
 
 using Scribble::Word;
 
-std::string Word::GetWordSize() const
+int Word::GetWordSize() const
 {
     size_t length = word.size();
-    return std::to_string(length);
+    return length;
 }
 
 std::string Word::GetVisibleCharacters() const
