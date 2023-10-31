@@ -1,11 +1,12 @@
-#include "Score.h"
+import score;
+using Scribble::Score;
 
-std::vector<int8_t> Score::m_times;
+std::vector<int16_t> Score::m_times;
 
-Score::Score(): m_score(0)
+Score::Score() : m_score(0)
 {}
 
-void Score::CalculateScoreGuesser(uint8_t time)
+void Score::CalculateScoreGuesser(uint16_t time)
 {
 	Score::m_times.push_back(time);
 	if (time <= Score::kBONUS_THRESHHOLD)
@@ -18,7 +19,7 @@ void Score::CalculateScoreGuesser(uint8_t time)
 		m_score -= Score::kMAX_POINTS / 2;
 		return;
 	}
-	uint8_t scoreGained = ScoreFormula(time);
+	uint16_t scoreGained = ScoreFormula(time);
 	m_score += scoreGained;
 }
 
@@ -26,7 +27,7 @@ void Score::CalculateScorePainter()
 {
 	bool atLeastOneGuessed = false;
 	int16_t averageTime = 0;
-	for (const int8_t& time : Score::m_times)
+	for (const int16_t& time : Score::m_times)
 	{
 		if (time != Score::kMAX_ROUND_LENGTH)
 			atLeastOneGuessed = true;
@@ -36,14 +37,14 @@ void Score::CalculateScorePainter()
 	Score::m_times.clear();
 	if (atLeastOneGuessed)
 	{
-		uint8_t scoreGained = ScoreFormula(averageTime);
+		uint16_t scoreGained = ScoreFormula(averageTime);
 		m_score += scoreGained;
 		return;
 	}
 	m_score -= Score::kMAX_POINTS;
 }
 
-uint8_t Score::ScoreFormula(uint8_t duration)
+uint16_t Score::ScoreFormula(uint16_t duration)
 {
 	return (Score::kMAX_ROUND_LENGTH - duration) * Score::kMAX_POINTS * 2 / Score::kMAX_ROUND_LENGTH;
 }

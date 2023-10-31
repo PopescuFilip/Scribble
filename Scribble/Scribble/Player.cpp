@@ -1,6 +1,7 @@
 import player;
-import "Score.h";
+import score;
 using Scribble::Player;
+using Scribble::Score;
 
 Scribble::Player::Player()
 {

@@ -1,6 +1,6 @@
 module;
 import <string>;
-export import "Score.h";
+export import score;
 export module player;
 
 namespace Scribble {

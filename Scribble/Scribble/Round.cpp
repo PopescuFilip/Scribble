@@ -8,7 +8,7 @@ Round::Round() :m_word("")
 }
 
 Round::Round(const Word& word) :m_word(word)
-{
+{ 
 }
 
 float Round::GetInterval() const
