@@ -3,7 +3,7 @@ import word;
 using Scribble::Round;
 
 
-Round::Round() :m_word("")
+Round::Round()
 {
 }
 
