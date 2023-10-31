@@ -1,8 +1,9 @@
 module;
 
+import<iostream>;
 import <string>;
-import <random>;
 import <set>;
+import<random>;
 
 export module word;
 
@@ -11,15 +12,18 @@ namespace Scribble
     export class Word
     {
     public:
-        std::string word;
-        std::set<int> revealedCharacters;
+        Word() : word("")
+        {
+        }
 
-        Word(std::string word) {};
+        Word(const Word& other) : word(other.word)
+        {
+        }
 
-        int GetWordSize() const ;
+        size_t GetWordSize() const ;
         // functia returneaza dimensiunea cuvantului
 
-        std::string GetVisibleCharacters() const;
+        std::string& GetVisibleCharacters() const;
 
         /*functia returneaza caracterele vizibile si cele necunoscute reprezentate ca underscores, si verifica
         daca respectivul caracter a fost dezvaluit sau nu*/
@@ -27,6 +31,9 @@ namespace Scribble
         void revealRandomCharacter() ;
         /*Aceasta functie dezvaluie cate un caracter aleatoriu din cuvant si se verifica daca respectivul
         caracter nu a fost deja dezvaluit.*/
+    private:
+        std::string word;
+        std::set<int> revealedCharacters;
 
     };
 }
