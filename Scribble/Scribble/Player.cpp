@@ -32,6 +32,26 @@ Score Scribble::Player::GetScore()
 	return m_score;
 }
 
+void Scribble::Player::SetUsername(const std::string& username)
+{
+	m_username = username;
+}
+
+void Scribble::Player::SetWordLastGuessed(const std::string& wordLastGuessed)
+{
+	m_wordLastGuessed = wordLastGuessed;
+}
+
+void Scribble::Player::SetCanDraw(bool canDraw)
+{
+	m_canDraw = canDraw;
+}
+
+void Scribble::Player::SetScore(const Score& score)
+{
+	m_score = score;
+}
+
 
 
 
