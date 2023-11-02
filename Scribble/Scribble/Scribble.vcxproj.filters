@@ -64,5 +64,8 @@
     <ClCompile Include="score.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="user.cppm">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
