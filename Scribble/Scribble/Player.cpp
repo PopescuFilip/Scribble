@@ -1,20 +1,16 @@
 import player;
 import score;
+import user;
 using Scribble::Player;
 using Scribble::Score;
 
-Scribble::Player::Player()
+Scribble::Player::Player():m_canDraw(false), m_guessedCorrectly(false), User()
 {
 };
 
-Scribble::Player::Player(const std::string& username, const std::string& wordLastGuessed, bool canDraw, const Score& score)
-	:m_username(username), m_wordLastGuessed(wordLastGuessed), m_canDraw(canDraw), m_score(score)
+Scribble::Player::Player(const std::string& username, const std::string& password)
+	: m_canDraw(false),m_guessedCorrectly(false), User(username, password)
 {
-}
-
-std::string Scribble::Player::GetUsername()
-{
-	return m_username;
 }
 
 std::string Scribble::Player::GetWordLastGuessed()
@@ -35,11 +31,6 @@ Score Scribble::Player::GetScore()
 bool Scribble::Player::GetGuessedCorrectly()
 {
 	return m_guessedCorrectly;
-}
-
-void Scribble::Player::SetUsername(const std::string& username)
-{
-	m_username = username;
 }
 
 void Scribble::Player::SetWordLastGuessed(const std::string& wordLastGuessed)
