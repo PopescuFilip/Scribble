@@ -32,6 +32,11 @@ Score Scribble::Player::GetScore()
 	return m_score;
 }
 
+bool Scribble::Player::GetGuessedCorrectly()
+{
+	return m_guessedCorrectly;
+}
+
 void Scribble::Player::SetUsername(const std::string& username)
 {
 	m_username = username;
@@ -52,7 +57,7 @@ void Scribble::Player::SetScore(const Score& score)
 	m_score = score;
 }
 
-
-
-
-
+void Scribble::Player::SetGuessedCorrectly(bool guessedCorrectly)
+{
+	m_guessedCorrectly = guessedCorrectly;
+}

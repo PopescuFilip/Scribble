@@ -13,15 +13,18 @@ namespace Scribble {
 		std::string GetWordLastGuessed();
 		bool GetCanDraw();
 		Score GetScore();
+		bool GetGuessedCorrectly();
 		void SetUsername(const std::string& username);
 		void SetWordLastGuessed(const std::string& wordLastGuessed);
 		void SetCanDraw(bool canDraw);
 		void SetScore(const Score& score);
+		void SetGuessedCorrectly(bool guessedCorrectly);
 	private:
 		std::string m_username;
 		std::string m_wordLastGuessed;
 		bool m_canDraw;
 		Score m_score;
+		bool m_guessedCorrectly;
 	};
 }
 
