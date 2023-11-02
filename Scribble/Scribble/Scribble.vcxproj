@@ -107,6 +107,7 @@
     <ClCompile Include="round.cppm" />
     <ClCompile Include="score.cpp" />
     <ClCompile Include="score.cppm" />
+    <ClCompile Include="user.cpp" />
     <ClCompile Include="user.cppm" />
     <ClCompile Include="word.cpp" />
     <ClCompile Include="word.cppm" />

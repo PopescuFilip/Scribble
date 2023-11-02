@@ -1,7 +1,7 @@
 module;
-export module user;
-
 import <string>;
+
+export module user;
 
 namespace Scribble
 {
