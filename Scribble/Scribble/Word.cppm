@@ -4,6 +4,7 @@ import<iostream>;
 import <string>;
 import <set>;
 import<random>;
+import<fstream>;
 
 export module word;
 
@@ -12,13 +13,8 @@ namespace Scribble
     export class Word
     {
     public:
-        Word() : word("")
-        {
-        }
-
-        Word(const Word& other) : word(other.word)
-        {
-        }
+        Word();
+        Word(const std::string m_word);
 
         size_t GetWordSize() const ;
         // functia returneaza dimensiunea cuvantului
@@ -34,8 +30,10 @@ namespace Scribble
         std::string getEmptyWord() const;
         // returneaza un string de "_" de dimensiunea word ului
 
+        void setWord(std::ifstream& file);
+
     private:
-        std::string word;
+        std::string m_word;
         std::set<int> revealedCharacters;
 
     };

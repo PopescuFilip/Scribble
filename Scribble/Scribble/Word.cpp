@@ -1,17 +1,27 @@
-module word;
+#include <random>
+import word;
 
 using Scribble::Word;
 
+
+Scribble::Word::Word()
+{
+}
+
+Scribble::Word::Word(const std::string m_word)
+{
+}
+
 size_t Word::GetWordSize() const
 {
-    size_t length = word.size();
+    size_t length = m_word.size();
     return length;
 }
 
 std::string& Word::GetVisibleCharacters() const
 {
-    size_t length = word.size();
-    std::string visibleCharacters = word;
+    size_t length = m_word.size();
+    std::string visibleCharacters = m_word;
     for (int i = 0; i < length; ++i) {
         if (revealedCharacters.find(i) == revealedCharacters.end())
         {
@@ -23,7 +33,7 @@ std::string& Word::GetVisibleCharacters() const
 
 void Word::revealRandomCharacter()
 {
-    size_t length = word.size();
+    size_t length = m_word.size();
     int randomIndex;
     std::random_device rd;
     std::default_random_engine engine(rd());
@@ -38,9 +48,31 @@ void Word::revealRandomCharacter()
 
 std::string Word::getEmptyWord() const
 {
-    size_t length = word.size();
+    size_t length = m_word.size();
 
-    std::string emptyWord(length, '_'); 
+    std::string emptyWord(length, '_');
 
     return emptyWord;
 }
+
+
+void Word::setWord(std::ifstream& file)
+{
+    if (!file.is_open()) {
+        throw std::exception("Error file!\n");
+        return;
+    }
+
+    file.seekg(0, std::ios::end);
+    size_t fileSize = static_cast<size_t>(file.tellg());
+    file.seekg(0, std::ios::beg);
+
+    std::random_device rd;
+    std::default_random_engine engine(rd());
+    std::uniform_int_distribution<size_t> distribution(0, fileSize - 1);
+    size_t randomPosition = distribution(engine);
+
+    file.seekg(randomPosition);
+    file >> m_word;
+}
+
