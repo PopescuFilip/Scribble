@@ -74,5 +74,7 @@ void Word::setWord(std::ifstream& file)
 
     file.seekg(randomPosition);
     file >> m_word;
+
+    revealedCharacters.clear();
 }
 
