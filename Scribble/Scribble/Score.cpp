@@ -4,7 +4,7 @@ using Scribble::Score;
 
 std::vector<int16_t> Score::m_times;
 
-Score::Score() : m_score(0)
+Score::Score() : m_score{ 0 }
 {}
 
 void Score::CalculateScoreGuesser(uint16_t time)

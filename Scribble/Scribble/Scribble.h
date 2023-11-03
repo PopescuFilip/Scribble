@@ -8,7 +8,7 @@ class Scribble : public QMainWindow
     Q_OBJECT
 
 public:
-    Scribble(QWidget *parent = nullptr);
+    Scribble( QWidget * parent = nullptr );
     ~Scribble();
 
 private:

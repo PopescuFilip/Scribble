@@ -7,7 +7,7 @@ Round::Round()
 {
 }
 
-Round::Round(const Word& word) :m_word(word)
+Round::Round(const Word& word) :m_word{ word }
 { 
 }
 
@@ -19,6 +19,11 @@ float Round::GetInterval() const
 Scribble::Word Round::GetWord() const
 {
 	return m_word;
+}
+
+void Scribble::Round::SetWord(std::ifstream& file)
+{
+	m_word.setWord( file);
 }
 
 Round::~Round()

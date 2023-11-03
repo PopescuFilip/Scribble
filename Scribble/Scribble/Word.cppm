@@ -14,7 +14,7 @@ namespace Scribble
     {
     public:
         Word();
-        Word(const std::string m_word);
+        Word(const std::string& word);
 
         size_t GetWordSize() const ;
         // functia returneaza dimensiunea cuvantului

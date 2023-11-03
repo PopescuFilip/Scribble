@@ -4,11 +4,11 @@ import word;
 using Scribble::Word;
 
 
-Scribble::Word::Word()
+Scribble::Word::Word():m_word{""}
 {
 }
 
-Scribble::Word::Word(const std::string m_word)
+Scribble::Word::Word(const std::string& word):m_word{word}
 {
 }
 

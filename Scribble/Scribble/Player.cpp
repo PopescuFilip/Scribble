@@ -4,12 +4,12 @@ import user;
 using Scribble::Player;
 using Scribble::Score;
 
-Scribble::Player::Player():m_canDraw(false), m_guessedCorrectly(false), User()
+Scribble::Player::Player() :m_canDraw{ false }, m_guessedCorrectly{ false }, User()
 {
 };
 
 Scribble::Player::Player(const std::string& username, const std::string& password)
-	: m_canDraw(false),m_guessedCorrectly(false), User(username, password)
+	: m_canDraw{ false }, m_guessedCorrectly{ false }, User{ username, password }
 {
 }
 

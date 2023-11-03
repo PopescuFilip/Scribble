@@ -11,6 +11,7 @@ namespace Scribble {
 		Round(const Word& word); 
 		float GetInterval() const;
 		Word GetWord() const;
+		void SetWord(std::ifstream& file);
 		~Round();
 	private:
 		Word m_word;
