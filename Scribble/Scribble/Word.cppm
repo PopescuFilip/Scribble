@@ -31,6 +31,9 @@ namespace Scribble
         void revealRandomCharacter() ;
         /*Aceasta functie dezvaluie cate un caracter aleatoriu din cuvant si se verifica daca respectivul
         caracter nu a fost deja dezvaluit.*/
+        std::string getEmptyWord() const;
+        // returneaza un string de "_" de dimensiunea word ului
+
     private:
         std::string word;
         std::set<int> revealedCharacters;

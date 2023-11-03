@@ -35,3 +35,12 @@ void Word::revealRandomCharacter()
 
     revealedCharacters.insert(randomIndex);
 }
+
+std::string Word::getEmptyWord() const
+{
+    size_t length = word.size();
+
+    std::string emptyWord(length, '_'); 
+
+    return emptyWord;
+}
