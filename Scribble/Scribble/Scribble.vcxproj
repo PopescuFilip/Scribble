@@ -103,6 +103,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player.cppm" />
     <ClCompile Include="round.cpp" />
@@ -114,10 +115,14 @@
     <ClCompile Include="word.cpp" />
     <ClCompile Include="word.cppm" />
     <QtRcc Include="Scribble.qrc" />
+    <QtUic Include="Login.ui" />
     <QtUic Include="Scribble.ui" />
     <QtMoc Include="Scribble.h" />
     <ClCompile Include="Scribble.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Login.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
