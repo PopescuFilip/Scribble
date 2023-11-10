@@ -26,29 +26,6 @@
     <property name="title">
      <string>SignIn</string>
     </property>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>100</y>
-       <width>51</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Password</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>100</y>
-       <width>113</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
@@ -81,6 +58,28 @@
       </item>
       <item>
        <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>100</y>
+       <width>190</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Password</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_2"/>
       </item>
      </layout>
     </widget>
