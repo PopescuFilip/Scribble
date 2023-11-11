@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1055</width>
+    <width>502</width>
     <height>400</height>
    </rect>
   </property>
@@ -24,22 +24,22 @@
      </rect>
     </property>
     <property name="title">
-     <string>SignIn</string>
+     <string>SignIn/Register</string>
     </property>
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>150</y>
-       <width>231</width>
-       <height>31</height>
+       <x>140</x>
+       <y>140</y>
+       <width>75</width>
+       <height>24</height>
       </rect>
      </property>
      <property name="text">
       <string>Login</string>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -61,7 +61,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -83,6 +83,19 @@
       </item>
      </layout>
     </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>140</y>
+       <width>75</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Register</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -90,7 +103,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1055</width>
+     <width>502</width>
      <height>22</height>
     </rect>
    </property>
