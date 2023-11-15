@@ -43,14 +43,23 @@
     <ClCompile Include="Login.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JoinRoom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Login.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="JoinRoom.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Login.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="JoinRoom.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

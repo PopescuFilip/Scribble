@@ -103,8 +103,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="JoinRoom.cpp" />
     <ClCompile Include="Login.cpp" />
     <QtRcc Include="Scribble.qrc" />
+    <QtUic Include="JoinRoom.ui" />
     <QtUic Include="Login.ui" />
     <QtUic Include="Scribble.ui" />
     <QtMoc Include="Scribble.h" />
@@ -113,6 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Login.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="JoinRoom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
