@@ -3,7 +3,7 @@ import <string>;
 
 export module user;
 
-namespace Scribble
+namespace ScribbleServer
 {
 	export class User 
 	{

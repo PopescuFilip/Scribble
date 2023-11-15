@@ -1,14 +1,14 @@
 #include <random>
 import word;
 
-using Scribble::Word;
+using ScribbleServer::Word;
 
 
-Scribble::Word::Word():m_word{""}
+ScribbleServer::Word::Word():m_word{""}
 {
 }
 
-Scribble::Word::Word(const std::string& word):m_word{word}
+ScribbleServer::Word::Word(const std::string& word):m_word{word}
 {
 }
 

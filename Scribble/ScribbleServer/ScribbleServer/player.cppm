@@ -5,7 +5,7 @@ export import user;
 export module player;
 
 
-namespace Scribble {
+namespace ScribbleServer {
 	export class Player : public User
 	{
 	public:

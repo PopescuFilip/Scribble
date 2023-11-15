@@ -104,16 +104,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Login.cpp" />
-    <ClCompile Include="player.cpp" />
-    <ClCompile Include="player.cppm" />
-    <ClCompile Include="round.cpp" />
-    <ClCompile Include="round.cppm" />
-    <ClCompile Include="score.cpp" />
-    <ClCompile Include="score.cppm" />
-    <ClCompile Include="user.cpp" />
-    <ClCompile Include="user.cppm" />
-    <ClCompile Include="word.cpp" />
-    <ClCompile Include="word.cppm" />
     <QtRcc Include="Scribble.qrc" />
     <QtUic Include="Login.ui" />
     <QtUic Include="Scribble.ui" />

@@ -4,7 +4,7 @@ import <string>;
 export import word;
 export module round;
 
-namespace Scribble {
+namespace ScribbleServer {
 	export class Round {
 	public:
 		Round();

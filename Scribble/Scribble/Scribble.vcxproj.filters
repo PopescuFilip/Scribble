@@ -40,36 +40,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="round.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="word.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="score.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="user.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="round.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="score.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="word.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="user.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Login.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

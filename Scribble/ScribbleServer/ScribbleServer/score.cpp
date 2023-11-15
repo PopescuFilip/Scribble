@@ -1,6 +1,6 @@
 import score;
 import<vector>;
-using Scribble::Score;
+using ScribbleServer::Score;
 
 std::vector<int16_t> Score::m_times;
 

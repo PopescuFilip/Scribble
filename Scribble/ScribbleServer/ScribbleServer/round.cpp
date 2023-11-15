@@ -1,6 +1,6 @@
 import round;
 import word;
-using Scribble::Round;
+using ScribbleServer::Round;
 
 
 Round::Round()
@@ -16,12 +16,12 @@ float Round::GetInterval() const
 	return (m_duration / m_word.GetWordSize());
 }
 
-Scribble::Word Round::GetWord() const
+ScribbleServer::Word Round::GetWord() const
 {
 	return m_word;
 }
 
-void Scribble::Round::SetWord(std::ifstream& file)
+void ScribbleServer::Round::SetWord(std::ifstream& file)
 {
 	m_word.setWord( file);
 }

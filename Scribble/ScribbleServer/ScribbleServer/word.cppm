@@ -8,7 +8,7 @@ import<fstream>;
 
 export module word;
 
-namespace Scribble
+namespace ScribbleServer
 {
     export class Word
     {

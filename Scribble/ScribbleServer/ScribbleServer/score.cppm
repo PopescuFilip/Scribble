@@ -3,7 +3,7 @@ import <vector>;
 import <cstdint>;
 export module score;
 
-namespace Scribble {
+namespace ScribbleServer {
 	export class Score {
 	public:
 		Score();
