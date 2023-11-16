@@ -4,7 +4,7 @@
 #include "ui_Scribble.h"
 #include <QMouseEvent>
 #include <QPainter>
-#include <vector>
+#include <set>
 
 class Scribble : public QMainWindow
 {
@@ -20,7 +20,13 @@ public:
     virtual void paintEvent(QPaintEvent* event) override;
 
 private:
+    void InterpolationLogic(const QPoint&, const QPoint&, float);
+
+private:
     Ui::ScribbleClass ui;
     bool m_drawing;
-    std::vector<QPoint> m_points;
+    QPoint m_lastDrawnPoint;
+    std::set<std::pair<int, int>> m_points;
+    const uint16_t kBrushSize = 5;
+    const uint16_t kInterpolationThreshold = 2 * kBrushSize;
 };
