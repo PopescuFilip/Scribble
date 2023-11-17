@@ -36,7 +36,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Play!</string>
+      <string>Insert Room Code</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_2">
@@ -49,7 +49,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Create Private Room</string>
+      <string>Create Waiting Room</string>
      </property>
     </widget>
    </widget>

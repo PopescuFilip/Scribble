@@ -49,6 +49,9 @@
     <ClCompile Include="WaitingRoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Profile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Login.h">
@@ -60,6 +63,9 @@
     <QtMoc Include="WaitingRoom.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="Profile.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Login.ui">
@@ -69,6 +75,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="WaitingRoom.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Profile.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

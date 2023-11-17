@@ -105,10 +105,12 @@
   <ItemGroup>
     <ClCompile Include="JoinRoom.cpp" />
     <ClCompile Include="Login.cpp" />
+    <ClCompile Include="Profile.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
     <QtRcc Include="Scribble.qrc" />
     <QtUic Include="JoinRoom.ui" />
     <QtUic Include="Login.ui" />
+    <QtUic Include="Profile.ui" />
     <QtUic Include="Scribble.ui" />
     <QtMoc Include="Scribble.h" />
     <ClCompile Include="Scribble.cpp" />
@@ -123,6 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="WaitingRoom.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Profile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
