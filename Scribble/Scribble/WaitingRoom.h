@@ -11,6 +11,8 @@ public:
 	WaitingRoom(QWidget *parent = nullptr);
 	~WaitingRoom();
 
+	void paintEvent();
+
 private:
 	Ui::WaitingRoomClass ui;
 };

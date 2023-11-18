@@ -1,5 +1,6 @@
 #include "Scribble.h"
 #include "JoinRoom.h"
+#include "WaitingRoom.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
@@ -12,6 +13,10 @@ int main(int argc, char *argv[])
     JoinRoom join;
     join.paintEvent();
     join.show();
+
+    WaitingRoom room;
+    room.paintEvent();
+    room.show();
 
     return a.exec();
 }
