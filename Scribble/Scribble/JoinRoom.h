@@ -13,7 +13,7 @@ public:
 	JoinRoom(QWidget *parent = nullptr);
 	~JoinRoom();
 
-	void paintEvent();
+	void paintEvent(QPaintEvent* event) override;
 
 private:
 	Ui::JoinRoomClass ui;

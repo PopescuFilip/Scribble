@@ -9,7 +9,7 @@ JoinRoom::JoinRoom(QWidget *parent)
 JoinRoom::~JoinRoom()
 {}
 
-void JoinRoom::paintEvent()
+void JoinRoom::paintEvent(QPaintEvent* event)
 {
 	ui.pushButton_2->setStyleSheet("background-color: SkyBlue; border-radius: 10px;");
 	ui.pushButton->setStyleSheet("background-color: Green; border-radius: 10px;");
