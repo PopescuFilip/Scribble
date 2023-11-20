@@ -48,5 +48,13 @@
     <ClCompile Include="word.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gameDatabase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gameDatabase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

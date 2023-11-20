@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="gameDatabase.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player.cppm" />
     <ClCompile Include="round.cpp" />
@@ -146,6 +147,9 @@
     <ClCompile Include="user.cppm" />
     <ClCompile Include="word.cpp" />
     <ClCompile Include="word.cppm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gameDatabase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

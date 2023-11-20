@@ -26,6 +26,16 @@ void ScribbleServer::Round::SetWord(std::ifstream& file)
 	m_word.setWord( file);
 }
 
+void ScribbleServer::Round::RevealCharacter()
+{
+	m_word.revealRandomCharacter();
+}
+
+uint16_t ScribbleServer::Round::GetDuration()
+{
+	return m_duration;
+}
+
 Round::~Round()
 {
 }

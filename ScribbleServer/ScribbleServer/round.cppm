@@ -12,6 +12,8 @@ namespace ScribbleServer {
 		float GetInterval() const;
 		Word GetWord() const;
 		void SetWord(std::ifstream& file);
+		void RevealCharacter();
+		uint16_t GetDuration();
 		~Round();
 	private:
 		Word m_word;
