@@ -11,6 +11,9 @@ class Scribble : public QMainWindow
     Q_OBJECT
 
 public:
+    using Coordinate = std::pair<uint16_t, uint16_t>;
+    using Line = std::pair<Coordinate, Coordinate>;
+public:
     Scribble( QWidget * parent = nullptr );
     ~Scribble();
 
@@ -20,13 +23,9 @@ public:
     virtual void paintEvent(QPaintEvent* event) override;
 
 private:
-    void InterpolationLogic(const QPoint&, const QPoint&, float);
-
-private:
     Ui::ScribbleClass ui;
     bool m_drawing;
-    QPoint m_lastDrawnPoint;
-    std::set<std::pair<int, int>> m_points;
+    Coordinate m_lastDrawnPoint;
+    std::vector<Line> m_lines;
     const uint16_t kBrushSize = 5;
-    const uint16_t kInterpolationThreshold = 2 * kBrushSize;
 };
