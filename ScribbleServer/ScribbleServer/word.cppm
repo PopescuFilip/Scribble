@@ -16,20 +16,10 @@ namespace ScribbleServer
         Word();
         Word(const std::string& word);
 
-        size_t GetWordSize() const ;
-        // functia returneaza dimensiunea cuvantului
-
+        size_t GetWordSize() const;
         std::string& GetVisibleCharacters() const;
-
-        /*functia returneaza caracterele vizibile si cele necunoscute reprezentate ca underscores, si verifica
-        daca respectivul caracter a fost dezvaluit sau nu*/
-
-        void revealRandomCharacter() ;
-        /*Aceasta functie dezvaluie cate un caracter aleatoriu din cuvant si se verifica daca respectivul
-        caracter nu a fost deja dezvaluit.*/
+        void revealRandomCharacter();
         std::string getEmptyWord() const;
-        // returneaza un string de "_" de dimensiunea word ului
-
         void setWord(std::ifstream& file);
 
     private:
