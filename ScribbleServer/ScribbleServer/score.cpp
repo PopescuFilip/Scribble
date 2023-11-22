@@ -2,14 +2,11 @@ import score;
 import<vector>;
 using ScribbleServer::Score;
 
-std::vector<int16_t> Score::m_times;
-
 Score::Score() : m_score{ 0 }
 {}
 
 void Score::CalculateScoreGuesser(uint16_t time)
 {
-	Score::m_times.push_back(time);
 	if (time <= Score::kBONUS_THRESHHOLD)
 	{
 		m_score += Score::kMAX_POINTS;
@@ -24,18 +21,17 @@ void Score::CalculateScoreGuesser(uint16_t time)
 	m_score += scoreGained;
 }
 
-void Score::CalculateScorePainter()
+void Score::CalculateScorePainter(const std::vector<uint16_t>& times)
 {
 	bool atLeastOneGuessed = false;
 	int16_t averageTime = 0;
-	for (const int16_t& time : Score::m_times)
+	for (const int16_t& time : times)
 	{
 		if (time != Score::kMAX_ROUND_LENGTH)
 			atLeastOneGuessed = true;
 		averageTime += time;
 	}
-	averageTime /= Score::m_times.size();
-	Score::m_times.clear();
+	averageTime /= times.size();
 	if (atLeastOneGuessed)
 	{
 		uint16_t scoreGained = ScoreFormula(averageTime);

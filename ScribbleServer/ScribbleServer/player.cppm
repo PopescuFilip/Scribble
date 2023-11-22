@@ -12,19 +12,22 @@ namespace ScribbleServer {
 	public:
 		Player();
 		Player(const std::string& username, const std::string& password);
-		std::string GetWordLastGuessed();
+
 		bool GetCanDraw();
 		Score GetScore();
 		bool GetGuessedCorrectly();
-		void SetWordLastGuessed(const std::string& wordLastGuessed);
+
 		void SetCanDraw(bool canDraw);
 		void SetScore(const Score& score);
 		void SetGuessedCorrectly(bool guessedCorrectly);
 	private:
-		std::string m_wordLastGuessed;
+		uint16_t m_playerId;
+		std::string username;
+
 		bool m_canDraw;
-		Score m_score;
 		bool m_guessedCorrectly;
+		uint16_t m_timeGuessedCorrectly;
+		Score m_score;
 	};
 }
 

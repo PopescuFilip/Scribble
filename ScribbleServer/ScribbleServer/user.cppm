@@ -10,6 +10,7 @@ namespace ScribbleServer
 	public:
 		User();
 		User(const std::string& username, const std::string& password);
+		
 		std::string GetUser();
 		bool IsCorrectPass(const std::string& password);
 	private:

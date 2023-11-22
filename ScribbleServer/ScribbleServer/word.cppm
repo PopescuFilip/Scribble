@@ -17,14 +17,15 @@ namespace ScribbleServer
         Word(const std::string& word);
 
         size_t GetWordSize() const;
-        std::string& GetVisibleCharacters() const;
+        std::string GetVisibleCharacters() const;
         void revealRandomCharacter();
         std::string getEmptyWord() const;
         void setWord(std::ifstream& file);
 
     private:
+        uint16_t m_wordId;
         std::string m_word;
-        std::set<int> revealedCharacters;
+        std::set<int> m_revealedCharacters;
 
     };
 }

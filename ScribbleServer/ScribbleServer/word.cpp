@@ -4,26 +4,25 @@ import word;
 using ScribbleServer::Word;
 
 
-ScribbleServer::Word::Word():m_word{""}
+Word::Word():m_word{""}
 {
 }
 
-ScribbleServer::Word::Word(const std::string& word):m_word{word}
+Word::Word(const std::string& word):m_word{word}
 {
 }
 
 size_t Word::GetWordSize() const
 {
-    size_t length = m_word.size();
-    return length;
+    return m_word.size();
 }
 
-std::string& Word::GetVisibleCharacters() const
+std::string Word::GetVisibleCharacters() const
 {
     size_t length = m_word.size();
     std::string visibleCharacters = m_word;
     for (int i = 0; i < length; ++i) {
-        if (revealedCharacters.find(i) == revealedCharacters.end())
+        if (m_revealedCharacters.find(i) == m_revealedCharacters.end())
         {
             visibleCharacters[i] = '_';
         }
@@ -41,9 +40,9 @@ void Word::revealRandomCharacter()
 
     do {
         randomIndex = distribution(engine);
-    } while (revealedCharacters.find(randomIndex) != revealedCharacters.end());
+    } while (m_revealedCharacters.find(randomIndex) != m_revealedCharacters.end());
 
-    revealedCharacters.insert(randomIndex);
+    m_revealedCharacters.insert(randomIndex);
 }
 
 std::string Word::getEmptyWord() const
@@ -75,6 +74,6 @@ void Word::setWord(std::ifstream& file)
     file.seekg(randomPosition);
     file >> m_word;
 
-    revealedCharacters.clear();
+    m_revealedCharacters.clear();
 }
 
