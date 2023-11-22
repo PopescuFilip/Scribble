@@ -26,31 +26,34 @@
     <property name="title">
      <string>JoinRoom</string>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>110</y>
-       <width>221</width>
-       <height>24</height>
+       <y>70</y>
+       <width>211</width>
+       <height>83</height>
       </rect>
      </property>
-     <property name="text">
-      <string>Insert Room Code</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>140</y>
-       <width>221</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Create Waiting Room</string>
-     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>Insert Room Code</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="text">
+         <string>Create Waiting Room</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
   </widget>
