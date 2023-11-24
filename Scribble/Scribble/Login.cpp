@@ -11,7 +11,8 @@ Login::Login(QWidget *parent)
 	QPalette palette;
 	palette.setBrush(QPalette::Window, background);
 	setPalette(palette);
-	setGeometry(100, 100, 1280, 720);
+	setFixedSize(1280, 720);
+	setGeometry(140, 70, 2560, 1440);
 }
 
 Login::~Login()
