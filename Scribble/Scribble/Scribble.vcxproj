@@ -103,11 +103,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="JoinRoom.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Profile.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
     <QtRcc Include="Scribble.qrc" />
+    <QtUic Include="EndScreen.ui" />
     <QtUic Include="JoinRoom.ui" />
     <QtUic Include="Login.ui" />
     <QtUic Include="Profile.ui" />
@@ -128,6 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Profile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="EndScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
