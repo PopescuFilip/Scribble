@@ -29,12 +29,12 @@ uint16_t Round::GetDuration()
 
 void Round::SetWord(std::ifstream& file)
 {
-	m_word.setWord( file);
+	m_word.SetWord( file);
 }
 
 void Round::RevealCharacter()
 {
-	m_word.revealRandomCharacter();
+	m_word.RevealRandomCharacter();
 }
 
 Round::~Round()

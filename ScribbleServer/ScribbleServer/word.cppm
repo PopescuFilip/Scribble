@@ -18,9 +18,10 @@ namespace ScribbleServer
 
         size_t GetWordSize() const;
         std::string GetVisibleCharacters() const;
-        void revealRandomCharacter();
-        std::string getEmptyWord() const;
-        void setWord(std::ifstream& file);
+        void RevealRandomCharacter();
+        std::string GetEmptyWord() const;
+        void SetWord(std::ifstream& file);
+
 
     private:
         uint16_t m_wordId;

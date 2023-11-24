@@ -30,7 +30,7 @@ std::string Word::GetVisibleCharacters() const
     return visibleCharacters;
 }
 
-void Word::revealRandomCharacter()
+void Word::RevealRandomCharacter()
 {
     size_t length = m_word.size();
     int randomIndex;
@@ -45,7 +45,7 @@ void Word::revealRandomCharacter()
     m_revealedCharacters.insert(randomIndex);
 }
 
-std::string Word::getEmptyWord() const
+std::string Word::GetEmptyWord() const
 {
     size_t length = m_word.size();
 
@@ -55,7 +55,7 @@ std::string Word::getEmptyWord() const
 }
 
 
-void Word::setWord(std::ifstream& file)
+void Word::SetWord(std::ifstream& file)
 {
     if (!file.is_open()) {
         throw std::exception("Error file!\n");

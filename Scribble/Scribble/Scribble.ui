@@ -6,20 +6,34 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>613</width>
     <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Scribble</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>270</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear Window</string>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>613</width>
      <height>22</height>
     </rect>
    </property>
