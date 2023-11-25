@@ -21,7 +21,7 @@ void Scribble::mouseMoveEvent(QMouseEvent* event)
 {
     if (!m_drawing)
         return;
-    Coordinate newPoint = { event->pos().x(), event->pos().y() };
+    Coordinate newPoint { event->pos().x(), event->pos().y() };
     m_lines.push_back({ m_lastDrawnPoint,newPoint });
     m_lastDrawnPoint = { event->pos().x(), event->pos().y() };
     update();
