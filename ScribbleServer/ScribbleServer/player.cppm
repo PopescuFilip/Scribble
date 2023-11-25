@@ -21,9 +21,6 @@ namespace ScribbleServer {
 		void SetScore(const Score& score);
 		void SetGuessedCorrectly(bool guessedCorrectly);
 	private:
-		uint16_t m_playerId;
-		std::string username;
-
 		bool m_canDraw;
 		bool m_guessedCorrectly;
 		uint16_t m_timeGuessedCorrectly;
