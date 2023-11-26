@@ -5,6 +5,7 @@ JoinRoom::JoinRoom(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+
 	QPixmap background("");
 	background = background.scaled(1280, 1440, Qt::IgnoreAspectRatio);
 	QPalette palette;
