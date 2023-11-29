@@ -9,13 +9,10 @@ namespace ScribbleServer {
 	public:
 		Round();
 		Round(const Word& word); 
-
 		float GetInterval() const;
 		Word GetWord() const;
 		uint16_t GetDuration();
-
 		void SetWord(const std::string& word);
-
 		void RevealCharacter();
 		~Round();
 	private:

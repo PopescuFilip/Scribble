@@ -5,6 +5,7 @@ Scribble::Scribble(QWidget *parent)
       m_drawing(false)
 {
     ui.setupUi(this);
+    connect(ui.ClearWindow, SIGNAL(clicked()), this, SLOT(clearWindow()));
 }
 
 Scribble::~Scribble()
@@ -40,4 +41,11 @@ void Scribble::paintEvent(QPaintEvent* event)
     painter.setPen(pen);
     for (const auto& line : m_lines)
         painter.drawLine(line.first.first, line.first.second, line.second.first, line.second.second);
+}
+
+
+void Scribble::clearWindow()
+{
+    m_lines.clear();
+    update();
 }

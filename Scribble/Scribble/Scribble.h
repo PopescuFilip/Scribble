@@ -22,6 +22,9 @@ public:
     virtual void mouseReleaseEvent(QMouseEvent* event) override;
     virtual void paintEvent(QPaintEvent* event) override;
 
+private slots:
+    void clearWindow();
+
 private:
     Ui::ScribbleClass ui;
     bool m_drawing;
