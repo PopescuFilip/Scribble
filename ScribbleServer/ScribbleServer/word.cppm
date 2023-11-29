@@ -20,7 +20,7 @@ namespace ScribbleServer
         std::string GetVisibleCharacters() const;
         void RevealRandomCharacter();
         std::string GetEmptyWord() const;
-        void SetWord(std::ifstream& file);
+        void SetWord(const std::string& word);
 
 
     private:

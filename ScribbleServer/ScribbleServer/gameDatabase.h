@@ -1,12 +1,13 @@
 #pragma once
-
+#include<iostream>
 import word;
 import round;
 import player;
 import score;
 import user;
-#include <sqlite_orm/sqlite_orm.h>
-namespace sql = sqlite_orm;
+
+//#include<sqlite_orm/sqlite_orm.h>
+//namespace sql = sqlite_orm;
 
 namespace ScribbleServer
 {

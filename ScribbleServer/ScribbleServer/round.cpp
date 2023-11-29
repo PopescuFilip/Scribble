@@ -27,9 +27,9 @@ uint16_t Round::GetDuration()
 	return m_duration;
 }
 
-void Round::SetWord(std::ifstream& file)
+void Round::SetWord(const std::string& word)
 {
-	m_word.SetWord( file);
+	m_word.SetWord(word);
 }
 
 void Round::RevealCharacter()

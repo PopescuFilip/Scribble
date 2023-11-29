@@ -55,25 +55,9 @@ std::string Word::GetEmptyWord() const
 }
 
 
-void Word::SetWord(std::ifstream& file)
+void Word::SetWord(const std::string& word)
 {
-    if (!file.is_open()) {
-        throw std::exception("Error file!\n");
-        return;
-    }
-
-    file.seekg(0, std::ios::end);
-    size_t fileSize = static_cast<size_t>(file.tellg());
-    file.seekg(0, std::ios::beg);
-
-    std::random_device rd;
-    std::default_random_engine engine(rd());
-    std::uniform_int_distribution<size_t> distribution(0, fileSize - 1);
-    size_t randomPosition = distribution(engine);
-
-    file.seekg(randomPosition);
-    file >> m_word;
-
+    m_word = word;
     m_revealedCharacters.clear();
 }
 

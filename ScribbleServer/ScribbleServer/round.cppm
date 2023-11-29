@@ -14,7 +14,7 @@ namespace ScribbleServer {
 		Word GetWord() const;
 		uint16_t GetDuration();
 
-		void SetWord(std::ifstream& file);
+		void SetWord(const std::string& word);
 
 		void RevealCharacter();
 		~Round();
