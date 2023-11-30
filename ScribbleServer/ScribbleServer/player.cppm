@@ -1,5 +1,6 @@
 module;
 import <string>;
+import <vector>;
 export import score;
 export import user;
 export module player;
@@ -18,7 +19,8 @@ namespace ScribbleServer {
 		bool GetGuessedCorrectly();
 
 		void SetCanDraw(bool canDraw);
-		void SetScore(const Score& score);
+		void SetScore(uint16_t time);
+		void SetScore(const std::vector<uint16_t>& times);
 		void SetGuessedCorrectly(bool guessedCorrectly);
 	private:
 		bool m_canDraw;

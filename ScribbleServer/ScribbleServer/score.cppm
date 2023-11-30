@@ -8,6 +8,8 @@ namespace ScribbleServer {
 	export class Score {
 	public:
 		Score();
+
+		uint16_t GetScore();
 		void CalculateScoreGuesser(uint16_t);
 		void CalculateScorePainter(const std::vector<uint16_t>& times);
 	private:

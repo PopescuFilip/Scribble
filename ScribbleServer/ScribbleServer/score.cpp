@@ -5,6 +5,11 @@ using ScribbleServer::Score;
 Score::Score() : m_score{ 0 }
 {}
 
+uint16_t Score::GetScore()
+{
+	return m_score;
+}
+
 void Score::CalculateScoreGuesser(uint16_t time)
 {
 	if (time <= Score::kBONUS_THRESHHOLD)

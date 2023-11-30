@@ -38,9 +38,14 @@ void Player::SetCanDraw(bool canDraw)
 	m_canDraw = canDraw;
 }
 
-void Player::SetScore(const Score& score)
+void Player::SetScore(uint16_t time)
 {
-	m_score = score;
+	m_score.CalculateScoreGuesser(time);
+}
+
+void Player::SetScore(const std::vector<uint16_t>& times)
+{
+	m_score.CalculateScorePainter(times);
 }
 
 void Player::SetGuessedCorrectly(bool guessedCorrectly)
