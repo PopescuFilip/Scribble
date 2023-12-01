@@ -12,10 +12,12 @@ Word::Word(const std::string& word):m_word{word}
 {
 }
 
+
 size_t Word::GetWordSize() const
 {
     return m_word.size();
 }
+
 
 std::string Word::GetVisibleCharacters() const
 {
@@ -54,6 +56,20 @@ std::string Word::GetEmptyWord() const
     return emptyWord;
 }
 
+uint16_t ScribbleServer::Word::GetWordId() const
+{
+    return m_wordId;
+}
+
+void ScribbleServer::Word::SetWordId(uint16_t wordId)
+{
+    m_wordId = wordId;
+}
+
+const std::string& ScribbleServer::Word::GetWord() const
+{
+    return m_word;
+}
 
 void Word::SetWord(const std::string& word)
 {
