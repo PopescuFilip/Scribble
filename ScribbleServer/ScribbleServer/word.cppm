@@ -21,8 +21,8 @@ namespace ScribbleServer
         void RevealRandomCharacter();
         std::string GetEmptyWord() const;
         uint16_t GetWordId() const;
-        void SetWordId(uint16_t wordId);
-        const std::string& GetWord() const;
+        void SetWordId(const uint16_t& wordId);
+        std::string GetWord() const;
         void SetWord(const std::string& word);
 
     private:

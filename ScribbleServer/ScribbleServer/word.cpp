@@ -61,19 +61,20 @@ uint16_t ScribbleServer::Word::GetWordId() const
     return m_wordId;
 }
 
-void ScribbleServer::Word::SetWordId(uint16_t wordId)
+void ScribbleServer::Word::SetWordId(const uint16_t& wordId)
 {
     m_wordId = wordId;
 }
 
-const std::string& ScribbleServer::Word::GetWord() const
+std::string ScribbleServer::Word::GetWord() const
 {
     return m_word;
 }
 
-void Word::SetWord(const std::string& word)
+void ScribbleServer::Word::SetWord(const std::string& word)
 {
     m_word = word;
     m_revealedCharacters.clear();
 }
+
 
