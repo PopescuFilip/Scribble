@@ -4,11 +4,15 @@ import word;
 using ScribbleServer::Word;
 
 
-Word::Word():m_word{""}
+Word::Word():
+    m_wordId{-1},
+    m_word{""}
 {
 }
 
-Word::Word(const std::string& word):m_word{word}
+Word::Word(const std::string& word):
+    m_wordId{-1},
+    m_word{word}
 {
 }
 
@@ -56,22 +60,22 @@ std::string Word::GetEmptyWord() const
     return emptyWord;
 }
 
-uint16_t ScribbleServer::Word::GetWordId() const
+int Word::GetWordId() const
 {
     return m_wordId;
 }
 
-void ScribbleServer::Word::SetWordId(const uint16_t& wordId)
+void Word::SetWordId(int wordId)
 {
     m_wordId = wordId;
 }
 
-std::string ScribbleServer::Word::GetWord() const
+std::string Word::GetWord() const
 {
     return m_word;
 }
 
-void ScribbleServer::Word::SetWord(const std::string& word)
+void Word::SetWord(const std::string& word)
 {
     m_word = word;
     m_revealedCharacters.clear();
