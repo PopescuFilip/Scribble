@@ -1,8 +1,6 @@
 #pragma once
-//#include <string>
+
 import word;
-import round;
-import player;
 import score;
 import user;
 
@@ -14,8 +12,12 @@ namespace ScribbleServer
 	inline auto CreateStorage(const std::string& filename)
 	{
 		return sql::make_storage(
-			filename
-			//tables
+			filename,
+			sql::make_table(
+				"Words",
+				sql::make_column("id", &Word::SetWordId, &Word::GetWordId, sql::primary_key().autoincrement()),
+				sql::make_column("word", &Word::SetWord, &Word::GetWord)
+			)
 		);
 	}
 	
@@ -31,6 +33,7 @@ namespace ScribbleServer
 
 	private:
 		const std::string kDbFile{ "products.sqlite" };
+		const std::string kWordFile{ "words.txt" };
 
 	private:
 		Storage m_db = CreateStorage(kDbFile);
