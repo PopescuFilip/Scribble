@@ -166,6 +166,9 @@
     <ClInclude Include="gameRoom.h" />
     <ClInclude Include="routing.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="wordsFile.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
