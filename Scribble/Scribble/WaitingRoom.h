@@ -14,5 +14,5 @@ public:
 	void paintEvent(QPaintEvent* event) override;
 
 private:
-	Ui::WaitingRoomClass ui;
+	Ui::WaitingRoomClass ui;	
 };

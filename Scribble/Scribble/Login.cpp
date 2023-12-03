@@ -1,5 +1,6 @@
 #include "Login.h"
 #include <QPixmap>
+#include "JoinRoom.h"
 
 Login::Login(QWidget *parent)
 	: QMainWindow(parent)
@@ -13,7 +14,27 @@ Login::Login(QWidget *parent)
 	setPalette(palette);
 	setFixedSize(1280, 720);
 	setGeometry(140, 70, 2560, 1440);
+
+	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(clickedOnRegisterButton()));
+	connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(clickedOnLogInButton()));
+
 }
 
 Login::~Login()
-{}
+{
+}
+
+void Login::clickedOnLogInButton()
+{
+	close();
+	JoinRoom* join = new JoinRoom(this);
+	join->show();
+}
+
+void Login::clickedOnRegisterButton()
+{
+	close();
+	JoinRoom* join=new JoinRoom(this);
+	join->show();
+}
+
