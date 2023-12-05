@@ -23,6 +23,11 @@ namespace ScribbleServer
 				sql::make_column("id",&Score::SetScoreId, &Score::GetScoreId, sql::primary_key().autoincrement()),
 				sql::make_column("username",&Score::SetUsername, &Score::GetUsername),
 				sql::make_column("score",&Score::SetScore, &Score::GetScore)
+			),
+			sql::make_table(
+				"User",
+				sql::make_column("username", &User::SetUsername, &User::GetUsername),
+				sql::make_column("password", &User::SetPassword, &User::GetPassword)
 			)
 		);
 	}

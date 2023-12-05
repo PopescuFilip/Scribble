@@ -25,10 +25,13 @@ public:
 private slots:
     void clearWindow();
 
+
 private:
     Ui::ScribbleClass ui;
     bool m_drawing;
     Coordinate m_lastDrawnPoint;
     std::vector<Line> m_lines;
     const uint16_t kBrushSize = 5;
+    std::string m_user;
+    bool m_guessedCorrectly;
 };

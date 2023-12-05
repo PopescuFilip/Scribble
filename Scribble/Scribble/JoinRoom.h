@@ -17,4 +17,5 @@ public:
 
 private:
 	Ui::JoinRoomClass ui;
+	std::string m_user;
 };

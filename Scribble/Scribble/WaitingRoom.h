@@ -15,4 +15,5 @@ public:
 
 private:
 	Ui::WaitingRoomClass ui;	
+	std::string m_user;
 };

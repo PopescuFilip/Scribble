@@ -13,4 +13,5 @@ public:
 
 private:
 	Ui::EndScreenClass ui;
+	std::string m_user;
 };

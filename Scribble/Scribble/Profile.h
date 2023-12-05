@@ -13,4 +13,5 @@ public:
 
 private:
 	Ui::ProfileClass ui;
+	std::string m_user;
 };

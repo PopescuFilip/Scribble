@@ -12,7 +12,8 @@ User::User(const std::string & username, const std::string & password):
 	m_password{password}
 {}
 
-std::string User::GetUser() const
+
+std::string ScribbleServer::User::GetUsername() const
 {
 	return m_username;
 }

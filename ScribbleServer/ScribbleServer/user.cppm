@@ -11,7 +11,7 @@ namespace ScribbleServer
 		User();
 		User(const std::string& username, const std::string& password);
 		
-		std::string GetUser() const;
+		std::string GetUsername() const;
 		std::string GetPassword() const;
 
 		void SetUsername(const std::string& user);
