@@ -5,10 +5,37 @@ using ScribbleServer::Score;
 Score::Score() : m_score{ 0 }
 {}
 
-uint16_t Score::GetScore()
+uint16_t Score::GetScore() const
 {
 	return m_score;
 }
+
+
+uint16_t Score::GetScoreId() const
+{
+	return m_scoreId;
+}
+
+std::string Score::GetUsername() const
+{
+	return m_username;
+}
+
+void Score::SetScore(const uint16_t& score)
+{
+	m_score = score;
+}
+
+void Score::SetScoreId(const uint16_t& scoreId)
+{
+	m_scoreId = scoreId;
+}
+
+void Score::SetUsername(const std::string& username)
+{
+	m_username = username;
+}
+
 
 void Score::CalculateScoreGuesser(uint16_t time)
 {
