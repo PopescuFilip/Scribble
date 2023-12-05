@@ -28,7 +28,7 @@ std::string Word::GetVisibleCharacters() const
     size_t length = m_word.size();
     std::string visibleCharacters = m_word;
     for (int i = 0; i < length; ++i) {
-        if (m_revealedCharacters.find(i) == m_revealedCharacters.end())
+        if (m_revealedCharacters.find(i) == m_revealedCharacters.end() && m_word[i] != ' ')
         {
             visibleCharacters[i] = '_';
         }
@@ -58,6 +58,19 @@ std::string Word::GetEmptyWord() const
     std::string emptyWord(length, '_');
 
     return emptyWord;
+}
+
+uint16_t ScribbleServer::Word::GetNoOfCharacters() const
+{
+    uint16_t count = 0;
+    for (char ch : m_word)
+    {
+        if (!std::isspace(static_cast<unsigned char>(ch)))
+        {
+            count++;
+        }
+    }
+    return count;
 }
 
 int Word::GetWordId() const

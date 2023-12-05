@@ -5,6 +5,8 @@ import <string>;
 import <set>;
 import<random>;
 import<fstream>;
+import<cstdint>;
+import<cctype>;
 
 export module word;
 
@@ -25,6 +27,7 @@ namespace ScribbleServer
         size_t GetWordSize() const;
         std::string GetVisibleCharacters() const;
         std::string GetEmptyWord() const;
+        uint16_t GetNoOfCharacters() const;
 
         void RevealRandomCharacter();
         
