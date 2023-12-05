@@ -17,6 +17,12 @@ namespace ScribbleServer
 				"Words",
 				sql::make_column("id", &Word::SetWordId, &Word::GetWordId, sql::primary_key().autoincrement()),
 				sql::make_column("word", &Word::SetWord, &Word::GetWord)
+			),
+			sql::make_table(
+				"Score",
+				sql::make_column("id",&Score::SetScoreId, &Score::GetScoreId, sql::primary_key().autoincrement()),
+				sql::make_column("username",&Score::SetUsername, &Score::GetUsername),
+				sql::make_column("score",&Score::SetScore, &Score::GetScore)
 			)
 		);
 	}
