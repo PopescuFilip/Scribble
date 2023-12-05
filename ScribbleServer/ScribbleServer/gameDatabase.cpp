@@ -1,5 +1,5 @@
 #include "gameDatabase.h"
-#include <fstream>
+//#include <fstream>
 #include <random>
 
 using namespace ScribbleServer;
@@ -32,7 +32,7 @@ Word GameStorage::GetRandomWord()
 
 void GameStorage::PopulateStorage()
 {
-    std::ifstream file{ kWordFile };
+    std::ifstream file(kWordFile);
     std::string wordFromFile;
 
     while (std::getline(file, wordFromFile))
