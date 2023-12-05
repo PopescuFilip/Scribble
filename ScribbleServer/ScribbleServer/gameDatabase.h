@@ -28,6 +28,8 @@ namespace ScribbleServer
 	public:
 		bool Initialize();
 
+		Word GetRandomWord();
+
 	private:
 		void PopulateStorage();
 
