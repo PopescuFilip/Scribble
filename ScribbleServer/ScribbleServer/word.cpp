@@ -51,6 +51,12 @@ void Word::RevealRandomCharacter()
     m_revealedCharacters.insert(randomIndex);
 }
 
+bool ScribbleServer::Word::isRevealed() const
+{
+    uint16_t nonSpaceCharacters = GetNoOfCharacters();
+    return (m_revealedCharacters.size() == nonSpaceCharacters);
+}
+
 std::string Word::GetEmptyWord() const
 {
     size_t length = m_word.size();

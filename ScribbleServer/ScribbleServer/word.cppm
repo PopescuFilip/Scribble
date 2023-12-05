@@ -30,6 +30,7 @@ namespace ScribbleServer
         uint16_t GetNoOfCharacters() const;
 
         void RevealRandomCharacter();
+        bool isRevealed() const;
         
     private:
         int m_wordId;
