@@ -13,6 +13,9 @@ public:
 
 	void paintEvent(QPaintEvent* event) override;
 
+private slots:
+	void clickOnStartButton();
+
 private:
 	Ui::WaitingRoomClass ui;	
 	std::string m_user;

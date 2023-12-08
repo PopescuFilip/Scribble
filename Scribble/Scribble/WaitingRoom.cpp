@@ -1,5 +1,6 @@
 #include "WaitingRoom.h"
 #include <QPixmap>
+#include "Scribble.h"
 
 WaitingRoom::WaitingRoom(QWidget *parent)
 	: QMainWindow(parent)
@@ -14,10 +15,18 @@ WaitingRoom::WaitingRoom(QWidget *parent)
 	setFixedSize(1280, 720);
 	setGeometry(140, 70, 2560, 1440);
 
+	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(clickOnStartButton()));
 }
 
 WaitingRoom::~WaitingRoom()
 {}
+
+void WaitingRoom::clickOnStartButton()
+{
+	close();
+	Scribble* s = new Scribble(this);
+	s->show();
+}
 
 void WaitingRoom::paintEvent(QPaintEvent* event)
 {
