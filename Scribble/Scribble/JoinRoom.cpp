@@ -1,5 +1,6 @@
 #include "JoinRoom.h"
 #include <QPixmap>
+#include "WaitingRoom.h"
 
 JoinRoom::JoinRoom(QWidget *parent)
 	: QMainWindow(parent)
@@ -13,6 +14,9 @@ JoinRoom::JoinRoom(QWidget *parent)
 	setPalette(palette);
 	setFixedSize(1280, 720);
 	setGeometry(140, 70, 2560, 1440);
+
+	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(clickOnInsertButton()));
+	connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(clickOnCreateButton()));
 }
 
 JoinRoom::~JoinRoom()
@@ -24,4 +28,18 @@ void JoinRoom::paintEvent(QPaintEvent* event)
 	ui.pushButton->setStyleSheet("background-color: Green; border-radius: 10px;");
 	ui.groupBox->setStyleSheet("background-color: blue; border-radius: 10px;");
 	ui.centralWidget->setStyleSheet("background-color: DodgerBlue;");
+}
+
+void JoinRoom::clickOnInsertButton()
+{
+	close();
+	WaitingRoom* room = new WaitingRoom(this);
+	room->show();
+}
+
+void JoinRoom::clickOnCreateButton()
+{
+	close();
+	WaitingRoom* room = new WaitingRoom(this);
+	room->show();
 }

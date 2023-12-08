@@ -15,6 +15,10 @@ public:
 
 	void paintEvent(QPaintEvent* event) override;
 
+private slots:
+	void clickOnInsertButton();
+	void clickOnCreateButton();
+
 private:
 	Ui::JoinRoomClass ui;
 	std::string m_user;
