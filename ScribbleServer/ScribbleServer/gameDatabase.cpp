@@ -35,6 +35,22 @@ std::vector<Word> GameStorage::GetWords()
     return m_db.get_all<Word>();
 }
 
+void GameStorage::AddUser(const User& user)
+{
+    m_db.insert(user);
+}
+
+bool GameStorage::CheckUser(const User& user)
+{
+    auto count = m_db.count<User>(sql::where(sql::c(&User::GetUsername) == user.GetUsername()));
+    return count != 0;
+}
+
+std::vector<User> GameStorage::GetUsers()
+{
+    return m_db.get_all<User>();
+}
+
 void GameStorage::PopulateStorage()
 {
     std::ifstream file(kWordFile);
