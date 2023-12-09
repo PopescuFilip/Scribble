@@ -20,13 +20,14 @@ namespace ScribbleServer
 			),
 			sql::make_table(
 				"Score",
-				sql::make_column("id",&Score::SetScoreId, &Score::GetScoreId, sql::primary_key().autoincrement()),
-				sql::make_column("username",&Score::SetUsername, &Score::GetUsername),
-				sql::make_column("score",&Score::SetScore, &Score::GetScore)
+				sql::make_column("id", &Score::SetScoreId, &Score::GetScoreId, sql::primary_key().autoincrement()),
+				sql::make_column("user_id", &Score::SetUserId, &Score::GetUserId),
+				sql::make_column("score", &Score::SetScore, &Score::GetScore)
 			),
 			sql::make_table(
 				"User",
-				sql::make_column("username", &User::SetUsername, &User::GetUsername, sql::primary_key()),
+				sql::make_column("user_id", &User::SetUserId, &User::GetUserId, sql::primary_key().autoincrement()),
+				sql::make_column("username", &User::SetUsername, &User::GetUsername),
 				sql::make_column("password", &User::SetPassword, &User::GetPassword)
 			)
 		);
@@ -41,6 +42,10 @@ namespace ScribbleServer
 
 		Word GetRandomWord();
 		std::vector<Word> GetWords();
+
+		void AddUser(const User& user);
+		bool CheckUser(const User& user);
+		std::vector<User> GetUsers();
 
 	private:
 		void PopulateStorage();

@@ -2,7 +2,10 @@ import score;
 import<vector>;
 using ScribbleServer::Score;
 
-Score::Score() : m_score{ 0 }
+Score::Score() :
+	m_scoreId{ -1 },
+	m_username{ -1 },
+	m_score{ 0 }
 {}
 
 uint16_t Score::GetScore() const
@@ -11,12 +14,12 @@ uint16_t Score::GetScore() const
 }
 
 
-uint16_t Score::GetScoreId() const
+int Score::GetScoreId() const
 {
 	return m_scoreId;
 }
 
-std::string Score::GetUsername() const
+int Score::GetUserId() const
 {
 	return m_username;
 }
@@ -26,14 +29,14 @@ void Score::SetScore(const uint16_t& score)
 	m_score = score;
 }
 
-void Score::SetScoreId(const uint16_t& scoreId)
+void Score::SetScoreId(const int& scoreId)
 {
 	m_scoreId = scoreId;
 }
 
-void Score::SetUsername(const std::string& username)
+void Score::SetUserId(const int& usernameId)
 {
-	m_username = username;
+	m_username = usernameId;
 }
 
 

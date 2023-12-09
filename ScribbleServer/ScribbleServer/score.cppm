@@ -9,13 +9,13 @@ namespace ScribbleServer {
 	public:
 		Score();
 
+		int GetScoreId() const;
+		int GetUserId() const;
 		uint16_t GetScore() const;
-		uint16_t GetScoreId() const;
-		std::string GetUsername() const;
 
+		void SetScoreId(const int& scoreId);
+		void SetUserId(const int& username);
 		void SetScore(const uint16_t& score);
-		void SetScoreId(const uint16_t& scoreId);
-		void SetUsername(const std::string& username);
 		
 	
 		void CalculateScoreGuesser(uint16_t);
@@ -23,8 +23,8 @@ namespace ScribbleServer {
 	private:
 		uint16_t ScoreFormula(uint16_t);
 	private:
-		uint16_t m_scoreId;
-		std::string m_username;
+		int m_scoreId;
+		int m_username;
 		int16_t m_score;
 
 		static const uint16_t kBONUS_THRESHHOLD = 30;
