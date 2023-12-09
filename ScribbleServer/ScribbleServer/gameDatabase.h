@@ -40,6 +40,7 @@ namespace ScribbleServer
 		bool Initialize();
 
 		Word GetRandomWord();
+		std::vector<Word> GetWords();
 
 	private:
 		void PopulateStorage();

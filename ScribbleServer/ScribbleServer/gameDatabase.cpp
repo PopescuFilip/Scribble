@@ -30,6 +30,11 @@ Word GameStorage::GetRandomWord()
     return m_db.get<Word>(randomId);
 }
 
+std::vector<Word> ScribbleServer::GameStorage::GetWords()
+{
+    return m_db.get_all<Word>();
+}
+
 void GameStorage::PopulateStorage()
 {
     std::ifstream file(kWordFile);
