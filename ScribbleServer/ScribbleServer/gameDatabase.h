@@ -46,7 +46,7 @@ namespace ScribbleServer
 		void PopulateStorage();
 
 	private:
-		const std::string kDbFile{ "products.sqlite" };
+		const std::string kDbFile{ "scribble.sqlite" };
 		const std::string kWordFile{ "words.txt" };
 
 	private:

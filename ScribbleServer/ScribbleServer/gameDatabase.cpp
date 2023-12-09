@@ -30,7 +30,7 @@ Word GameStorage::GetRandomWord()
     return m_db.get<Word>(randomId);
 }
 
-std::vector<Word> ScribbleServer::GameStorage::GetWords()
+std::vector<Word> GameStorage::GetWords()
 {
     return m_db.get_all<Word>();
 }

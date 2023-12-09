@@ -170,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="words.txt" />
-    <Text Include="wordsFile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

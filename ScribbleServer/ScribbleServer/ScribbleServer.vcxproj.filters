@@ -82,7 +82,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="wordsFile.txt" />
     <Text Include="words.txt" />
   </ItemGroup>
 </Project>
