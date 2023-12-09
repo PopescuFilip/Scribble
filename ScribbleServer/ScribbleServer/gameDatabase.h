@@ -26,7 +26,7 @@ namespace ScribbleServer
 			),
 			sql::make_table(
 				"User",
-				sql::make_column("username", &User::SetUsername, &User::GetUsername),
+				sql::make_column("username", &User::SetUsername, &User::GetUsername, sql::primary_key()),
 				sql::make_column("password", &User::SetPassword, &User::GetPassword)
 			)
 		);
