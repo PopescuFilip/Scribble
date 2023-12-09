@@ -46,7 +46,7 @@ void Word::RevealRandomCharacter()
 
     do {
         randomIndex = distribution(engine);
-    } while (m_revealedCharacters.find(randomIndex) != m_revealedCharacters.end());
+    } while (m_revealedCharacters.find(randomIndex) != m_revealedCharacters.end() or m_word[randomIndex]==' ');
 
     m_revealedCharacters.insert(randomIndex);
 }
