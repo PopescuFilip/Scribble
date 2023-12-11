@@ -1,6 +1,5 @@
 #include "WaitingRoom.h"
 #include <QPixmap>
-#include "Scribble.h"
 
 WaitingRoom::WaitingRoom(QWidget *parent)
 	: QMainWindow(parent)
@@ -24,8 +23,7 @@ WaitingRoom::~WaitingRoom()
 void WaitingRoom::clickOnStartButton()
 {
 	close();
-	Scribble* s = new Scribble(this);
-	s->show();
+	m_scribble.show();
 }
 
 void WaitingRoom::paintEvent(QPaintEvent* event)

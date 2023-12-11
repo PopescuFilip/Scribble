@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include "ui_Login.h"
+#include "JoinRoom.h"
 
 class Login : public QMainWindow
 {
@@ -18,4 +19,6 @@ private slots:
 private:
 	Ui::LoginClass ui;
 	std::string m_user;
+
+	JoinRoom m_join;;
 };

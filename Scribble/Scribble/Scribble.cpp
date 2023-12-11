@@ -2,7 +2,8 @@
 
 Scribble::Scribble(QWidget *parent)
     : QMainWindow(parent),
-      m_drawing(false)
+      m_drawing(false),
+      m_guessedCorrectly(false)
 {
     ui.setupUi(this);
     connect(ui.ClearWindow, SIGNAL(clicked()), this, SLOT(clearWindow()));

@@ -1,6 +1,5 @@
 #include "Login.h"
 #include <QPixmap>
-#include "JoinRoom.h"
 
 Login::Login(QWidget *parent)
 	: QMainWindow(parent)
@@ -27,14 +26,12 @@ Login::~Login()
 void Login::clickedOnLogInButton()
 {
 	close();
-	JoinRoom* join = new JoinRoom(this);
-	join->show();
+	m_join.show();
 }
 
 void Login::clickedOnRegisterButton()
 {
 	close();
-	JoinRoom* join=new JoinRoom(this);
-	join->show();
+	m_join.show();
 }
 

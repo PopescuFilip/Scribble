@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include "ui_WaitingRoom.h"
+#include "Scribble.h"
 
 class WaitingRoom : public QMainWindow
 {
@@ -19,4 +20,6 @@ private slots:
 private:
 	Ui::WaitingRoomClass ui;	
 	std::string m_user;
+
+	Scribble m_scribble;
 };
