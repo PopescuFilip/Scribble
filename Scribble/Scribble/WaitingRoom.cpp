@@ -6,8 +6,8 @@ WaitingRoom::WaitingRoom(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	QPixmap background("");
-	background = background.scaled(1280, 1440, Qt::IgnoreAspectRatio);
+	QPixmap background("Images/Background.png");
+	background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);
 	QPalette palette;
 	palette.setBrush(QPalette::Window, background);
 	setPalette(palette);
@@ -28,7 +28,6 @@ void WaitingRoom::clickOnStartButton()
 
 void WaitingRoom::paintEvent(QPaintEvent* event)
 {
-	ui.pushButton->setStyleSheet("background-color: green; border-radius: 10px;");
-	ui.textEdit->setStyleSheet("background-color: white; border-radius: 10px;");
-	ui.centralWidget->setStyleSheet("background-color: blue;");
+	//ui.pushButton->setStyleSheet("background-color: green; border-radius: 10px;");
+	//ui.textEdit->setStyleSheet("background-color: white; border-radius: 10px;");
 }

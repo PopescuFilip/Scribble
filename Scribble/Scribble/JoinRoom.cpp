@@ -6,8 +6,8 @@ JoinRoom::JoinRoom(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	QPixmap background("");
-	background = background.scaled(1280, 1440, Qt::IgnoreAspectRatio);
+	QPixmap background("Images/Background.png");
+	background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);
 	QPalette palette;
 	palette.setBrush(QPalette::Window, background);
 	setPalette(palette);
@@ -23,10 +23,8 @@ JoinRoom::~JoinRoom()
 
 void JoinRoom::paintEvent(QPaintEvent* event)
 {
-	ui.pushButton_2->setStyleSheet("background-color: SkyBlue; border-radius: 10px;");
-	ui.pushButton->setStyleSheet("background-color: Green; border-radius: 10px;");
-	ui.groupBox->setStyleSheet("background-color: blue; border-radius: 10px;");
-	ui.centralWidget->setStyleSheet("background-color: DodgerBlue;");
+	//ui.pushButton_2->setStyleSheet("background-color: SkyBlue; border-radius: 10px;");
+	//ui.pushButton->setStyleSheet("background-color: Green; border-radius: 10px;");
 }
 
 void JoinRoom::clickOnInsertButton()

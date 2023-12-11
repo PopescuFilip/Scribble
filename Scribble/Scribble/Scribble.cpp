@@ -6,6 +6,10 @@ Scribble::Scribble(QWidget *parent)
       m_guessedCorrectly(false)
 {
     ui.setupUi(this);
+
+    setFixedSize(1280, 720);
+    setGeometry(140, 70, 2560, 1440);
+
     connect(ui.ClearWindow, SIGNAL(clicked()), this, SLOT(clearWindow()));
 }
 
