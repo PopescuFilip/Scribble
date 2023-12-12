@@ -4,6 +4,7 @@ import word;
 import score;
 import user;
 
+#include <crow.h>
 #include<sqlite_orm/sqlite_orm.h>
 namespace sql = sqlite_orm;
 
@@ -58,6 +59,18 @@ namespace ScribbleServer
 
 	private:
 		Storage m_db = CreateStorage(kDbFile);
+	};
+
+
+	class AddToUserHandler
+	{
+	public:
+		AddToUserHandler(GameStorage& storage);
+
+		crow::response operator() (const crow::request& req) const;
+
+	private:
+		GameStorage& m_db;
 	};
 }
 
