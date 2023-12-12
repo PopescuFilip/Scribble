@@ -3,6 +3,7 @@
 import word;
 import score;
 import user;
+import utils;
 
 #include <crow.h>
 #include<sqlite_orm/sqlite_orm.h>

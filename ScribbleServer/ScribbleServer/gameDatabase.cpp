@@ -73,3 +73,21 @@ void GameStorage::PopulateStorage()
 
     file.close();
 }
+
+AddToUserHandler::AddToUserHandler(GameStorage& storage)
+    :m_db{ storage }
+{
+}
+
+crow::response AddToUserHandler::operator()(const crow::request& req) const
+{
+    auto bodyArgs = parseUrlArgs(req.body);
+    auto end = bodyArgs.end();
+    auto usernameIter = bodyArgs.find("username");
+    auto passwordIter = bodyArgs.find("password");
+    if (usernameIter != end && passwordIter != end)
+    {
+        m_db.AddUser(usernameIter->second, passwordIter->second);
+    }
+    return crow::response(201); 
+}
