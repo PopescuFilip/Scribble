@@ -4,7 +4,7 @@ using ScribbleServer::Score;
 
 Score::Score() :
 	m_scoreId{ -1 },
-	m_username{ -1 },
+	m_userId{ -1 },
 	m_score{ 0 }
 {}
 
@@ -21,7 +21,7 @@ int Score::GetScoreId() const
 
 int Score::GetUserId() const
 {
-	return m_username;
+	return m_userId;
 }
 
 void Score::SetScore(const uint16_t& score)
@@ -36,7 +36,7 @@ void Score::SetScoreId(const int& scoreId)
 
 void Score::SetUserId(const int& usernameId)
 {
-	m_username = usernameId;
+	m_userId = usernameId;
 }
 
 

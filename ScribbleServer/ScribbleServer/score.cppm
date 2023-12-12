@@ -24,7 +24,7 @@ namespace ScribbleServer {
 		uint16_t ScoreFormula(uint16_t);
 	private:
 		int m_scoreId;
-		int m_username;
+		int m_userId;
 		int16_t m_score;
 
 		static const uint16_t kBONUS_THRESHHOLD = 30;
