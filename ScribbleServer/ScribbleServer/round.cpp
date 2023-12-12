@@ -37,6 +37,19 @@ void Round::RevealCharacter()
 	m_word.RevealRandomCharacter();
 }
 
+void Round::Start()
+{
+	m_startTime= std::chrono::high_resolution_clock::now();
+}
+
+uint16_t ScribbleServer::Round::GetElapsedTime()
+{
+	auto currentTime= std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::seconds>(currentTime - m_startTime).count();
+
+	return duration;
+}
+
 Round::~Round()
 {
 }
