@@ -40,6 +40,16 @@ void GameStorage::AddUser(const User& user)
     m_db.insert(user);
 }
 
+void GameStorage::AddUser(const std::string& user, const std::string& password)
+{
+    m_db.insert(User{ user, password });
+}
+
+void GameStorage::AddScore(const Score& score)
+{
+    m_db.insert(score);
+}
+
 bool GameStorage::CheckUser(const User& user)
 {
     auto count = m_db.count<User>(sql::where(sql::c(&User::GetUsername) == user.GetUsername()));
