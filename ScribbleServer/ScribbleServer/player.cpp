@@ -18,21 +18,6 @@ Player::Player(const std::string& username, const std::string& password)
 {
 }
 
-bool Player::GetCanDraw()
-{
-	return m_canDraw;
-}
-
-Score Player::GetScore()
-{
-	return m_score;
-}
-
-bool Player::GetGuessedCorrectly()
-{
-	return m_guessedCorrectly;
-}
-
 void Player::SetCanDraw(bool canDraw)
 {
 	m_canDraw = canDraw;
@@ -51,4 +36,31 @@ void Player::SetScore(const std::vector<uint16_t>& times)
 void Player::SetGuessedCorrectly(bool guessedCorrectly)
 {
 	m_guessedCorrectly = guessedCorrectly;
+}
+
+void ScribbleServer::Player::SetHasGuessed(bool hasGuessed)
+{
+	m_hasGuessed = hasGuessed;
+}
+
+void ScribbleServer::Player::SetWordLastGuessed(std::string& wordLastGuessed)
+{
+	m_wordLastGuessed = wordLastGuessed;
+}
+bool Player::GetCanDraw() const
+{
+	return m_canDraw;
+}
+
+Score Player::GetScore() const
+{
+	return m_score;
+}
+
+bool Player::GetHasGuessed() const {
+	return m_hasGuessed;
+}
+
+std::string Player::GetWordLastGuessed() const {
+	return m_wordLastGuessed;
 }
