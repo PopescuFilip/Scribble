@@ -19,7 +19,7 @@ namespace ScribbleServer {
 		void SetScore(const std::vector<uint16_t>& times);
 		void SetGuessedCorrectly(bool guessedCorrectly);
 		void SetHasGuessed(bool hasGuessed);
-		void SetWordLastGuessed(std::string& wordLastGuessed);
+		void SetWordLastGuessed(const std::string& wordLastGuessed);
 
 		bool GetCanDraw() const;
 		Score GetScore() const;

@@ -38,12 +38,12 @@ void Player::SetGuessedCorrectly(bool guessedCorrectly)
 	m_guessedCorrectly = guessedCorrectly;
 }
 
-void ScribbleServer::Player::SetHasGuessed(bool hasGuessed)
+void Player::SetHasGuessed(bool hasGuessed)
 {
 	m_hasGuessed = hasGuessed;
 }
 
-void ScribbleServer::Player::SetWordLastGuessed(std::string& wordLastGuessed)
+void Player::SetWordLastGuessed(const std::string& wordLastGuessed)
 {
 	m_wordLastGuessed = wordLastGuessed;
 }
@@ -57,10 +57,12 @@ Score Player::GetScore() const
 	return m_score;
 }
 
-bool Player::GetHasGuessed() const {
+bool Player::GetHasGuessed() const 
+{
 	return m_hasGuessed;
 }
 
-std::string Player::GetWordLastGuessed() const {
+std::string Player::GetWordLastGuessed() const 
+{
 	return m_wordLastGuessed;
 }
