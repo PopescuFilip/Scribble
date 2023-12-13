@@ -31,6 +31,8 @@ namespace ScribbleServer
 
         void RevealRandomCharacter();
         bool isRevealed() const;
+
+        bool operator ==(const std::string& word) const;
         
     private:
         int m_wordId;

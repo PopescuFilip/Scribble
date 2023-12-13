@@ -149,6 +149,8 @@
     <ClCompile Include="gameRoom.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player.cppm" />
+    <ClCompile Include="random.cpp" />
+    <ClCompile Include="random.cppm" />
     <ClCompile Include="round.cpp" />
     <ClCompile Include="round.cppm" />
     <ClCompile Include="routing.cpp" />

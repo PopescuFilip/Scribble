@@ -57,6 +57,11 @@ bool ScribbleServer::Word::isRevealed() const
     return (m_revealedCharacters.size() == nonSpaceCharacters);
 }
 
+bool ScribbleServer::Word::operator==(const std::string& word) const
+{
+    return m_word == word;
+}
+
 std::string Word::GetEmptyWord() const
 {
     size_t length = m_word.size();
