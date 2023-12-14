@@ -9,6 +9,7 @@ namespace ScribbleServer {
 	public:
 		Score();
 
+
 		int GetScoreId() const;
 		int GetUserId() const;
 		uint16_t GetScore() const;
