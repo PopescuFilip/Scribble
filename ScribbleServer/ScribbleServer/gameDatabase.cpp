@@ -56,6 +56,12 @@ bool GameStorage::CheckUser(const User& user)
     return count != 0;
 }
 
+bool GameStorage::UsernameExists(const std::string& username)
+{
+    auto count = m_db.count<User>(sql::where(sql::c(&User::GetUsername) == username));
+    return count != 0;
+}
+
 std::vector<User> GameStorage::GetUsers()
 {
     return m_db.get_all<User>();
