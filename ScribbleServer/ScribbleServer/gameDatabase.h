@@ -44,13 +44,14 @@ namespace ScribbleServer
 
 		Word GetRandomWord();
 		std::vector<Word> GetWords();
+		std::vector<User> GetUsers();
 
 		void AddUser(const User& user);
 		void AddUser(const std::string& user, const std::string& password);
 		void AddScore(const Score& score);
+		
 		bool CheckUser(const User& user);
 		bool UsernameExists(const std::string& username);
-		std::vector<User> GetUsers();
 
 	private:
 		void PopulateStorage();

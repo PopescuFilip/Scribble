@@ -1,5 +1,5 @@
 import random;
-#include <random>
+import <random>;
 
 char ScribbleServer::GetRandomChar()
 {

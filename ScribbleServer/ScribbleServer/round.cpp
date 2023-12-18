@@ -1,6 +1,5 @@
 import round;
 import word;
-#include <chrono>
 
 using namespace ScribbleServer;
 
@@ -13,7 +12,7 @@ Round::Round(const Word& word) :m_word{ word }
 { 
 }
 
-float Round::GetInterval() const
+uint16_t Round::GetInterval() const
 {
 	return (m_duration / m_word.GetNoOfCharacters());
 }
@@ -23,7 +22,7 @@ Word Round::GetWord() const
 	return m_word;
 }
 
-uint16_t Round::GetDuration()
+uint16_t Round::GetDuration() const
 {
 	return m_duration;
 }
@@ -43,13 +42,9 @@ void Round::Start()
 	m_startTime = std::chrono::high_resolution_clock::now();
 }
 
-uint16_t ScribbleServer::Round::GetElapsedTime()
+uint16_t ScribbleServer::Round::GetElapsedTime() const
 {
 	auto currentTime{ std::chrono::high_resolution_clock::now() };
 	auto duration{ std::chrono::duration_cast<std::chrono::seconds>(currentTime - m_startTime).count() };
 	return duration;
-}
-
-Round::~Round()
-{
 }

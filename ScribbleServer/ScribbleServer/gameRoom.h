@@ -1,8 +1,6 @@
 #pragma once
-#include<iostream>
-#include<vector>
-
-import round;
+#include<unordered_set>
+//import round;
 import player;
 
 namespace ScribbleServer
@@ -16,9 +14,8 @@ namespace ScribbleServer
 		using Line = std::pair<Point, Point>;
 
 	private:
-		std::vector<Player> m_players;
+		std::unordered_set<Player> m_players;
 		std::vector<Line> m_drawing;
-		Round m_currentRound;
 	};
 
 }
