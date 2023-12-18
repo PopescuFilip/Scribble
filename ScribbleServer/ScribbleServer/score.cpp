@@ -1,5 +1,6 @@
 import score;
 import<vector>;
+
 using ScribbleServer::Score;
 
 Score::Score() :
@@ -34,9 +35,9 @@ void Score::SetScoreId(const int& scoreId)
 	m_scoreId = scoreId;
 }
 
-void Score::SetUserId(const int& usernameId)
+void Score::SetUserId(const int& userId)
 {
-	m_userId = usernameId;
+	m_userId = userId;
 }
 
 
@@ -69,14 +70,14 @@ void Score::CalculateScorePainter(const std::vector<uint16_t>& times)
 	averageTime /= times.size();
 	if (atLeastOneGuessed)
 	{
-		uint16_t scoreGained = ScoreFormula(averageTime);
+		uint16_t scoreGained{ ScoreFormula(averageTime) };
 		m_score += scoreGained;
 		return;
 	}
 	m_score -= Score::kMAX_POINTS;
 }
 
-uint16_t Score::ScoreFormula(uint16_t duration)
+uint16_t Score::ScoreFormula(uint16_t timeGuessed)
 {
-	return (Score::kMAX_ROUND_LENGTH - duration) * Score::kMAX_POINTS * 2 / Score::kMAX_ROUND_LENGTH;
+	return (Score::kMAX_ROUND_LENGTH - timeGuessed) * Score::kMAX_POINTS * 2 / Score::kMAX_ROUND_LENGTH;
 }
