@@ -8,7 +8,7 @@ Score::Score() :
 	m_score{ 0 }
 {}
 
-uint16_t Score::GetScore() const
+int16_t Score::GetScore() const
 {
 	return m_score;
 }
@@ -24,7 +24,7 @@ int Score::GetUserId() const
 	return m_userId;
 }
 
-void Score::SetScore(const uint16_t& score)
+void Score::SetScore(const int16_t& score)
 {
 	m_score = score;
 }
