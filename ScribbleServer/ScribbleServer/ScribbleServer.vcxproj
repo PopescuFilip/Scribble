@@ -157,6 +157,8 @@
     <ClCompile Include="score.cpp" />
     <ClCompile Include="score.cppm" />
     <ClCompile Include="ScribbleServer.cpp" />
+    <ClCompile Include="timer.cpp" />
+    <ClCompile Include="timer.cppm" />
     <ClCompile Include="user.cpp" />
     <ClCompile Include="user.cppm" />
     <ClCompile Include="utils.cpp" />
