@@ -14,8 +14,8 @@ Login::Login(QWidget *parent)
 	setFixedSize(1280, 720);
 	setGeometry(140, 70, 2560, 1440);
 
-	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(clickedOnRegisterButton()));
-	connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(clickedOnLogInButton()));
+	connect(ui.pushButtonLogin, SIGNAL(clicked()), this, SLOT(clickedOnLogInButton()));
+	connect(ui.pushButtonRegister, SIGNAL(clicked()), this, SLOT(clickedOnRegisterButton()));
 
 }
 
@@ -26,7 +26,8 @@ Login::~Login()
 void Login::clickedOnLogInButton()
 {
 	close();
-	m_join.show();
+	JoinRoom* newWindow = new JoinRoom();
+	newWindow->show();
 }
 
 void Login::clickedOnRegisterButton()

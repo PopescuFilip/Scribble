@@ -20,5 +20,5 @@ private:
 	Ui::LoginClass ui;
 	std::string m_user;
 
-	JoinRoom m_join;;
+	JoinRoom m_join;
 };
