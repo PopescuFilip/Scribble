@@ -17,3 +17,26 @@ bool ScribbleServer::Timer::IsActive() const
 {
 	return m_isActive;
 }
+
+uint16_t Timer::GetElapsedTime() const
+{
+	auto currentTime{ std::chrono::high_resolution_clock::now() };
+	auto duration = std::chrono::duration_cast<std::chrono::seconds>(currentTime - m_startTime).count();
+	return duration;
+}
+
+bool Timer::ReachedThreshold() const
+{
+	return GetElapsedTime() >= m_duration;
+}
+
+void Timer::Start()
+{
+	m_startTime = std::chrono::high_resolution_clock::now();
+	m_isActive = true;
+}
+
+void Timer::Stop()
+{
+	m_isActive = false;
+}
