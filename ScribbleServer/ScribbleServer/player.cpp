@@ -66,3 +66,15 @@ std::string Player::GetWordLastGuessed() const
 {
 	return m_wordLastGuessed;
 }
+
+void ScribbleServer::Player::GuessWord(const std::string& word, uint16_t time)
+{
+	if (m_canDraw) 
+	{
+		return;
+	}
+
+	m_wordLastGuessed = word; 
+	m_hasGuessed = true; 
+	m_timeGuessedCorrectly = time;
+}

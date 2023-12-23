@@ -27,7 +27,7 @@ namespace ScribbleServer {
 		bool GetHasGuessed() const;
 		std::string GetWordLastGuessed() const;
 
-
+		void GuessWord(const std::string& word, uint16_t time);
 
 	private:
 		bool m_canDraw;

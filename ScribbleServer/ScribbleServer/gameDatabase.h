@@ -1,9 +1,9 @@
 #pragma once
-
 import word;
 import score;
 import user;
 import utils;
+
 
 #include <crow.h>
 #include<sqlite_orm/sqlite_orm.h>
@@ -52,6 +52,8 @@ namespace ScribbleServer
 		
 		bool CheckUser(const User& user);
 		bool UsernameExists(const std::string& username);
+
+		std::vector<Score> GetLast5Scores(const int& userId);
 
 	private:
 		void PopulateStorage();
