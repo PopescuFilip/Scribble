@@ -9,7 +9,8 @@ class WaitingRoom : public QMainWindow
 	Q_OBJECT
 
 public:
-	WaitingRoom(QWidget *parent = nullptr);
+	WaitingRoom();
+	WaitingRoom(std::string username, std::string code, QWidget *parent = nullptr);
 	~WaitingRoom();
 
 	void paintEvent(QPaintEvent* event) override;
@@ -20,6 +21,7 @@ private slots:
 private:
 	Ui::WaitingRoomClass ui;	
 	std::string m_user;
+	std::string m_roomCode;
 
 	Scribble m_scribble;
 };

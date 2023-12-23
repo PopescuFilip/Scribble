@@ -14,7 +14,8 @@ public:
     using Coordinate = std::pair<uint16_t, uint16_t>;
     using Line = std::pair<Coordinate, Coordinate>;
 public:
-    Scribble( QWidget * parent = nullptr );
+    Scribble();
+    Scribble(std::string username, QWidget * parent = nullptr );
     ~Scribble();
 
     virtual void mousePressEvent(QMouseEvent* event) override;

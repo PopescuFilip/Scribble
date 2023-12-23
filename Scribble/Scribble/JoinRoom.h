@@ -11,7 +11,8 @@ class JoinRoom : public QMainWindow
 	Q_OBJECT
 
 public:
-	JoinRoom(QWidget *parent = nullptr);
+	JoinRoom();
+	JoinRoom(std::string username, QWidget *parent = nullptr);
 	~JoinRoom();
 
 	void paintEvent(QPaintEvent* event) override;

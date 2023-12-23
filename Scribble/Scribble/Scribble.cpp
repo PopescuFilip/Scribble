@@ -1,9 +1,14 @@
 #include "Scribble.h"
 
-Scribble::Scribble(QWidget *parent)
+Scribble::Scribble()
+{
+}
+
+Scribble::Scribble(std::string username, QWidget *parent)
     : QMainWindow(parent),
       m_drawing(false),
-      m_guessedCorrectly(false)
+      m_guessedCorrectly(false),
+      m_user(username)
 {
     ui.setupUi(this);
 
