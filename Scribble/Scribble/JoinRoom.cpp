@@ -19,8 +19,8 @@ JoinRoom::JoinRoom(std::string username, QWidget* parent)
 	setFixedSize(1280, 720);
 	setGeometry(140, 70, 2560, 1440);
 
-	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(clickOnInsertButton()));
-	connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(clickOnCreateButton()));
+	connect(ui.insertButton, SIGNAL(clicked()), this, SLOT(clickOnInsertButton()));
+	connect(ui.createButton, SIGNAL(clicked()), this, SLOT(clickOnCreateButton()));
 }
 
 JoinRoom::~JoinRoom()

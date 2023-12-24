@@ -26,7 +26,7 @@
     <property name="title">
      <string>JoinRoom</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -40,14 +40,14 @@
        <widget class="QLineEdit" name="lineEdit"/>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="insertButton">
         <property name="text">
          <string>Insert Room Code</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="createButton">
         <property name="text">
          <string>Create Waiting Room</string>
         </property>
