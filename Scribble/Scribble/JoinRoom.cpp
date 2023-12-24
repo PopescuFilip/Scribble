@@ -1,8 +1,13 @@
 #include "JoinRoom.h"
 #include <QPixmap>
 
-JoinRoom::JoinRoom(QWidget *parent)
-	: QMainWindow(parent)
+JoinRoom::JoinRoom()
+{
+}
+
+JoinRoom::JoinRoom(std::string username, QWidget* parent)
+	: QMainWindow(parent),
+	  m_user(username)
 {
 	ui.setupUi(this);
 

@@ -8,7 +8,8 @@ class Profile : public QMainWindow
 	Q_OBJECT
 
 public:
-	Profile(QWidget *parent = nullptr);
+	Profile();
+	Profile(std::string username, QWidget *parent = nullptr);
 	~Profile();
 
 private:

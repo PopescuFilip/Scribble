@@ -1,8 +1,13 @@
 #include "EndScreen.h"
 #include <QPixmap>
 
-EndScreen::EndScreen(QWidget *parent)
-	: QMainWindow(parent)
+EndScreen::EndScreen()
+{
+}
+
+EndScreen::EndScreen(std::string username, QWidget *parent)
+	: QMainWindow(parent),
+	m_user(username)
 {
 	ui.setupUi(this);
 
