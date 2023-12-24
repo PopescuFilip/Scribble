@@ -1,6 +1,6 @@
 #pragma once
 #include "game.h"
-#include "gameDatabase.h"
+#include <unordered_set>
 import random;
 
 namespace ScribbleServer
