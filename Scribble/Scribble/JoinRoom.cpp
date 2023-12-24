@@ -35,11 +35,13 @@ void JoinRoom::paintEvent(QPaintEvent* event)
 void JoinRoom::clickOnInsertButton()
 {
 	close();
-	m_waiting.show();
+	WaitingRoom* newWindow = new WaitingRoom();
+	newWindow->show();
 }
 
 void JoinRoom::clickOnCreateButton()
 {
 	close();
-	m_waiting.show();
+	WaitingRoom* newWindow = new WaitingRoom();
+	newWindow->show();
 }

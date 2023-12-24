@@ -7,7 +7,7 @@ Login::Login()
 
 Login::Login(std::string username, QWidget *parent)
 	: QMainWindow(parent),
-	m_user(username)
+	   m_user(username)
 {
 	ui.setupUi(this);
 
@@ -31,13 +31,14 @@ Login::~Login()
 void Login::clickedOnLogInButton()
 {
 	close();
-	JoinRoom* newWindow = new JoinRoom();
+	JoinRoom* newWindow = new JoinRoom(m_user);
 	newWindow->show();
 }
 
 void Login::clickedOnRegisterButton()
 {
 	close();
-	m_join.show();
+	JoinRoom* newWindow = new JoinRoom(m_user);
+	newWindow->show();
 }
 
