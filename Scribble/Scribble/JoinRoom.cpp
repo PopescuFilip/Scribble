@@ -1,9 +1,9 @@
 #include "JoinRoom.h"
 #include <QPixmap>
 
-JoinRoom::JoinRoom()
-{
-}
+//JoinRoom::JoinRoom()
+//{
+//}
 
 JoinRoom::JoinRoom(std::string username, QWidget* parent)
 	: QMainWindow(parent),

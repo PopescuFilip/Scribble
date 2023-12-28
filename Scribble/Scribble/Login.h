@@ -9,8 +9,8 @@ class Login : public QMainWindow
 	Q_OBJECT
 
 public:
-	Login();
-	Login(std::string username, QWidget *parent = nullptr);
+	//Login();
+	Login(QWidget *parent = nullptr);
 	~Login();
 
 private slots:

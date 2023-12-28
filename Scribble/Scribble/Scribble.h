@@ -30,9 +30,10 @@ private slots:
 private:
     Ui::ScribbleClass ui;
     bool m_drawing;
+    bool m_guessedCorrectly;
     Coordinate m_lastDrawnPoint;
     std::vector<Line> m_lines;
-    const uint16_t kBrushSize = 5;
     std::string m_user;
-    bool m_guessedCorrectly;
+    
+    const uint16_t kBrushSize = 5;
 };

@@ -1,13 +1,12 @@
 #include "Login.h"
 #include <QPixmap>
 
-Login::Login()
-{
-}
+//Login::Login()
+//{
+//}
 
-Login::Login(std::string username, QWidget *parent)
-	: QMainWindow(parent),
-	   m_user(username)
+Login::Login(QWidget *parent)
+	: QMainWindow(parent)
 {
 	ui.setupUi(this);
 
