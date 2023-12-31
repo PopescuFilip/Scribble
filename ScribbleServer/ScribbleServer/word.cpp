@@ -1,4 +1,5 @@
 #include <random>
+#include<algorithm>
 import word;
 
 using ScribbleServer::Word;

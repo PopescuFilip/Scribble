@@ -62,6 +62,19 @@ bool GameStorage::UsernameExists(const std::string& username)
     return count != 0;
 }
 
+std::vector<Score> ScribbleServer::GameStorage::GetLast5Scores(const int& userId)
+{
+    auto allUserScores = m_db.get_all<Score>(
+        sql::where(sql::c(&Score::GetUserId) == userId)
+    ); //returneaza scorurile corespunzatoare unui utilizator
+
+    int scoresToRetrieve = std::min(static_cast<int>(allUserScores.size()), 5); //afisare ultimele 5 scoruri in caz ca-s mai multe
+    std::vector<Score> last5Scores(allUserScores.begin(), allUserScores.begin() + scoresToRetrieve); //creeaza vectorul cu ultimele 5 scoruri
+
+    return last5Scores;
+}
+
+
 std::vector<User> GameStorage::GetUsers()
 {
     return m_db.get_all<User>();
