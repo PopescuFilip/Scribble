@@ -74,7 +74,6 @@ std::vector<Score> ScribbleServer::GameStorage::GetLast5Scores(const int& userId
     return last5Scores;
 }
 
-
 std::vector<User> GameStorage::GetUsers()
 {
     return m_db.get_all<User>();

@@ -11,6 +11,7 @@ namespace ScribbleServer
 	{
 	public:
 		Game(GameStorage& db);
+
 	    void AddPlayer(const std::string& username);
 		void Run();
 		void RunOneRound(const int& painterId);
@@ -43,4 +44,3 @@ namespace ScribbleServer
 		GameState m_gameState;
 	};
 }
-

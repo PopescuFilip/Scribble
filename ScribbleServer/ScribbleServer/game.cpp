@@ -2,8 +2,10 @@
 
 using namespace ScribbleServer;
 
-//ScribbleServer::Game::Game(GameStorage& db)
+//Game::Game(GameStorage& db)
+//    : m_db{ db }
 //{
+//
 //}
 
 void Game::AddPlayer(const std::string& username)
