@@ -57,6 +57,11 @@ Score Player::GetScore() const
 	return m_score;
 }
 
+bool Player::GetGuessedCorrectly() const
+{
+	return m_guessedCorrectly;
+}
+
 bool Player::GetHasGuessed() const 
 {
 	return m_hasGuessed;

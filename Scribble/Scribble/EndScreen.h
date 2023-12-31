@@ -15,4 +15,5 @@ public:
 private:
 	Ui::EndScreenClass ui;
 	std::string m_user;
+	std::string m_roomCode;
 };

@@ -22,6 +22,7 @@ public:
     virtual void mouseMoveEvent(QMouseEvent* event) override;
     virtual void mouseReleaseEvent(QMouseEvent* event) override;
     virtual void paintEvent(QPaintEvent* event) override;
+    void clickedOnButton(std::string username);
 
 private slots:
     void clearWindow();
@@ -34,6 +35,6 @@ private:
     Coordinate m_lastDrawnPoint;
     std::vector<Line> m_lines;
     std::string m_user;
-    
+    std::string m_roomCode;
     const uint16_t kBrushSize = 5;
 };

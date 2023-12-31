@@ -1,4 +1,5 @@
 #include "Scribble.h"
+#include "JoinRoom.h"
 
 Scribble::Scribble()
 {
@@ -58,4 +59,10 @@ void Scribble::clearWindow()
 {
     m_lines.clear();
     update();
+}
+
+void Scribble::clickedOnButton(std::string username)
+{
+    JoinRoom* newWindow = new JoinRoom(username);
+    newWindow->show();
 }
