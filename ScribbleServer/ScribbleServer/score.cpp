@@ -9,6 +9,14 @@ Score::Score() :
 	m_score{ 0 }
 {}
 
+Score::Score(int user_id) : 
+	m_scoreId{ -1 },
+	m_userId{ user_id },
+	m_score{ 0 }
+{
+
+}
+
 int16_t Score::GetScore() const
 {
 	return m_score;

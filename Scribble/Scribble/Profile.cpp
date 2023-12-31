@@ -20,3 +20,9 @@ Profile::Profile(std::string username, QWidget *parent)
 
 Profile::~Profile()
 {}
+
+void Profile::clickedOnButton(std::string username, std::string code)
+{
+	WaitingRoom* newWindow = new WaitingRoom(username, code);
+	newWindow->show();
+}

@@ -8,6 +8,7 @@ namespace ScribbleServer {
 	export class Score {
 	public:
 		Score();
+		Score(int user_id);
 
 		int GetScoreId() const;
 		int GetUserId() const;
