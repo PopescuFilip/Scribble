@@ -1,5 +1,6 @@
 #include "Login.h"
 #include <QPixmap>
+#include<qmainwindow.h>
 
 //Login::Login()
 //{
@@ -15,8 +16,8 @@ Login::Login(QWidget *parent)
 	QPalette palette;
 	palette.setBrush(QPalette::Window, background);
 	setPalette(palette);
-	setFixedSize(1280, 720);
-	setGeometry(140, 70, 2560, 1440);
+
+	showFullScreen();
 
 	connect(ui.pushButtonLogin, SIGNAL(clicked()), this, SLOT(clickedOnLogInButton()));
 	connect(ui.pushButtonRegister, SIGNAL(clicked()), this, SLOT(clickedOnRegisterButton()));

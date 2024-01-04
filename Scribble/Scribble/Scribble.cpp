@@ -13,8 +13,7 @@ Scribble::Scribble(std::string username, QWidget *parent)
 {
     ui.setupUi(this);
 
-    setFixedSize(1280, 720);
-    setGeometry(140, 70, 2560, 1440);
+    showFullScreen();
 
     connect(ui.ClearWindowButton, SIGNAL(clicked()), this, SLOT(clearWindow()));
 }
