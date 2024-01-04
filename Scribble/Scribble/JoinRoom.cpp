@@ -19,6 +19,26 @@ JoinRoom::JoinRoom(std::string username, QWidget* parent)
 
 	showFullScreen();
 
+	QString buttonStyle = "QPushButton {"
+		"background-color: #4CAF50;"
+		"border-width: 2px;"
+		"border - style: dashed;"
+		"border - color: white;"
+		"color: purple;"
+		"padding: 5px 5px;"
+		"text-align: center;"
+		"text-decoration: none;"
+		"font-size: 12px;"
+		"border-radius: 1px;"
+		"font-weight: bold;"
+		"}"
+		"QPushButton:hover {"
+		"background-color: #45a049;"
+		"}";
+
+	ui.insertButton->setStyleSheet(buttonStyle);
+	ui.createButton->setStyleSheet(buttonStyle);
+
 	connect(ui.insertButton, SIGNAL(clicked()), this, SLOT(clickOnInsertButton()));
 	connect(ui.createButton, SIGNAL(clicked()), this, SLOT(clickOnCreateButton()));
 }
