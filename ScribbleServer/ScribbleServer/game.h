@@ -1,7 +1,7 @@
 #pragma once
+#include "timer.h"
 #include <unordered_map>
 #include "gameDatabase.h"
-#include "timer.h"
 import player;
 import word;
 //import timer;
@@ -30,6 +30,7 @@ namespace ScribbleServer
 	    void AddPlayer(const int userId);
 		void Run();
 		void RunOneRound(const int& painterId);
+		void UpdateScores(const int& painterId);
 
 	private:
 		std::weak_ptr<GameStorage> m_db;

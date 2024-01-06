@@ -1,4 +1,5 @@
 #include "game.h"
+#include <ranges>
 
 using namespace ScribbleServer;
 
@@ -23,6 +24,62 @@ void Game::Run()
 
 void Game::RunOneRound(const int& painterId)
 {
+	auto sp = m_db.lock();
+	m_currentWord = std::move(sp->GetRandomWord());
+
+	Timer startRevealing{ static_cast<uint16_t>(kRoundDuration / 2) };
+	Timer revealInterval{ static_cast<uint16_t>(kRoundDuration / m_currentWord.GetNoOfCharacters()) };
+
+	m_roundTimer.Start();
+	startRevealing.Start();
+	while (!m_roundTimer.ReachedThreshold())
+	{
+		if (revealInterval.IsActive() && revealInterval.ReachedThreshold())
+		{
+			m_currentWord.RevealRandomCharacter();
+			std::cout << m_currentWord.GetVisibleCharacters() << '\n';
+			revealInterval.Start();
+		}
+
+		std::cout << m_roundTimer.GetElapsedTime() << "\n";
+		//std::this_thread::sleep_for(std::chrono::seconds(1));
+		Sleep(1000);
+
+		if (!startRevealing.IsActive())
+			continue;
+		if (!startRevealing.ReachedThreshold())
+			continue;
+
+		revealInterval.Start();
+		startRevealing.Stop();
+	}
+	m_roundTimer.Stop();
+	revealInterval.Stop();
+}
+
+void Game::UpdateScores(const int& painterId)
+{
+	std::vector<uint16_t> times;
+
+	std::ranges::for_each(m_players, [&](auto& keyValue) 
+		{
+			auto& [playerId, player] = keyValue;
+			if (playerId == painterId)
+				return;
+
+			if (!player.HasGuessedCorrectly())
+			{
+				times.emplace_back(kRoundDuration);
+				player.SetScore(kRoundDuration);
+				return;
+			}
+
+			const uint16_t& timeGuessed{ player.GetTimeGuessed() };
+			times.emplace_back(timeGuessed);
+			player.SetScore(timeGuessed);
+		});
+
+	m_players.at(painterId).SetScore(times);
 }
 
 uint16_t Game::GetTime() const
