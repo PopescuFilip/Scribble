@@ -6,7 +6,7 @@ namespace ScribbleServer
 	class Routing
 	{
 	public:
-		void Run(GameStorage& storage);
+		void Run(std::shared_ptr<GameStorage>& storage);
 
 	private:
 		crow::SimpleApp m_app;

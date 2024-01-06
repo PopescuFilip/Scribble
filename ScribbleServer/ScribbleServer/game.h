@@ -1,21 +1,18 @@
 #pragma once
 #include <unordered_map>
 #include "gameDatabase.h"
+#include "timer.h"
 import player;
 import word;
-import timer;
+//import timer;
 
 namespace ScribbleServer
 {
 	class Game
 	{
 	public:
-		Game(GameStorage& db);
-
-	    void AddPlayer(const std::string& username);
-		void Run();
-		void RunOneRound(const int& painterId);
-		uint16_t GetTime()const;
+		using Point = std::pair<uint16_t, uint16_t>;
+		using Line = std::pair<Point, Point>;
 	public:
 		enum class GameState
 		{
@@ -25,22 +22,28 @@ namespace ScribbleServer
 			Ended
 		};
 	public:
-		using Point = std::pair<uint16_t, uint16_t>;
-		using Line = std::pair<Point, Point>;
+		Game(const std::shared_ptr<GameStorage>& db);
+
+		uint16_t GetTime()const;
+		GameState GetGameState()const;
+
+	    void AddPlayer(const int userId);
+		void Run();
+		void RunOneRound(const int& painterId);
 
 	private:
-		GameStorage& m_db;
+		std::weak_ptr<GameStorage> m_db;
+		GameState m_gameState;
 		std::unordered_map<int, Player> m_players;
 		std::vector<Line> m_drawing;
 		Word m_currentWord;
 
-		Timer roundTimer;
-		Timer startRevealTimer;
-		Timer intervalTimer;
+		Timer m_roundTimer;
+		//Timer startRevealTimer;
+		//Timer intervalTimer;
 
 		static const uint16_t kNoOfRounds = 4;
 		static const uint16_t kRoundDuration = 60;
 
-		GameState m_gameState;
 	};
 }
