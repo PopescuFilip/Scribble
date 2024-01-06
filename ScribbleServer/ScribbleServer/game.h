@@ -29,8 +29,11 @@ namespace ScribbleServer
 
 	    void AddPlayer(const int userId);
 		void Run();
+	
+	private:
 		void RunOneRound(const int& painterId);
 		void UpdateScores(const int& painterId);
+		void Reset();
 
 	private:
 		std::weak_ptr<GameStorage> m_db;

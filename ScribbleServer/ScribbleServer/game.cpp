@@ -20,6 +20,21 @@ void Game::AddPlayer(const int userId)
 
 void Game::Run()
 {
+	m_gameState = GameState::Running;
+
+	std::ranges::for_each(m_players, [&](const auto& keyValue)
+		{
+			const auto& [playerId, player] = keyValue;
+			RunOneRound(playerId);
+			UpdateScores(playerId);
+			m_gameState = GameState::BetweenRounds;
+			Sleep(1000);
+			Reset();
+			m_gameState = GameState::Running;
+
+		});
+
+	m_gameState = GameState::Ended;
 }
 
 void Game::RunOneRound(const int& painterId)
@@ -61,7 +76,7 @@ void Game::UpdateScores(const int& painterId)
 {
 	std::vector<uint16_t> times;
 
-	std::ranges::for_each(m_players, [&](auto& keyValue) 
+	std::ranges::for_each(m_players, [&painterId, &times](auto& keyValue) 
 		{
 			auto& [playerId, player] = keyValue;
 			if (playerId == painterId)
@@ -80,6 +95,10 @@ void Game::UpdateScores(const int& painterId)
 		});
 
 	m_players.at(painterId).SetScore(times);
+}
+
+void Game::Reset()
+{
 }
 
 uint16_t Game::GetTime() const

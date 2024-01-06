@@ -20,7 +20,7 @@ int main()
         g.AddPlayer(user.GetUserId());
     }
 
-    g.RunOneRound(0);
+    g.Run();
     
     
 
