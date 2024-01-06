@@ -13,7 +13,8 @@ char ScribbleServer::GetRandomChar()
 std::string ScribbleServer::GetRandomCode(size_t size)
 {
     std::string code;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) 
+    {
         code += GetRandomChar();
     }
     return code;
@@ -24,10 +25,12 @@ std::string ScribbleServer::GetRandomUniqueCode(const std::unordered_set<std::st
     std::string code;
     bool isUnique = false;
 
-    while (!isUnique) {
+    while (!isUnique) 
+    {
         code = GetRandomCode(4);
 
-        if (std::find(codes.begin(), codes.end(), code) == codes.end()) {
+        if (std::find(codes.begin(), codes.end(), code) == codes.end()) 
+        {
             isUnique = true;
         }
     }

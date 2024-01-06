@@ -2,7 +2,7 @@
 
 using namespace ScribbleServer;
 
-void Routing::Run(GameStorage& storage)
+void Routing::Run(std::shared_ptr<GameStorage>& storage)
 {
 	CROW_ROUTE(m_app, "/")([]() 
 		{
