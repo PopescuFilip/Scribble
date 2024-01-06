@@ -34,7 +34,7 @@ namespace ScribbleServer {
 		bool m_canDraw;
 		bool m_guessedCorrectly;
 		bool m_hasGuessed;
-		uint16_t m_timeGuessedCorrectly;
+		uint16_t m_timeGuessed;
 		std::string m_wordLastGuessed;
 		Score m_score;
 	};
