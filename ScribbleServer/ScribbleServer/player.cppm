@@ -13,6 +13,7 @@ namespace ScribbleServer {
 	public:
 		Player();
 		Player(const std::string& username, const std::string& password);
+		Player(const User& user);
 
 		void SetCanDraw(bool canDraw);
 		void SetScore(uint16_t time);

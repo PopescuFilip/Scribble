@@ -18,6 +18,15 @@ Player::Player(const std::string& username, const std::string& password)
 {
 }
 
+ScribbleServer::Player::Player(const User& user):
+	User{ user },
+	m_canDraw{ false },
+	m_guessedCorrectly { false },
+	m_hasGuessed{ false },
+	m_score{ user.GetUserId() }
+{
+}
+
 void Player::SetCanDraw(bool canDraw)
 {
 	m_canDraw = canDraw;
