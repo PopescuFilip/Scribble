@@ -171,6 +171,7 @@
     <ClInclude Include="gameDatabase.h" />
     <ClInclude Include="gameRoom.h" />
     <ClInclude Include="routing.h" />
+    <ClInclude Include="timer.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="words.txt" />

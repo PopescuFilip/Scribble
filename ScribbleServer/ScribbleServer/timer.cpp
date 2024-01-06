@@ -1,10 +1,11 @@
-import timer;
+//import timer;
+#include "timer.h"
 
 using ScribbleServer::Timer;
 
 Timer::Timer(const uint16_t& duration):
-	m_duration{duration},
-	m_isActive{false}
+	m_duration{ duration },
+	m_isActive{ false }
 {
 }
 
