@@ -110,7 +110,7 @@ crow::response AddToUserHandler::operator()(const crow::request& req) const
     auto passwordIter = bodyArgs.find("password");
     if (usernameIter != end && passwordIter != end)
     {
-        m_db.AddUser(usernameIter->second, passwordIter->second);
+        //m_db.AddUser(usernameIter->second, passwordIter->second);
     }
     return crow::response(201); 
 }
