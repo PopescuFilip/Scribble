@@ -10,7 +10,19 @@ int main()
         std::cout << "Faild to initialize the database!";
         return -1;
     }
+
     Game g{ storage };
+
+    auto users{ storage->GetUsers() };
+    for (const User& user : users)
+    {
+        std::cout << user.GetUserId() << " " << user.GetUsername() << "\n";
+        g.AddPlayer(user.GetUserId());
+    }
+
+    g.RunOneRound(0);
+    
+    
 
    /* Routing r;
     r.Run(storage);*/
