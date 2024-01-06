@@ -40,11 +40,6 @@ void GameStorage::AddUser(const User& user)
     m_db.insert(user);
 }
 
-void GameStorage::AddUser(const std::string& user, const std::string& password)
-{
-    m_db.insert(User{ user, password });
-}
-
 void GameStorage::AddScore(const Score& score)
 {
     m_db.insert(score);
@@ -62,7 +57,7 @@ bool GameStorage::UsernameExists(const std::string& username)
     return count != 0;
 }
 
-std::vector<Score> ScribbleServer::GameStorage::GetLast5Scores(const int& userId)
+std::vector<Score> GameStorage::GetLast5Scores(const int& userId)
 {
     auto allUserScores = m_db.get_all<Score>(
         sql::where(sql::c(&Score::GetUserId) == userId)

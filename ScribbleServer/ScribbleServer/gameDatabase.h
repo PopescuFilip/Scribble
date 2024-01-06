@@ -59,7 +59,6 @@ namespace ScribbleServer
 		void PopulateStorage();
 
 		void AddUser(const User& user);
-		void AddUser(const std::string& user, const std::string& password);
 
 	private:
 		const std::string kDbFile{ "scribble.sqlite" };
