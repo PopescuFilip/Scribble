@@ -79,6 +79,11 @@ std::vector<User> GameStorage::GetUsers()
     return m_db.get_all<User>();
 }
 
+User GameStorage::GetUser(const int userId)
+{
+    return m_db.get<User>(userId);
+}
+
 void GameStorage::PopulateStorage()
 {
     std::ifstream file(kWordFile);

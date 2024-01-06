@@ -46,6 +46,8 @@ namespace ScribbleServer
 		std::vector<Word> GetWords();
 		std::vector<User> GetUsers();
 
+		User GetUser(const int userId);
+
 		void AddUser(const User& user);
 		void AddUser(const std::string& user, const std::string& password);
 		void AddScore(const Score& score);
