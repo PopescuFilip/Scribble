@@ -66,12 +66,12 @@ Score Player::GetScore() const
 	return m_score;
 }
 
-bool Player::GetGuessedCorrectly() const
+bool Player::HasGuessedCorrectly() const
 {
 	return m_guessedCorrectly;
 }
 
-bool Player::GetHasGuessed() const 
+bool Player::HasGuessed() const 
 {
 	return m_hasGuessed;
 }
@@ -79,6 +79,11 @@ bool Player::GetHasGuessed() const
 std::string Player::GetWordLastGuessed() const 
 {
 	return m_wordLastGuessed;
+}
+
+uint16_t ScribbleServer::Player::GetTimeGuessed() const
+{
+	return m_timeGuessed;
 }
 
 void Player::GuessWord(const std::string& word, uint16_t time)

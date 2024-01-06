@@ -52,7 +52,7 @@ void Word::RevealRandomCharacter()
     m_revealedCharacters.insert(randomIndex);
 }
 
-bool ScribbleServer::Word::isRevealed() const
+bool ScribbleServer::Word::IsRevealed() const
 {
     uint16_t nonSpaceCharacters = GetNoOfCharacters();
     return (m_revealedCharacters.size() == nonSpaceCharacters);

@@ -30,7 +30,7 @@ namespace ScribbleServer
         uint16_t GetNoOfCharacters() const;
 
         void RevealRandomCharacter();
-        bool isRevealed() const;
+        bool IsRevealed() const;
 
         bool operator ==(const std::string& word) const;
         
