@@ -13,7 +13,7 @@ void Game::AddPlayer(const int userId)
 {
     auto sp = m_db.lock();
     User user{ sp->GetUser(userId) };
-    m_players[userId] = Player{ user };
+	m_players.emplace(userId, std::move(Player{ user }));
 }
 
 void Game::Run()
@@ -21,8 +21,8 @@ void Game::Run()
 	for (int i = 0; i < kNoOfRounds; i++)
 	{
 		RunOneRound();
-		Sleep(5000);
-		Reset();
+		//Sleep(kMilisecondBetweenRounds);
+		//Reset();
 	}
 	m_gameState = GameState::Ended;
 }
@@ -39,7 +39,7 @@ void Game::RunOneRound()
 			const auto& [playerId, player] = keyValue;
 			RunSubRound(playerId);
 			UpdateScores(playerId);
-			Sleep(1000);
+			Sleep(kMilisecondBetweenRounds);
 			Reset();
 
 		});
