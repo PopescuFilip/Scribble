@@ -3,7 +3,6 @@
 
 using namespace ScribbleServer;
 
-
 Game::Game(const std::shared_ptr<GameStorage>& db):
     m_db{ db },
     m_roundTimer{ kRoundDuration },
@@ -20,24 +19,38 @@ void Game::AddPlayer(const int userId)
 
 void Game::Run()
 {
+	for (int i = 0; i < kNoOfRounds; i++)
+	{
+		RunOneRound();
+		Sleep(5000);
+		Reset();
+	}
+	m_gameState = GameState::Ended;
+}
+
+const std::string Game::GetStringFromGameState(const GameState& gameState)
+{
+	return mappedGameState.at(gameState);
+}
+
+void Game::RunOneRound()
+{
 	m_gameState = GameState::Running;
 
 	std::ranges::for_each(m_players, [&](const auto& keyValue)
 		{
 			const auto& [playerId, player] = keyValue;
-			RunOneRound(playerId);
+			RunSubRound(playerId);
 			UpdateScores(playerId);
-			m_gameState = GameState::BetweenRounds;
 			Sleep(1000);
 			Reset();
-			m_gameState = GameState::Running;
 
 		});
 
 	m_gameState = GameState::Ended;
 }
 
-void Game::RunOneRound(const int& painterId)
+void Game::RunSubRound(const int& painterId)
 {
 	auto sp = m_db.lock();
 	m_currentWord = std::move(sp->GetRandomWord());
@@ -45,8 +58,11 @@ void Game::RunOneRound(const int& painterId)
 	Timer startRevealing{ static_cast<uint16_t>(kRoundDuration / 2) };
 	Timer revealInterval{ static_cast<uint16_t>(kRoundDuration / m_currentWord.GetNoOfCharacters()) };
 
+	m_gameState = GameState::Running;
+
 	m_roundTimer.Start();
 	startRevealing.Start();
+
 	while (!m_roundTimer.ReachedThreshold())
 	{
 		if (revealInterval.IsActive() && revealInterval.ReachedThreshold())
@@ -70,6 +86,8 @@ void Game::RunOneRound(const int& painterId)
 	}
 	m_roundTimer.Stop();
 	revealInterval.Stop();
+
+	m_gameState = GameState::BetweenRounds;
 }
 
 void Game::UpdateScores(const int& painterId)
@@ -113,7 +131,7 @@ uint16_t Game::GetTime() const
     }
 }
 
-Game::GameState Game::GetGameState() const
+GameState Game::GetGameState() const
 {
     return m_gameState;
 }
