@@ -1,12 +1,7 @@
 module;
 
-import<iostream>;
 import <string>;
-import <set>;
-import<random>;
-import<fstream>;
-import<cstdint>;
-import<cctype>;
+import <unordered_set>;
 
 export module word;
 
@@ -38,7 +33,7 @@ namespace ScribbleServer
         int m_wordId;
         std::string m_word;
 
-        std::set<int> m_revealedCharacters;
+        std::unordered_set<int> m_revealedCharacters;
 
     };
 }
