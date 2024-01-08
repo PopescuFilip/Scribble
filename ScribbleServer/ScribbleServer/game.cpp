@@ -27,11 +27,6 @@ void Game::Run()
 	m_gameState = GameState::Ended;
 }
 
-const std::string Game::GetStringFromGameState(const GameState& gameState)
-{
-	return mappedGameState.at(gameState);
-}
-
 void Game::RunOneRound()
 {
 	std::ranges::for_each(m_players, [&](const auto& keyValue)

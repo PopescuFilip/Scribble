@@ -20,7 +20,7 @@ int main()
         std::cout << user.GetUserId() << " " << user.GetUsername() << " " << user.GetPassword() << "\n";
         g.AddPlayer(user.GetUserId());
     }
-    std::cout << Game::GetStringFromGameState(std::move(g.GetGameState()));
+    std::cout << GetStringFromGameState(std::move(g.GetGameState()));
     g.Run();
     
     
