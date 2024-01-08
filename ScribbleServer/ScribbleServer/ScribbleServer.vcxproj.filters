@@ -21,9 +21,6 @@
     <ClCompile Include="player.cppm">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="round.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="score.cppm">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -34,9 +31,6 @@
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="round.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="score.cpp">
@@ -55,9 +49,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gameRoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="utils.cppm">
@@ -87,9 +78,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gameRoom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="timer.h">
