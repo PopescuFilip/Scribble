@@ -7,8 +7,7 @@ Game::Game(const std::shared_ptr<GameStorage>& db):
     m_db{ db },
     m_roundTimer{ kRoundDuration },
     m_gameState{ GameState::NotStarted }
-{
-}
+{}
 
 void Game::AddPlayer(const int userId)
 {
@@ -35,8 +34,6 @@ const std::string Game::GetStringFromGameState(const GameState& gameState)
 
 void Game::RunOneRound()
 {
-	m_gameState = GameState::Running;
-
 	std::ranges::for_each(m_players, [&](const auto& keyValue)
 		{
 			const auto& [playerId, player] = keyValue;
@@ -46,8 +43,6 @@ void Game::RunOneRound()
 			Reset();
 
 		});
-
-	m_gameState = GameState::Ended;
 }
 
 void Game::RunSubRound(const int& painterId)
