@@ -17,7 +17,7 @@ int main()
     auto users{ storage->GetUsers() };
     for (const User& user : users)
     {
-        std::cout << user.GetUserId() << " " << user.GetUsername() << "\n";
+        std::cout << user.GetUserId() << " " << user.GetUsername() << " " << user.GetPassword() << "\n";
         g.AddPlayer(user.GetUserId());
     }
     std::cout << Game::GetStringFromGameState(std::move(g.GetGameState()));
