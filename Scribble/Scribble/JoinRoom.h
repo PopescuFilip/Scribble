@@ -11,7 +11,6 @@ class JoinRoom : public QMainWindow
 	Q_OBJECT
 
 public:
-	//JoinRoom();
 	JoinRoom(std::string username, QWidget *parent = nullptr);
 	~JoinRoom();
 
@@ -25,5 +24,4 @@ private:
 	Ui::JoinRoomClass ui;
 	std::string m_user;
 
-	//WaitingRoom m_waiting;
 };

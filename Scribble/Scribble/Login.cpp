@@ -2,9 +2,6 @@
 #include <QPixmap>
 #include<qmainwindow.h>
 
-//Login::Login()
-//{
-//}
 
 Login::Login(QWidget *parent)
 	: QMainWindow(parent)

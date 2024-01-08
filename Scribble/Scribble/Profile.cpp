@@ -1,8 +1,6 @@
 #include "Profile.h"
 #include <QPixmap>
-Profile::Profile()
-{
-}
+
 Profile::Profile(std::string username, QWidget *parent)
 	: QMainWindow(parent),
 	m_user(username)

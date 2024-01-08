@@ -1,9 +1,6 @@
 #include "Scribble.h"
 #include "JoinRoom.h"
 
-Scribble::Scribble()
-{
-};
 
 Scribble::Scribble(std::string username, QWidget *parent)
     : QMainWindow(parent),

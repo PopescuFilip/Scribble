@@ -8,7 +8,6 @@ class EndScreen : public QMainWindow
 	Q_OBJECT
 
 public:
-	EndScreen();
 	EndScreen(std::string username, QWidget *parent = nullptr);
 	~EndScreen();
 

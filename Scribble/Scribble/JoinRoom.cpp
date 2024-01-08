@@ -1,10 +1,6 @@
 #include "JoinRoom.h"
 #include <QPixmap>
 
-//JoinRoom::JoinRoom()
-//{
-//}
-
 JoinRoom::JoinRoom(std::string username, QWidget* parent)
 	: QMainWindow(parent),
 	  m_user(username)
@@ -55,13 +51,13 @@ void JoinRoom::paintEvent(QPaintEvent* event)
 void JoinRoom::clickOnInsertButton()
 {
 	close();
-	WaitingRoom* newWindow = new WaitingRoom();
+	WaitingRoom* newWindow = new WaitingRoom(m_user, " ");
 	newWindow->show();
 }
 
 void JoinRoom::clickOnCreateButton()
 {
 	close();
-	WaitingRoom* newWindow = new WaitingRoom();
+	WaitingRoom* newWindow = new WaitingRoom(m_user, " ");
 	newWindow->show();
 }

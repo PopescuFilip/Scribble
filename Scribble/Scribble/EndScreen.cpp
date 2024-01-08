@@ -1,10 +1,6 @@
 #include "EndScreen.h"
 #include <QPixmap>
 
-EndScreen::EndScreen()
-{
-}
-
 EndScreen::EndScreen(std::string username, QWidget *parent)
 	: QMainWindow(parent),
 	m_user(username)

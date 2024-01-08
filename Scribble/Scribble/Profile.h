@@ -9,7 +9,6 @@ class Profile : public QMainWindow
 	Q_OBJECT
 
 public:
-	Profile();
 	Profile(std::string username, QWidget *parent = nullptr);
 	~Profile();
 public:

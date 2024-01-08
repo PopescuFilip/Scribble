@@ -9,7 +9,6 @@ class WaitingRoom : public QMainWindow
 	Q_OBJECT
 
 public:
-	WaitingRoom();
 	WaitingRoom(std::string username, std::string code, QWidget *parent = nullptr);
 	~WaitingRoom();
 
@@ -22,6 +21,4 @@ private:
 	Ui::WaitingRoomClass ui;	
 	std::string m_user;
 	std::string m_roomCode;
-
-	Scribble m_scribble;
 };
