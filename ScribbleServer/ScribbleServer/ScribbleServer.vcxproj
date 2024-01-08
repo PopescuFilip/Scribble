@@ -146,6 +146,7 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> /D _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'"> /D _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="gameState.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player.cppm" />
     <ClCompile Include="random.cpp" />
