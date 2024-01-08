@@ -1,19 +1,18 @@
-#include <random>
-#include<algorithm>
 import word;
+#include <random>
 
 using ScribbleServer::Word;
 
 
 Word::Word():
-    m_wordId{-1},
-    m_word{""}
+    m_wordId{ -1 },
+    m_word{ "" }
 {
 }
 
 Word::Word(const std::string& word):
-    m_wordId{-1},
-    m_word{word}
+    m_wordId{ -1 },
+    m_word{ word }
 {
 }
 
@@ -28,7 +27,8 @@ std::string Word::GetVisibleCharacters() const
 {
     size_t length = m_word.size();
     std::string visibleCharacters = m_word;
-    for (int i = 0; i < length; ++i) {
+    for (int i = 0; i < length; ++i) 
+    {
         if (m_revealedCharacters.find(i) == m_revealedCharacters.end() && m_word[i] != ' ')
         {
             visibleCharacters[i] = '_';

@@ -4,8 +4,10 @@ import <string>;
 import <cstdint>;
 export module score;
 
-namespace ScribbleServer {
-	export class Score {
+namespace ScribbleServer 
+{
+	export class Score 
+	{
 	public:
 		Score();
 		Score(int user_id);

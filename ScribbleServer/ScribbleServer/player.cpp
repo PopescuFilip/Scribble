@@ -4,21 +4,7 @@ import user;
 
 using namespace ScribbleServer;
 
-Player::Player() :
-	m_canDraw{ false }, 
-	m_guessedCorrectly{ false }, 
-	User{}
-{
-};
-
-Player::Player(const std::string& username, const std::string& password)
-	: m_canDraw{ false }, 
-	m_guessedCorrectly{ false }, 
-	User{ username, password }
-{
-}
-
-ScribbleServer::Player::Player(const User& user):
+Player::Player(const User& user):
 	User{ user },
 	m_canDraw{ false },
 	m_guessedCorrectly { false },
@@ -81,7 +67,7 @@ std::string Player::GetWordLastGuessed() const
 	return m_wordLastGuessed;
 }
 
-uint16_t ScribbleServer::Player::GetTimeGuessed() const
+uint16_t Player::GetTimeGuessed() const
 {
 	return m_timeGuessed;
 }

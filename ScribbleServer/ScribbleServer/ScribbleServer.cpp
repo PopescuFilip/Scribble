@@ -4,6 +4,7 @@
 int main()
 {
     using namespace ScribbleServer;
+
     std::shared_ptr<GameStorage> storage = std::make_shared<GameStorage>();
     if (!storage->Initialize())
     {
@@ -19,7 +20,7 @@ int main()
         std::cout << user.GetUserId() << " " << user.GetUsername() << "\n";
         g.AddPlayer(user.GetUserId());
     }
-
+    std::cout << Game::GetStringFromGameState(std::move(g.GetGameState()));
     g.Run();
     
     
