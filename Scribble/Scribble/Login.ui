@@ -24,8 +24,23 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(212, 255, 172);</string>
+     <string notr="true">background-color: rgb(29, 0, 58);
+border-radius:20px;
+</string>
     </property>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>261</width>
+       <height>391</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(33, 8, 113);</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
