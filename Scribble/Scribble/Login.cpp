@@ -17,13 +17,8 @@ Login::Login(QWidget *parent)
 	setFixedSize(1280, 720);
 	setGeometry(140, 70, 2560, 1440);
 
-
-
-
-
-	//connect(ui.pushButtonLogin, SIGNAL(clicked()), this, SLOT(clickedOnLogInButton()));
-	//connect(ui.pushButtonRegister, SIGNAL(clicked()), this, SLOT(clickedOnRegisterButton()));
-
+	connect(ui.pushButtonLogIn, SIGNAL(clicked()), this, SLOT(clickedOnLogInButton()));
+	connect(ui.pushButtonRegister, SIGNAL(clicked()), this, SLOT(clickedOnRegisterButton()));
 }
 
 Login::~Login()

@@ -45,7 +45,7 @@ border-radius:20px;</string>
       <string notr="true">background-image: url(:/WidgetPhotos/Widget2.jpeg);
 border-radius:20px;</string>
      </property>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushButtonLogIn">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -60,15 +60,15 @@ border-radius:20px;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#pushButton{ 
+       <string notr="true">QPushButton#pushButtonLogIn{ 
 background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(20, 47, 78, 219), stop: 1 rgba(85, 98, 112, 226));
 color:rgba(255, 255, 255, 210);
  border-radius:7px; 
 }
-QPushButton=pushButton:hover{
+QPushButton=pushButtonLogIn:hover{
 background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(40, 67, 98, 219), stop:1 rgba(105, 118, 132, 226)) 
 }
-QPushButton#pushButton:pressed{ 
+QPushButton#pushButtonLogIn:pressed{ 
 padding-left:5px; 
 padding-top:5px; 
 background-color:rgba();
@@ -157,7 +157,7 @@ padding-bottom:7px;</string>
        <string>LogIn or Register</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="pushButtonRegister">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -172,15 +172,15 @@ padding-bottom:7px;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#pushButton_2{ 
+       <string notr="true">QPushButton#pushButtonRegister{ 
 background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(20, 47, 78, 219), stop: 1 rgba(85, 98, 112, 226));
 color:rgba(255, 255, 255, 210);
  border-radius:7px; 
 }
-QPushButton=pushButton_2:hover{
+QPushButton=pushButtonRegister:hover{
 background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(40, 67, 98, 219), stop:1 rgba(105, 118, 132, 226)) 
 }
-QPushButton#pushButton_2:pressed{ 
+QPushButton#pushButtonRegister:pressed{ 
 padding-left:5px; 
 padding-top:5px; 
 background-color:rgba();
