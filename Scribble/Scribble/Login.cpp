@@ -17,28 +17,12 @@ Login::Login(QWidget *parent)
 	setFixedSize(1280, 720);
 	setGeometry(140, 70, 2560, 1440);
 
-	QString buttonStyle = "QPushButton {"
-		"background-color: #4CAF50;"
-		"border-width: 2px;"
-		"border - style: dashed;"
-		"border - color: white;"
-		"color: purple;"
-		"padding: 5px 5px;"
-		"text-align: center;"
-		"text-decoration: none;"
-		"font-size: 12px;"
-		"border-radius: 1px;"
-		"font-weight: bold;"
-		"}"
-		"QPushButton:hover {"
-		"background-color: #45a049;"
-		"}";
 
-	ui.pushButtonLogin->setStyleSheet(buttonStyle);
-	ui.pushButtonRegister->setStyleSheet(buttonStyle);
 
-	connect(ui.pushButtonLogin, SIGNAL(clicked()), this, SLOT(clickedOnLogInButton()));
-	connect(ui.pushButtonRegister, SIGNAL(clicked()), this, SLOT(clickedOnRegisterButton()));
+
+
+	//connect(ui.pushButtonLogin, SIGNAL(clicked()), this, SLOT(clickedOnLogInButton()));
+	//connect(ui.pushButtonRegister, SIGNAL(clicked()), this, SLOT(clickedOnRegisterButton()));
 
 }
 
