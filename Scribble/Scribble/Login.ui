@@ -38,7 +38,7 @@ border-radius:20px;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(33, 8, 113);</string>
+      <string notr="true">background-color: rgb(15, 17, 93);</string>
      </property>
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
@@ -84,6 +84,19 @@ border-radius:20px;
         <width>113</width>
         <height>21</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>40</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
       </property>
      </widget>
     </widget>
