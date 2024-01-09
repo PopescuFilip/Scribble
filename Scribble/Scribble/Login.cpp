@@ -14,7 +14,8 @@ Login::Login(QWidget *parent)
 	palette.setBrush(QPalette::Window, background);
 	setPalette(palette);
 
-	showFullScreen();
+	setFixedSize(1280, 720);
+	setGeometry(140, 70, 2560, 1440);
 
 	QString buttonStyle = "QPushButton {"
 		"background-color: #4CAF50;"

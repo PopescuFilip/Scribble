@@ -14,7 +14,8 @@ WaitingRoom::WaitingRoom(std::string username, std::string code, QWidget* parent
 	palette.setBrush(QPalette::Window, background);
 	setPalette(palette);
 
-	showFullScreen();
+	setFixedSize(1280, 720);
+	setGeometry(140, 70, 2560, 1440);
 
 	connect(ui.startButton, SIGNAL(clicked()), this, SLOT(clickOnStartButton()));
 }
