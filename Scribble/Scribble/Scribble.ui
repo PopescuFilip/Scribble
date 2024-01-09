@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>639</width>
-    <height>400</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QPushButton" name="ClearWindowButton">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>0</y>
-      <width>81</width>
-      <height>21</height>
+      <x>50</x>
+      <y>610</y>
+      <width>151</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -30,10 +30,10 @@
    <widget class="QTextEdit" name="Word">
     <property name="geometry">
      <rect>
-      <x>213</x>
+      <x>390</x>
       <y>10</y>
-      <width>121</width>
-      <height>41</height>
+      <width>441</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="html">
@@ -47,31 +47,31 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;This is for the WORD&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QLineEdit" name="chatlineEdit">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>250</y>
-      <width>215</width>
-      <height>26</height>
+      <x>860</x>
+      <y>610</y>
+      <width>261</width>
+      <height>41</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLineEdit" name="chatlineEdit">
-       <property name="text">
-        <string>Guess the word!</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="sendButton">
-       <property name="text">
-        <string>SEND</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <property name="text">
+     <string>Guess the word!</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sendButton">
+    <property name="geometry">
+     <rect>
+      <x>1140</x>
+      <y>610</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SEND</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -79,7 +79,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>639</width>
+     <width>1280</width>
      <height>22</height>
     </rect>
    </property>
