@@ -16,3 +16,5 @@ static const std::unordered_map<GameState, std::string> mappedGameState{
 	{GameState::Running, "Running"},
 	{GameState::Ended, "Ended"}
 };
+
+static const std::string GetStringFromGameState(const GameState& gameState);

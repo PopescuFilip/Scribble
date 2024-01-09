@@ -21,8 +21,6 @@ namespace ScribbleServer
 
 	    void AddPlayer(const int userId);
 		void Run();
-
-		static const std::string GetStringFromGameState(const GameState& gameState);
 	
 	private:
 		void RunOneRound();

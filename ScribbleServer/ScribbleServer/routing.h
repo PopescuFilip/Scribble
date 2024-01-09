@@ -1,5 +1,6 @@
 #pragma once
-#include "gameDatabase.h"
+#include "game.h"
+import random;
 
 namespace ScribbleServer
 {
@@ -10,6 +11,9 @@ namespace ScribbleServer
 
 	private:
 		crow::SimpleApp m_app;
+		std::unordered_map<std::string, Game> m_games;
+
+		static std::unordered_set<std::string> m_codes;
 	};
 }
 

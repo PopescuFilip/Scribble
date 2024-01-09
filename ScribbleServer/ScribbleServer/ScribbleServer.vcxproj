@@ -146,13 +146,11 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> /D _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'"> /D _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="gameRoom.cpp" />
+    <ClCompile Include="gameState.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player.cppm" />
     <ClCompile Include="random.cpp" />
     <ClCompile Include="random.cppm" />
-    <ClCompile Include="round.cpp" />
-    <ClCompile Include="round.cppm" />
     <ClCompile Include="routing.cpp" />
     <ClCompile Include="score.cpp" />
     <ClCompile Include="score.cppm" />
@@ -169,7 +167,6 @@
   <ItemGroup>
     <ClInclude Include="game.h" />
     <ClInclude Include="gameDatabase.h" />
-    <ClInclude Include="gameRoom.h" />
     <ClInclude Include="gameState.h" />
     <ClInclude Include="routing.h" />
     <ClInclude Include="timer.h" />
