@@ -53,6 +53,11 @@ radius-border:20xp;</string>
        <height>41</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">QPushButton#insertButton{ 
 background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(20, 47, 78, 219), stop: 1 rgba(85, 98, 112, 226));
@@ -82,6 +87,11 @@ background-color:rgba();
        <height>41</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">QPushButton#createButton{ 
 background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(20, 47, 78, 219), stop: 1 rgba(85, 98, 112, 226));
@@ -102,6 +112,40 @@ background-color:rgba();
       <string>Create Waiting Room</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="profileButton">
+    <property name="geometry">
+     <rect>
+      <x>1094</x>
+      <y>20</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#profileButton{ 
+background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(20, 47, 78, 219), stop: 1 rgba(85, 98, 112, 226));
+color:rgba(255, 255, 255, 210);
+ border-radius:7px; 
+}
+QPushButton#profileButton:hover{
+background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(40, 67, 98, 219), stop:1 rgba(105, 118, 132, 226)) 
+}
+QPushButton#profileButton:pressed{ 
+padding-left:5px; 
+padding-top:5px; 
+background-color:rgba();
+	background-color: rgb(42, 0, 56);
+}</string>
+    </property>
+    <property name="text">
+     <string>Profile</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
