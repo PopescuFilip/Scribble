@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QColor>
 #include "WaitingRoom.h"
+#include "Profile.h"
 
 class JoinRoom : public QMainWindow
 {
@@ -19,6 +20,7 @@ public:
 private slots:
 	void clickOnInsertButton();
 	void clickOnCreateButton();
+	void clickOnProfileButton();
 
 private:
 	Ui::JoinRoomClass ui;

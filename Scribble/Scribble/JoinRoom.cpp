@@ -18,6 +18,7 @@ JoinRoom::JoinRoom(std::string username, QWidget* parent)
 
 	connect(ui.insertButton, SIGNAL(clicked()), this, SLOT(clickOnInsertButton()));
 	connect(ui.createButton, SIGNAL(clicked()), this, SLOT(clickOnCreateButton()));
+	connect(ui.profileButton, SIGNAL(clicked()), this, SLOT(clickOnProfileButton()));
 }
 
 JoinRoom::~JoinRoom()
@@ -40,5 +41,12 @@ void JoinRoom::clickOnCreateButton()
 {
 	close();
 	WaitingRoom* newWindow = new WaitingRoom(m_user, " ");
+	newWindow->show();
+}
+
+void JoinRoom::clickOnProfileButton()
+{
+	close();
+	Profile* newWindow = new Profile(m_user);
 	newWindow->show();
 }
