@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="WidgetPhotos">
+    <file>Widget2.jpeg</file>
+    <file>widget1.jpeg</file>
+  </qresource>
+</RCC>

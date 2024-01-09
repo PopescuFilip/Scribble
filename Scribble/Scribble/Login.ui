@@ -10,6 +10,11 @@
     <height>720</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Login</string>
   </property>
@@ -24,9 +29,8 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(29, 0, 58);
-border-radius:20px;
-</string>
+     <string notr="true">background-image: url(:/WidgetPhotos/widget1.jpeg);
+border-radius:20px;</string>
     </property>
     <widget class="QWidget" name="widget_2" native="true">
      <property name="geometry">
@@ -38,65 +42,153 @@ border-radius:20px;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(15, 17, 93);</string>
+      <string notr="true">background-image: url(:/WidgetPhotos/Widget2.jpeg);
+border-radius:20px;</string>
      </property>
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>280</y>
-        <width>151</width>
-        <height>31</height>
+        <x>40</x>
+        <y>270</y>
+        <width>180</width>
+        <height>35</height>
        </rect>
       </property>
-      <property name="text">
-       <string>PushButton</string>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
       </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>330</y>
-        <width>131</width>
-        <height>21</height>
-       </rect>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#pushButton{ 
+background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(20, 47, 78, 219), stop: 1 rgba(85, 98, 112, 226));
+color:rgba(255, 255, 255, 210);
+ border-radius:7px; 
+}
+QPushButton=pushButton:hover{
+background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(40, 67, 98, 219), stop:1 rgba(105, 118, 132, 226)) 
+}
+QPushButton#pushButton:pressed{ 
+padding-left:5px; 
+padding-top:5px; 
+background-color:rgba();
+	background-color: rgb(42, 0, 56);
+}</string>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string> Log In</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>110</y>
-        <width>113</width>
-        <height>21</height>
+        <x>10</x>
+        <y>130</y>
+        <width>231</width>
+        <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(11, 21, 65);
+border:none;
+border-bottom:2px solid rgba(105, 118,132, 255);
+color:rgba(255,255, 255, 230);
+padding-bottom:7px;</string>
+      </property>
+      <property name="placeholderText">
+       <string>Username</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_2">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>180</y>
-        <width>113</width>
-        <height>21</height>
+        <x>10</x>
+        <y>200</y>
+        <width>231</width>
+        <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(11, 21, 65);
+border:none;
+border-bottom:2px solid rgba(105, 118,132, 255);
+color:rgba(255,255, 255, 230);
+padding-bottom:7px;</string>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+      <property name="placeholderText">
+       <string>Password</string>
       </property>
      </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>100</x>
+        <x>10</x>
         <y>40</y>
-        <width>49</width>
-        <height>16</height>
+        <width>231</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Lucida Sans Unicode</family>
+        <pointsize>20</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgba(255,255,255,210);
+</string>
+      </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>LogIn or Register</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>320</y>
+        <width>180</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#pushButton_2{ 
+background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(20, 47, 78, 219), stop: 1 rgba(85, 98, 112, 226));
+color:rgba(255, 255, 255, 210);
+ border-radius:7px; 
+}
+QPushButton=pushButton_2:hover{
+background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(40, 67, 98, 219), stop:1 rgba(105, 118, 132, 226)) 
+}
+QPushButton#pushButton_2:pressed{ 
+padding-left:5px; 
+padding-top:5px; 
+background-color:rgba();
+	background-color: rgb(42, 0, 56);
+}</string>
+      </property>
+      <property name="text">
+       <string>Register</string>
       </property>
      </widget>
     </widget>
@@ -108,7 +200,7 @@ border-radius:20px;
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -123,6 +215,8 @@ border-radius:20px;
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="Images/Widget.qrc"/>
+ </resources>
  <connections/>
 </ui>
