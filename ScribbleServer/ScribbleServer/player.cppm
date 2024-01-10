@@ -29,6 +29,7 @@ namespace ScribbleServer
 		uint16_t GetTimeGuessed() const;
 
 		void GuessWord(const std::string& word, uint16_t time);
+		void Reset();
 
 	private:
 		bool m_canDraw;

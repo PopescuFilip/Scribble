@@ -4,10 +4,10 @@ import user;
 
 using namespace ScribbleServer;
 
-Player::Player(const User& user):
+Player::Player(const User& user) :
 	User{ user },
 	m_canDraw{ false },
-	m_guessedCorrectly { false },
+	m_guessedCorrectly{ false },
 	m_hasGuessed{ false },
 	m_score{ user.GetUserId() }
 {
@@ -57,12 +57,12 @@ bool Player::HasGuessedCorrectly() const
 	return m_guessedCorrectly;
 }
 
-bool Player::HasGuessed() const 
+bool Player::HasGuessed() const
 {
 	return m_hasGuessed;
 }
 
-std::string Player::GetWordLastGuessed() const 
+std::string Player::GetWordLastGuessed() const
 {
 	return m_wordLastGuessed;
 }
@@ -74,12 +74,19 @@ uint16_t Player::GetTimeGuessed() const
 
 void Player::GuessWord(const std::string& word, uint16_t time)
 {
-	if (m_canDraw or m_guessedCorrectly) 
+	if (m_canDraw or m_guessedCorrectly)
 	{
 		return;
 	}
 
 	m_wordLastGuessed = word;
-	m_hasGuessed = true; 
+	m_hasGuessed = true;
 	m_timeGuessed = time;
+}
+
+void Player::Reset()
+{
+	m_canDraw = false;
+	m_guessedCorrectly = false;
+	m_hasGuessed = false;
 }
