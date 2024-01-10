@@ -18,3 +18,8 @@ static const std::unordered_map<GameState, std::string> mappedGameState{
 };
 
 static const std::string GetStringFromGameState(const GameState& gameState);
+
+static const std::string GetStringFromGameState(const GameState& gameState)
+{
+	return mappedGameState.at(gameState);
+}

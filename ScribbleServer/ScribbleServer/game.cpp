@@ -34,8 +34,8 @@ void Game::RunOneRound()
 			const auto& [playerId, player] = keyValue;
 			RunSubRound(playerId);
 			UpdateScores(playerId);
-			Sleep(kMilisecondBetweenRounds);
 			Reset();
+			Sleep(kMilisecondBetweenRounds);
 
 		});
 }
@@ -49,7 +49,7 @@ void Game::RunSubRound(const int& painterId)
 	Timer revealInterval{ static_cast<uint16_t>(kRoundDuration / m_currentWord.GetNoOfCharacters()) };
 
 	m_gameState = GameState::Running;
-
+	m_painterId = painterId;
 	m_roundTimer.Start();
 	startRevealing.Start();
 

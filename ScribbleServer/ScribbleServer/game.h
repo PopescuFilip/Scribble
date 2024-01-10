@@ -34,6 +34,7 @@ namespace ScribbleServer
 		std::unordered_map<int, Player> m_players;
 		std::deque<Line> m_drawing;
 		Word m_currentWord;
+		int m_painterId;
 
 		Timer m_roundTimer;
 
