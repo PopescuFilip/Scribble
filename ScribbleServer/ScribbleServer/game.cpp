@@ -27,6 +27,12 @@ void Game::Run()
 	m_gameState = GameState::Ended;
 }
 
+void Game::GuessWord(int playerId, const std::string& word)
+{
+	uint16_t time = GetTime();
+	m_players.at(playerId).GuessWord(word, time);
+}
+
 void Game::RunOneRound()
 {
 	std::ranges::for_each(m_players, [&](const auto& keyValue)

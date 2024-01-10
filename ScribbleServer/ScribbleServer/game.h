@@ -21,6 +21,7 @@ namespace ScribbleServer
 
 	    void AddPlayer(const int userId);
 		void Run();
+		void GuessWord(int playerId, const std::string& word);
 	
 	private:
 		void RunOneRound();
