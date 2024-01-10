@@ -19,6 +19,11 @@ namespace ScribbleServer
 		uint16_t GetTime()const;
 		GameState GetGameState()const;
 
+		std::deque<Line> GetDrawing()const;
+		std::deque<Score> GetScores() const;
+		int GetPainterId() const;
+
+
 	    void AddPlayer(const int userId);
 		void Run();
 		void GuessWord(int playerId, const std::string& word);
@@ -35,6 +40,8 @@ namespace ScribbleServer
 		std::unordered_map<int, Player> m_players;
 		std::deque<Line> m_drawing;
 		Word m_currentWord;
+		int m_painterId;
+
 		int m_painterId;
 
 		Timer m_roundTimer;
