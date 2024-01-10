@@ -69,6 +69,12 @@
     <ClCompile Include="random.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="word.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="word.cppm">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gameDatabase.h">
