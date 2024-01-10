@@ -49,6 +49,7 @@ namespace ScribbleServer
 		User GetUser(const int userId);
 
 		void AddScore(const Score& score);
+		bool AddUser(std::string username, std::string password);
 		
 		bool CheckUser(const User& user);
 		bool UsernameExists(const std::string& username);
