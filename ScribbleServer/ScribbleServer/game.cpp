@@ -113,6 +113,11 @@ void Game::UpdateScores(const int& painterId)
 
 void Game::Reset()
 {
+	for ( auto& keyValue : m_players)
+	{
+		auto& [playerId, player] = keyValue;
+		player.Reset();
+	}
 }
 
 uint16_t Game::GetTime() const
@@ -140,9 +145,10 @@ std::deque<Game::Line> Game::GetDrawing() const
 std::deque<Score> Game::GetScores() const
 {
 	std::deque<Score> scores;
-	for (const auto& player : m_players)
+	for (const auto& keyValue : m_players)
 	{
-		scores.emplace_back(player.second.GetScore());
+		const auto& [playerId, player] = keyValue;
+		scores.emplace_back(player.GetScore());
 	}
 
 	return scores;

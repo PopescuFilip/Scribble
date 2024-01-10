@@ -84,7 +84,7 @@ void Player::GuessWord(const std::string& word, uint16_t time)
 	m_timeGuessed = time;
 }
 
-void Player::Reset()
+void Player::Reset() 
 {
 	m_canDraw = false;
 	m_guessedCorrectly = false;
