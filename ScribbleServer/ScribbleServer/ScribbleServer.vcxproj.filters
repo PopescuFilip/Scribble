@@ -27,9 +27,6 @@
     <ClCompile Include="user.cppm">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="word.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,9 +34,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="user.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="word.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gameDatabase.cpp">

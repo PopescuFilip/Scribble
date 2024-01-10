@@ -1,7 +1,5 @@
-import word;
+module word;
 #include <random>
-
-using ScribbleServer::Word;
 
 
 Word::Word():
