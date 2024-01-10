@@ -1,9 +1,6 @@
 import word;
 #include <random>
 
-using ScribbleServer::Word;
-
-
 Word::Word() :
     m_wordId{ -1 },
     m_word{ "" }
