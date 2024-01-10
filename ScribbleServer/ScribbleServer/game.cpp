@@ -131,3 +131,24 @@ GameState Game::GetGameState() const
 {
     return m_gameState;
 }
+
+std::deque<Game::Line> Game::GetDrawing() const
+{
+	return m_drawing;
+}
+
+std::deque<Score> Game::GetScores() const
+{
+	std::deque<Score> scores;
+	for (const auto& player : m_players)
+	{
+		scores.emplace_back(player.second.GetScore());
+	}
+
+	return scores;
+}
+
+int Game::GetPainterId() const
+{
+	return m_painterId;
+}
