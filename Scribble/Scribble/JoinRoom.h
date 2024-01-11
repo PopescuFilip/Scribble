@@ -24,6 +24,5 @@ private slots:
 
 private:
 	Ui::JoinRoomClass ui;
-	int m_userId;
 
 };

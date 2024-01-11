@@ -13,7 +13,7 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 		{
 			const auto newUsername{ req.url_params.get("username") };
 			const auto newPassword{ req.url_params.get("password") };
-			if (storage->AddUser(newUsername, newPassword))
+			if (!storage->AddUser(newUsername, newPassword))
 				return crow::response(403);
 
 			const int userId{ storage->GetUserId(newUsername) };
@@ -26,7 +26,7 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 			const auto username{ req.url_params.get("username") };
 			const auto password{ req.url_params.get("password") };
 
-			if (storage->CheckUser(username, password))
+			if (!storage->CheckUser(username, password))
 				return crow::response(403);
 
 			const int userId{ storage->GetUserId(username) };

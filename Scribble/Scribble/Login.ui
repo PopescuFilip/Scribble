@@ -79,7 +79,7 @@ background-color:rgba();
        <string> Log In</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="lineEditUser">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -104,7 +104,7 @@ padding-bottom:7px;</string>
        <string>Username</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="lineEditPassword">
       <property name="geometry">
        <rect>
         <x>10</x>
