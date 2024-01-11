@@ -3,10 +3,11 @@
 
 using namespace ScribbleServer;
 
-Game::Game(const std::shared_ptr<GameStorage>& db):
+Game::Game(const std::shared_ptr<GameStorage>& db, int ownerId):
     m_db{ db },
     m_roundTimer{ kRoundDuration },
-    m_gameState{ GameState::NotStarted }
+    m_gameState{ GameState::NotStarted },
+	m_ownerId{ ownerId }
 {}
 
 void Game::AddPlayer(const int userId)
@@ -135,6 +136,11 @@ uint16_t Game::GetTime() const
 GameState Game::GetGameState() const
 {
     return m_gameState;
+}
+
+int ScribbleServer::Game::GetOwnerId() const
+{
+	return m_ownerId;
 }
 
 std::deque<Game::Line> Game::GetDrawing() const

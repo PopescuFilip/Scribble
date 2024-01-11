@@ -1,5 +1,6 @@
 #include "WaitingRoom.h"
 #include <QPixmap>
+#include <qmessagebox.h>
 
 WaitingRoom::WaitingRoom(int username, std::string code, QWidget* parent)
 	: QMainWindow(parent),
@@ -7,6 +8,7 @@ WaitingRoom::WaitingRoom(int username, std::string code, QWidget* parent)
 	m_roomCode(code)
 {
 	ui.setupUi(this);
+	ui.textEdit->setText(QString::fromStdString(code));
 
 	QPixmap background("Images/Background.png");
 	background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);
@@ -22,13 +24,31 @@ WaitingRoom::WaitingRoom(int username, std::string code, QWidget* parent)
 
 WaitingRoom::~WaitingRoom()
 {
-	close();
-    Scribble* newWindow = new Scribble(m_userId);
-	newWindow->show();
+	
 }
 
 void WaitingRoom::clickOnStartButton()
 {
+	cpr::Response response = cpr::Get(
+		cpr::Url{ "http://localhost:18080/start" },
+		cpr::Parameters{
+		{ "id" , std::to_string(m_userId) },
+		{ "code", m_roomCode }
+		}
+	);
+
+	if (response.status_code == 203)
+	{
+		QMessageBox::warning(this, "Start", "you are not the owner of game room");
+		return;
+	}
+
+	if (response.status_code != 200)
+	{
+		QMessageBox::critical(this, "Error", "something went wrong");
+		return;
+	}
+
 	close();
 	Scribble* newWindow = new Scribble(m_userId);
 	newWindow->show();

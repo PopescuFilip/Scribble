@@ -33,8 +33,25 @@ void JoinRoom::paintEvent(QPaintEvent* event)
 
 void JoinRoom::clickOnInsertButton()
 {
+	std::string code{ ui.lineEdit->text().toUtf8().constData() };
+
+	cpr::Response response = cpr::Get(
+		cpr::Url{ "http://localhost:18080/joinroom" },
+		cpr::Parameters{
+		{ "id" , std::to_string(m_userId) },
+		{ "code", code }
+		}
+	);
+
+	if (response.status_code != 200)
+	{
+		ui.lineEdit->clear();
+		QMessageBox::warning(this, "Join room", "incorrect code");
+		return;
+	}
+
 	close();
-	WaitingRoom* newWindow = new WaitingRoom(m_userId, " ");
+	WaitingRoom* newWindow = new WaitingRoom(m_userId, code);
 	newWindow->show();
 }
 
@@ -46,9 +63,10 @@ void JoinRoom::clickOnCreateButton()
 			{ "id" , std::to_string(m_userId) }
 		}
 	);
+
 	if (response.status_code != 200)
 	{
-		QMessageBox::warning(this, "Create room", "somethin went wrong");
+		QMessageBox::critical(this, "Error", "somethins went wrong");
 		return;
 	}
 	

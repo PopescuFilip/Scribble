@@ -14,10 +14,11 @@ namespace ScribbleServer
 		using Point = std::pair<uint16_t, uint16_t>;
 		using Line = std::pair<Point, Point>;
 	public:
-		Game(const std::shared_ptr<GameStorage>& db);
+		Game(const std::shared_ptr<GameStorage>& db, int ownerId);
 
 		uint16_t GetTime()const;
 		GameState GetGameState()const;
+		int GetOwnerId() const;
 
 		std::deque<Line> GetDrawing()const;
 		std::deque<Score> GetScores() const;
@@ -42,6 +43,7 @@ namespace ScribbleServer
 		Word m_currentWord;
 
 		int m_painterId;
+		const int m_ownerId;
 
 		Timer m_roundTimer;
 

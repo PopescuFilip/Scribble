@@ -43,7 +43,7 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 
 			const std::string newCode{ GetRandomUniqueCode(m_codes) };
 			m_codes.emplace(newCode);
-			m_games.emplace(newCode, Game(storage));
+			m_games.emplace(newCode, Game(storage, id));
 			m_games.at(newCode).AddPlayer(id);
 			
 			return crow::response(200, newCode);
@@ -55,6 +55,9 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 			const auto code{ req.url_params.get("code") };
 			const std::string stringId{ req.url_params.get("id") };
 			const int id{ std::stoi(stringId) };
+
+			if (m_games.find(code) == m_games.end())
+				return crow::response(404);
 
 			m_games.at(code).AddPlayer(id);
 
@@ -78,6 +81,22 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 
 			return crow::json::wvalue{ playersJson };
 
+		});
+
+	CROW_ROUTE(m_app, "/start")([&](const crow::request& req) 
+		{
+			const auto code{ req.url_params.get("code") };
+			const std::string stringId{ req.url_params.get("id") };
+			const int id{ std::stoi(stringId) };
+
+			if (m_games.find(code) == m_games.end())
+				return crow::response(404);
+
+			if (m_games.at(code).GetOwnerId() != id)
+				return crow::response(203);
+
+			m_games.at(code).Run();
+			return crow::response(200);
 		});
 
 	CROW_ROUTE(m_app, "/gamestate")([&](const crow::request& req) 
