@@ -3,6 +3,7 @@
 #include <random>
 
 using namespace ScribbleServer;
+using namespace sqlite_orm;
 
 bool GameStorage::Initialize()
 {
@@ -54,9 +55,9 @@ bool GameStorage::AddUser(std::string username, std::string password)
     return true;
 }
 
-bool GameStorage::CheckUser(const User& user)
+bool GameStorage::CheckUser(const std::string& username, const std::string& password)
 {
-    auto count = m_db.count<User>(sql::where(sql::c(&User::GetUsername) == user.GetUsername()));
+    auto count = m_db.count<User>(sql::where(sql::c(&User::GetUsername) == username) and (sql::c(&User::GetPassword) == password));
     return count != 0;
 }
 
@@ -76,6 +77,11 @@ std::vector<Score> GameStorage::GetLast5Scores(const int& userId)
     std::vector<Score> last5Scores(allUserScores.begin(), allUserScores.begin() + scoresToRetrieve); //creeaza vectorul cu ultimele 5 scoruri
 
     return last5Scores;
+}
+
+void GameStorage::ClearUsers()
+{
+    m_db.remove_all<User>();
 }
 
 std::vector<User> GameStorage::GetUsers()

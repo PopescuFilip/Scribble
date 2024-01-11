@@ -52,14 +52,15 @@ namespace ScribbleServer
 		void AddScore(const Score& score);
 		bool AddUser(std::string username, std::string password);
 		
-		bool CheckUser(const User& user);
-		bool UsernameExists(const std::string& username);
+		bool CheckUser(const std::string& username, const std::string& password);
 
 		std::vector<Score> GetLast5Scores(const int& userId);
 
+		void ClearUsers();
+
 	private:
 		void PopulateStorage();
-
+		bool UsernameExists(const std::string& username);
 		void AddUser(const User& user);
 
 	private:

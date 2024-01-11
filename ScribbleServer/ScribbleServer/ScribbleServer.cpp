@@ -1,6 +1,5 @@
 #include <iostream>
-#include "game.h"
-
+#include "routing.h"
 import word;
 
 int main()
@@ -14,21 +13,8 @@ int main()
         return -1;
     }
 
-    Game g{ storage };
-
-    auto users{ storage->GetUsers() };
-    for (const User& user : users)
-    {
-        std::cout << user.GetUserId() << " " << user.GetUsername() << " " << user.GetPassword() << "\n";
-        g.AddPlayer(user.GetUserId());
-    }
-    std::cout << GetStringFromGameState(std::move(g.GetGameState()));
-    g.Run();
-    
-    
-
-   /* Routing r;
-    r.Run(storage);*/
+    Routing r;
+    r.Run(storage);
 
     std::cout << "Hello World!\n";
     return 0;
