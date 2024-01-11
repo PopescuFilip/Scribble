@@ -46,7 +46,6 @@ void JoinRoom::clickOnCreateButton()
 
 void JoinRoom::clickOnProfileButton()
 {
-	close();
-	Profile* newWindow = new Profile(m_userId);
+	Profile* newWindow = new Profile(m_userId, this);
 	newWindow->show();
 }
