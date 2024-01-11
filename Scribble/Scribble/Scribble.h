@@ -8,6 +8,7 @@
 
 #include <cpr/cpr.h>
 #include <crow.h>
+#include "GameState.h"
 
 class Scribble : public QMainWindow
 {

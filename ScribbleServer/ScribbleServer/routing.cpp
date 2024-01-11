@@ -1,4 +1,5 @@
 #include "routing.h"
+#include <thread>
 import random;
 
 using namespace ScribbleServer;
@@ -95,7 +96,10 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 			if (m_games.at(code).GetOwnerId() != id)
 				return crow::response(203);
 
-			m_games.at(code).Run();
+			std::thread runThread([&](std::string code) {m_games.at(code).Run(); }, code);
+
+			runThread.detach();
+
 			return crow::response(200);
 		});
 
@@ -103,16 +107,12 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 		{
 			const auto code{ req.url_params.get("code") };
 
-			try
-			{
-				const GameState gameState{ std::move(m_games.at(code).GetGameState()) };
-				const std::string gameStateString{ std::move(GetStringFromGameState(gameState)) };
-				return crow::response(200, gameStateString);
-			}
-			catch (...)
-			{
+			if (m_games.find(code) == m_games.end())
 				return crow::response(404);
-			}
+			
+			const GameState gameState{ std::move(m_games.at(code).GetGameState()) };
+			const std::string gameStateString{ std::move(GetStringFromGameState(gameState)) };
+			return crow::response(200, gameStateString);
 		});
 
 	m_app.port(18080).multithreaded().run();

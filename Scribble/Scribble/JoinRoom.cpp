@@ -73,7 +73,7 @@ void JoinRoom::clickOnCreateButton()
 	const auto code{ response.text };
 
 	close();
-	WaitingRoom* newWindow = new WaitingRoom(m_userId, code);
+	WaitingRoom* newWindow = new WaitingRoom(m_userId, code, true);
 	newWindow->show();
 }
 
