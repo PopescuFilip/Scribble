@@ -12,7 +12,7 @@ class JoinRoom : public QMainWindow
 	Q_OBJECT
 
 public:
-	JoinRoom(std::string username, QWidget *parent = nullptr);
+	JoinRoom(int username, QWidget *parent = nullptr);
 	~JoinRoom();
 
 	void paintEvent(QPaintEvent* event) override;
@@ -24,6 +24,6 @@ private slots:
 
 private:
 	Ui::JoinRoomClass ui;
-	std::string m_user;
+	int m_userId;
 
 };

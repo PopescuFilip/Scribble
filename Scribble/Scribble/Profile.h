@@ -9,11 +9,11 @@ class Profile : public QMainWindow
 	Q_OBJECT
 
 public:
-	Profile(std::string username, QWidget *parent = nullptr);
+	Profile(int username, QWidget *parent = nullptr);
 	~Profile();
 public:
-	void clickedOnButton(std::string username, std::string code);
+	void clickedOnButton(int username, std::string code);
 private:
 	Ui::ProfileClass ui;
-	std::string m_user;
+	int m_userId;
 };

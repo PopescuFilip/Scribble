@@ -18,6 +18,6 @@ private slots:
 
 private:
 	Ui::LoginClass ui;
-	std::string m_user;
+	int m_userId;
 
 };

@@ -1,9 +1,9 @@
 #include "WaitingRoom.h"
 #include <QPixmap>
 
-WaitingRoom::WaitingRoom(std::string username, std::string code, QWidget* parent)
+WaitingRoom::WaitingRoom(int username, std::string code, QWidget* parent)
 	: QMainWindow(parent),
-	m_user(username),
+	m_userId(username),
 	m_roomCode(code)
 {
 	ui.setupUi(this);
@@ -23,14 +23,14 @@ WaitingRoom::WaitingRoom(std::string username, std::string code, QWidget* parent
 WaitingRoom::~WaitingRoom()
 {
 	close();
-    Scribble* newWindow = new Scribble(m_user);
+    Scribble* newWindow = new Scribble(m_userId);
 	newWindow->show();
 }
 
 void WaitingRoom::clickOnStartButton()
 {
 	close();
-	Scribble* newWindow = new Scribble(m_user);
+	Scribble* newWindow = new Scribble(m_userId);
 	newWindow->show();
 }
 

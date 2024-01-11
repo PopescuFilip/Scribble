@@ -2,11 +2,11 @@
 #include "JoinRoom.h"
 
 
-Scribble::Scribble(std::string username, QWidget *parent)
+Scribble::Scribble(int username, QWidget *parent)
     : QMainWindow(parent),
       m_drawing(false),
       m_guessedCorrectly(false),
-      m_user(username)
+      m_userId(username)
 {
     ui.setupUi(this);
 
@@ -64,7 +64,7 @@ void Scribble::clearWindow()
     update();
 }
 
-void Scribble::clickedOnButton(std::string username)
+void Scribble::clickedOnButton(int username)
 {
     JoinRoom* newWindow = new JoinRoom(username);
     newWindow->show();

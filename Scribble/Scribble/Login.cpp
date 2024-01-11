@@ -28,14 +28,14 @@ Login::~Login()
 void Login::clickedOnLogInButton()
 {
 	close();
-	JoinRoom* newWindow = new JoinRoom(m_user);
+	JoinRoom* newWindow = new JoinRoom(m_userId);
 	newWindow->show();
 }
 
 void Login::clickedOnRegisterButton()
 {
 	close();
-	JoinRoom* newWindow = new JoinRoom(m_user);
+	JoinRoom* newWindow = new JoinRoom(m_userId);
 	newWindow->show();
 }
 
