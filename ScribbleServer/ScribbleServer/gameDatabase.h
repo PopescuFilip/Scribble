@@ -47,6 +47,7 @@ namespace ScribbleServer
 		std::vector<User> GetUsers();
 
 		User GetUser(const int userId);
+		int GetUserId(const std::string& username);
 
 		void AddScore(const Score& score);
 		bool AddUser(std::string username, std::string password);

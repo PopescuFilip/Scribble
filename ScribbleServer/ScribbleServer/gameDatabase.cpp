@@ -88,6 +88,13 @@ User GameStorage::GetUser(const int userId)
     return m_db.get<User>(userId);
 }
 
+int GameStorage::GetUserId(const std::string& username)
+{
+    auto userId = m_db.select(&User::GetUserId, sql::where(sql::c(&User::GetUsername) == username));
+
+    return userId[0];
+}
+
 void GameStorage::PopulateStorage()
 {
     std::ifstream file(kWordFile);
