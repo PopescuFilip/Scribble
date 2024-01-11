@@ -1,9 +1,11 @@
 #include <iostream>
 #include "game.h"
 
+import word;
+
 int main()
 {
-    using namespace ScribbleServer;
+	 using namespace ScribbleServer;
 
     std::shared_ptr<GameStorage> storage = std::make_shared<GameStorage>();
     if (!storage->Initialize())

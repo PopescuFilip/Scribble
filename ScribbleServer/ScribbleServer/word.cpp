@@ -1,4 +1,4 @@
-module word;
+import word;
 #include <random>
 
 
@@ -8,7 +8,7 @@ Word::Word():
 {
 }
 
-Word::Word(const std::string& word):
+Word::Word(const std::string& word) :
     m_wordId{ -1 },
     m_word{ word }
 {
@@ -25,7 +25,7 @@ std::string Word::GetVisibleCharacters() const
 {
     size_t length = m_word.size();
     std::string visibleCharacters = m_word;
-    for (int i = 0; i < length; ++i) 
+    for (int i = 0; i < length; ++i)
     {
         if (m_revealedCharacters.find(i) == m_revealedCharacters.end() && m_word[i] != ' ')
         {
@@ -45,18 +45,18 @@ void Word::RevealRandomCharacter()
 
     do {
         randomIndex = distribution(engine);
-    } while (m_revealedCharacters.find(randomIndex) != m_revealedCharacters.end() or m_word[randomIndex]==' ');
+    } while (m_revealedCharacters.find(randomIndex) != m_revealedCharacters.end() or m_word[randomIndex] == ' ');
 
     m_revealedCharacters.insert(randomIndex);
 }
 
-bool ScribbleServer::Word::IsRevealed() const
+bool Word::IsRevealed() const
 {
     uint16_t nonSpaceCharacters = GetNoOfCharacters();
     return (m_revealedCharacters.size() == nonSpaceCharacters);
 }
 
-bool ScribbleServer::Word::operator==(const std::string& word) const
+bool Word::operator==(const std::string& word) const
 {
     return m_word == word;
 }
@@ -70,7 +70,7 @@ std::string Word::GetEmptyWord() const
     return emptyWord;
 }
 
-uint16_t ScribbleServer::Word::GetNoOfCharacters() const
+uint16_t Word::GetNoOfCharacters() const
 {
     uint16_t count = 0;
     for (char ch : m_word)
