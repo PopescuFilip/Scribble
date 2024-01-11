@@ -22,7 +22,7 @@ namespace ScribbleServer
 		std::deque<Line> GetDrawing()const;
 		std::deque<Score> GetScores() const;
 		int GetPainterId() const;
-
+		std::deque<Player> GetPlayers() const;
 
 	    void AddPlayer(const int userId);
 		void Run();

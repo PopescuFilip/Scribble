@@ -1,5 +1,6 @@
 #include "JoinRoom.h"
 #include <QPixmap>
+#include <qmessagebox.h>
 
 JoinRoom::JoinRoom(int username, QWidget* parent)
 	: QMainWindow(parent),
@@ -39,8 +40,22 @@ void JoinRoom::clickOnInsertButton()
 
 void JoinRoom::clickOnCreateButton()
 {
+	cpr::Response response = cpr::Get(
+		cpr::Url{ "http://localhost:18080/createroom" },
+		cpr::Parameters{
+			{ "id" , std::to_string(m_userId) }
+		}
+	);
+	if (response.status_code != 200)
+	{
+		QMessageBox::warning(this, "Create room", "somethin went wrong");
+		return;
+	}
+	
+	const auto code{ response.text };
+
 	close();
-	WaitingRoom* newWindow = new WaitingRoom(m_userId, " ");
+	WaitingRoom* newWindow = new WaitingRoom(m_userId, code);
 	newWindow->show();
 }
 

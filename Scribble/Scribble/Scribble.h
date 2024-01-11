@@ -6,6 +6,9 @@
 #include <QPainter>
 #include <set>
 
+#include <cpr/cpr.h>
+#include <crow.h>
+
 class Scribble : public QMainWindow
 {
     Q_OBJECT

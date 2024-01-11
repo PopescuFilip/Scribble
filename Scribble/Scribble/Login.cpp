@@ -3,9 +3,6 @@
 #include<qmainwindow.h>
 #include <qmessagebox.h>
 
-#include <cpr/cpr.h>
-#include <crow.h>
-
 Login::Login(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -80,7 +77,7 @@ void Login::clickedOnRegisterButton()
 	{
 		ui.lineEditUser->clear();
 		ui.lineEditPassword->clear();
-		QMessageBox::warning(this, "Login", "Incorrect user or password");
+		QMessageBox::warning(this, "Register", "Username is taken");
 		return;
 	}
 

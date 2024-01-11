@@ -51,13 +51,13 @@ bool GameStorage::AddUser(std::string username, std::string password)
     if (UsernameExists(username))
         return false;
 
-    AddUser(username, password);
+    AddUser(User(username, password));
     return true;
 }
 
 bool GameStorage::CheckUser(const std::string& username, const std::string& password)
 {
-    auto count = m_db.count<User>(sql::where(sql::c(&User::GetUsername) == username) and (sql::c(&User::GetPassword) == password));
+    auto count = m_db.count<User>(sql::where(sql::c(&User::GetUsername) == username and (sql::c(&User::GetPassword) == password)));
     return count != 0;
 }
 

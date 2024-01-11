@@ -158,3 +158,15 @@ int Game::GetPainterId() const
 {
 	return m_painterId;
 }
+
+std::deque<Player> Game::GetPlayers() const
+{
+	std::deque<Player> players;
+	std::ranges::for_each(m_players, [&players](const auto& keyValue)
+		{
+			const auto& [id, player] = keyValue;
+			players.emplace_back(player);
+		});
+
+	return players;
+}

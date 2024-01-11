@@ -12,6 +12,12 @@ int main()
         std::cout << "Faild to initialize the database!";
         return -1;
     }
+    auto users{ storage->GetUsers() };
+    std::cout << "users:\n";
+    for (const auto& user : users)
+    {
+        std::cout << user.GetUsername() << " " << user.GetPassword() << "\n";
+    }
 
     Routing r;
     r.Run(storage);

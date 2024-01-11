@@ -1,4 +1,5 @@
 #include "routing.h"
+import random;
 
 using namespace ScribbleServer;
 
@@ -32,6 +33,50 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 			const int userId{ storage->GetUserId(username) };
 
 			return crow::response(200, std::to_string(userId));
+
+		});
+
+	CROW_ROUTE(m_app, "/createroom")([&](const crow::request& req) 
+		{
+			const std::string stringId{ req.url_params.get("id") };
+			const int id{ std::stoi(stringId) };
+
+			const std::string newCode{ GetRandomUniqueCode(m_codes) };
+			m_codes.emplace(newCode);
+			m_games.emplace(newCode, Game(storage));
+			m_games.at(newCode).AddPlayer(id);
+			
+			return crow::response(200, newCode);
+
+		});
+
+	CROW_ROUTE(m_app, "/joinroom")([&](const crow::request& req)
+		{
+			const auto code{ req.url_params.get("code") };
+			const std::string stringId{ req.url_params.get("id") };
+			const int id{ std::stoi(stringId) };
+
+			m_games.at(code).AddPlayer(id);
+
+			return crow::response(200);
+
+		});
+
+	CROW_ROUTE(m_app, "/getroomplayers")([&](const crow::request& req)
+		{
+			const auto code{ req.url_params.get("code") };
+
+			const auto players{ m_games.at(code).GetPlayers() };
+
+			std::vector<crow::json::wvalue> playersJson;
+			std::ranges::for_each(players, [&playersJson](const auto& player)
+				{
+					crow::json::wvalue playerJson;
+					playerJson["name"] = player.GetUsername();
+					playersJson.push_back(playerJson);
+				});
+
+			return crow::json::wvalue{ playersJson };
 
 		});
 
