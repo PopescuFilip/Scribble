@@ -3,7 +3,7 @@ import random;
 
 char GetRandomChar()
 {
-    const std::string charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const std::string charset = "0123456789";
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distr(0, charset.size() - 1);

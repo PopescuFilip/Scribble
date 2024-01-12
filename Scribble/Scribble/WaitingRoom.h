@@ -14,6 +14,7 @@ public:
 	~WaitingRoom();
 
 	void paintEvent(QPaintEvent* event) override;
+	void ShowPlayers();
 
 private slots:
 	void clickOnStartButton();

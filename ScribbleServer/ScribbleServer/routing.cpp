@@ -66,7 +66,7 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 
 		});
 
-	CROW_ROUTE(m_app, "/getroomplayers")([&](const crow::request& req)
+	CROW_ROUTE(m_app, "/getplayers")([&](const crow::request& req)
 		{
 			const auto code{ req.url_params.get("code") };
 
@@ -115,5 +115,47 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 			return crow::response(200, gameStateString);
 		});
 
+	CROW_ROUTE(m_app, "/putdrawing")([&](const crow::request& req)
+		{
+			const auto code{ req.url_params.get("code") };
+			const std::string stringId{ req.url_params.get("id") };
+			const int id{ std::stoi(stringId) };
+
+			if (m_games.find(code) == m_games.end())
+				return crow::response(404);
+
+			if (m_games.at(code).GetPainterId() != id)
+				return crow::response(203);
+
+		});
+
+	CROW_ROUTE(m_app, "/drawing")([](const crow::request& req) 
+		{
+
+			return crow::response(200);
+		});
+
+
+
+	
+
 	m_app.port(18080).multithreaded().run();
+}
+
+std::string Routing::DrawingToString(const std::deque<Game::Line>& vec)
+{
+	std::stringstream ss;
+	ss << "nodes=";
+	for (size_t i = 0; i < vec.size(); ++i)
+	{
+		const auto& [firstPoint, secondPoint] = vec[i];
+		const auto& [firstX, firstY] = firstPoint;
+		const auto& [secondX, secondY] = secondPoint;
+
+		ss << firstX << " " << firstY << " " << secondX << " " << secondY;
+		if (i == vec.size() - 1)
+			break;
+		ss << ",";
+	}
+	return ss.str();
 }

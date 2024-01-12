@@ -7,7 +7,8 @@ namespace ScribbleServer
 	{
 	public:
 		void Run(std::shared_ptr<GameStorage>& storage);
-
+	private:
+		std::string DrawingToString(const std::deque<Game::Line>& vec);
 	private:
 		crow::SimpleApp m_app;
 		std::unordered_map<std::string, Game> m_games;

@@ -1,6 +1,7 @@
 #include "WaitingRoom.h"
 #include <QPixmap>
 #include <qmessagebox.h>
+#include <sstream>
 
 WaitingRoom::WaitingRoom(int username, std::string code, bool isOwner, QWidget* parent)
 	: QMainWindow(parent),
@@ -23,13 +24,12 @@ WaitingRoom::WaitingRoom(int username, std::string code, bool isOwner, QWidget* 
 
 	if (isOwner)
 		connect(ui.startButton, SIGNAL(clicked()), this, SLOT(clickOnStartButton()));
-	else
-	{
-		m_refreshTimer.setInterval(2000);
-		m_refreshTimer.start();
+	
+	QObject::connect(&m_refreshTimer, &QTimer::timeout, this, &WaitingRoom::checkGameState);
+	m_refreshTimer.setInterval(2000);
+	m_refreshTimer.start();
 
-		QObject::connect(&m_refreshTimer, &QTimer::timeout, this, &WaitingRoom::checkGameState);
-	}
+	ShowPlayers();
 }
 
 WaitingRoom::~WaitingRoom()
@@ -71,8 +71,36 @@ void WaitingRoom::paintEvent(QPaintEvent* event)
 	//ui.textEdit->setStyleSheet("background-color: white; border-radius: 10px;");
 }
 
+void WaitingRoom::ShowPlayers()
+{
+	cpr::Response response = cpr::Get(
+		cpr::Url{ "http://localhost:18080/getplayers" },
+		cpr::Parameters{
+		{ "code", m_roomCode }
+		}
+	);
+
+	if (response.status_code != 200)
+	{
+		QMessageBox::critical(this, "Error", "something went wrong");
+		return;
+	}
+
+	std::stringstream ss;
+	auto players = crow::json::load(response.text);
+	for (const auto& player : players)
+	{
+		ss << player["name"].s() << "\n";
+	}
+	ui.textEditPlayers->setReadOnly(false);
+	ui.textEditPlayers->setPlainText(QString::fromUtf8(ss.str().c_str()));
+	ui.textEditPlayers->setReadOnly(true);
+}
+
 void WaitingRoom::checkGameState()
 {
+	m_refreshTimer.stop();
+
 	cpr::Response response = cpr::Get(
 		cpr::Url{ "http://localhost:18080/gamestate" },
 		cpr::Parameters{
@@ -96,12 +124,12 @@ void WaitingRoom::checkGameState()
 
 	if (GetGameStateFromString(stringState) == GameState::Running)
 	{
-		m_refreshTimer.stop();
 		close();
 		Scribble* newWindow = new Scribble(m_userId);
 		newWindow->show();
 		return;
 	}
 
-	//m_refreshTimer.start();
+	ShowPlayers();
+	m_refreshTimer.start();
 }
