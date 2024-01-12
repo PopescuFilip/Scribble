@@ -38,7 +38,7 @@ WaitingRoom::~WaitingRoom()
 
 void WaitingRoom::clickOnStartButton()
 {
-	cpr::Response response = cpr::Get(
+	/*cpr::Response response = cpr::Get(
 		cpr::Url{ "http://localhost:18080/start" },
 		cpr::Parameters{
 		{ "id" , std::to_string(m_userId) },
@@ -56,7 +56,7 @@ void WaitingRoom::clickOnStartButton()
 	{
 		QMessageBox::critical(this, "Error", "something went wrong");
 		return;
-	}
+	}*/
 
 	close();
 	Scribble* newWindow = new Scribble(m_userId);

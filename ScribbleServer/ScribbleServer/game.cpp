@@ -21,8 +21,8 @@ void Game::Run()
 {
 	for (int i = 0; i < kNoOfRounds; i++)
 	{
+		Sleep(kMilisecondBetweenRounds);
 		RunOneRound();
-		//Sleep(kMilisecondBetweenRounds);
 		//Reset();
 	}
 	m_gameState = GameState::Ended;

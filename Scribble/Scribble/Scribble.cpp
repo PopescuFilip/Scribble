@@ -6,7 +6,8 @@ Scribble::Scribble(int username, QWidget *parent)
     : QMainWindow(parent),
       m_isDrawing(false),
       m_guessedCorrectly(false),
-      m_userId(username)
+      m_userId(username),
+      m_drawingArea(QPoint(90, 130), QPoint(1190, 600))
 {
     ui.setupUi(this);
 
@@ -27,6 +28,7 @@ Scribble::~Scribble()
 
 void Scribble::mousePressEvent(QMouseEvent* event)
 {
+    qDebug() << "mouse press";
     m_isDrawing = true;
     m_lastDrawnPoint = { event->pos().x(), event->pos().y() };
     update();
@@ -36,6 +38,13 @@ void Scribble::mouseMoveEvent(QMouseEvent* event)
 {
     if (!m_isDrawing)
         return;
+    if (!IsInDrawingFrame(event->pos()))
+    {
+        qDebug() << event->pos() << " outside";
+        m_isDrawing = false;
+        return;
+    }
+    qDebug() << event->pos() << " inside";
     Coordinate newPoint { event->pos().x(), event->pos().y() };
     m_lines.push_back({ m_lastDrawnPoint,newPoint });
     m_lastDrawnPoint = { event->pos().x(), event->pos().y() };
@@ -44,6 +53,7 @@ void Scribble::mouseMoveEvent(QMouseEvent* event)
 
 void Scribble::mouseReleaseEvent(QMouseEvent* event)
 {
+    qDebug() << "mouse release";
     m_isDrawing = false;
 }
 
@@ -60,7 +70,6 @@ void Scribble::paintEvent(QPaintEvent* event)
 std::string Scribble::DrawingToString()
 {
     std::stringstream ss;
-    ss << "nodes=";
     for (size_t i = 0; i < m_lines.size(); ++i)
     {
         const auto& [firstPoint, secondPoint] = m_lines[i];
@@ -73,6 +82,12 @@ std::string Scribble::DrawingToString()
         ss << ",";
     }
     return ss.str();
+}
+
+bool Scribble::IsInDrawingFrame(const QPoint& point)
+{
+    qDebug() << point << " check " << m_drawingArea;
+    return m_drawingArea.contains(point);
 }
 
 

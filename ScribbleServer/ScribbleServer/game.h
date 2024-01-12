@@ -48,7 +48,7 @@ namespace ScribbleServer
 		Timer m_roundTimer;
 
 		static const uint16_t kNoOfRounds = 4;
-		static const uint16_t kRoundDuration = 10;
+		static const uint16_t kRoundDuration = 60;
 		static const uint16_t kMilisecondBetweenRounds = 5000;
 
 	};

@@ -28,6 +28,7 @@ public:
 
 public:
     std::string DrawingToString();
+    bool IsInDrawingFrame(const QPoint& point);
 
 private slots:
     void clearWindow();
@@ -35,11 +36,14 @@ private slots:
 
 private:
     Ui::ScribbleClass ui;
+    const QRect m_drawingArea;
+    
+    int m_userId;
+    std::string m_roomCode;
+
     bool m_isDrawing;
     bool m_guessedCorrectly;
     Coordinate m_lastDrawnPoint;
     std::vector<Line> m_lines;
-    int m_userId;
-    std::string m_roomCode;
     const uint16_t kBrushSize = 5;
 };
