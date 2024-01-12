@@ -24,7 +24,7 @@ namespace ScribbleServer
 				"Score",
 				sql::make_column("id", &Score::SetScoreId, &Score::GetScoreId, sql::primary_key().autoincrement()),
 				sql::make_column("user_id", &Score::SetUserId, &Score::GetUserId),
-				sql::make_column("score", &Score::SetScore, &Score::GetScore)
+				sql::make_column("score", &Score::SetScore, &Score::GetScoreValue)
 			),
 			sql::make_table(
 				"User",
@@ -69,18 +69,6 @@ namespace ScribbleServer
 
 	private:
 		Storage m_db = CreateStorage(kDbFile);
-	};
-
-
-	class AddToUserHandler
-	{
-	public:
-		AddToUserHandler(GameStorage& storage);
-
-		crow::response operator() (const crow::request& req) const;
-
-	private:
-		GameStorage& m_db;
 	};
 }
 
