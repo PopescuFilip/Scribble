@@ -1,6 +1,5 @@
 #include <iostream>
 #include "routing.h"
-import word;
 
 int main()
 {

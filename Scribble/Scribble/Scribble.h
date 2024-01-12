@@ -30,7 +30,7 @@ public:
 
 public:
     std::string DrawingToString();
-    void SetDrawingFromJson(crow::json::rvalue json);
+    void SetDrawingFromString(const std::string& string);
     bool IsInDrawingFrame(const QPoint& point);
 
 private slots:

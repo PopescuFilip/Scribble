@@ -4,7 +4,7 @@ import random;
 
 using namespace ScribbleServer;
 
-void Routing::Run(std::shared_ptr<GameStorage>& storage)
+void Routing::Run(std::shared_ptr<GameStorage> storage)
 {
 	CROW_ROUTE(m_app, "/")([]() 
 		{
@@ -43,6 +43,7 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 			const int id{ std::stoi(stringId) };
 
 			const std::string newCode{ GetRandomUniqueCode(m_codes) };
+			//std::cout << "created game room with code " << newCode;
 			m_codes.emplace(newCode);
 			m_games.emplace(newCode, Game(storage, id));
 			m_games.at(newCode).AddPlayer(id);
@@ -77,6 +78,7 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 				{
 					crow::json::wvalue playerJson;
 					playerJson["name"] = player.GetUsername();
+					playerJson["score"] = player.GetScore().GetScoreValue();
 					playersJson.push_back(playerJson);
 				});
 
@@ -128,12 +130,12 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 				return crow::response(203);
 
 			const auto drawingString{ req.url_params.get("drawing") };
-			m_games.at(code).SetDrawingFromString(drawingString);
+			m_games.at(code).SetDrawing(drawingString);
 
 			return crow::response(200);
 		});
 
-	CROW_ROUTE(m_app, "/getdrawing")([&](const crow::request& req) 
+	CROW_ROUTE(m_app, "/checkstate")([&](const crow::request& req) 
 		{
 			const auto code{ req.url_params.get("code") };
 			const std::string stringId{ req.url_params.get("id") };
@@ -147,30 +149,16 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 				return returnedJson;
 			}
 
-			if (m_games.at(code).GetPainterId() == id)
-			{
-				returnedJson["code"] = std::to_string(203);
-				return returnedJson;
-			}
+			bool canDraw = (m_games.at(code).GetPainterId() == id);
+			const GameState gameState{ std::move(m_games.at(code).GetGameState()) };
+			const std::string gameStateString{ std::move(GetStringFromGameState(gameState)) };
 			
-			
-			std::vector<crow::json::wvalue> drawingJson;
-			for (const auto& line : m_games.at(code).GetDrawing())
-			{
-				const auto& [firstPoint, secondPoint] = line;
-				const auto& [firstPointX, firstPointY] = firstPoint;
-				const auto& [secondPointX, secondPointY] = secondPoint;
-
-				crow::json::wvalue json;
-				json["firstPointX"] = std::to_string(firstPointX);
-				json["firstPointY"] = std::to_string(firstPointY);
-				json["secondPointX"] = std::to_string(secondPointX);
-				json["secondPointY"] = std::to_string(secondPointY);
-				drawingJson.push_back(json);
-			}
-
 			returnedJson["code"] = std::to_string(200);
-			returnedJson["drawing"] = crow::json::wvalue{ drawingJson };
+			returnedJson["canDraw"] = crow::json::wvalue(canDraw);
+			returnedJson["gameState"] = gameStateString;
+			
+			if (!canDraw)
+				returnedJson["drawing"] = m_games.at(code).GetDrawing();
 
 			return returnedJson;
 		});

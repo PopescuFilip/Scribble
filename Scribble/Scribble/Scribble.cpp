@@ -1,6 +1,20 @@
 #include "Scribble.h"
 #include "JoinRoom.h"
 
+std::vector<std::string> split(const std::string& str, const std::string& delim)
+{
+    std::vector<std::string> result;
+    size_t startIndex = 0;
+
+    for (size_t found = str.find(delim); found != std::string::npos; found = str.find(delim, startIndex))
+    {
+        result.emplace_back(str.begin() + startIndex, str.begin() + found);
+        startIndex = found + delim.size();
+    }
+    if (startIndex != str.size())
+        result.emplace_back(str.begin() + startIndex, str.end());
+    return result;
+}
 
 Scribble::Scribble(int username, std::string roomCode, QWidget *parent)
     : QMainWindow(parent),
@@ -94,17 +108,22 @@ std::string Scribble::DrawingToString()
     return ss.str();
 }
 
-void Scribble::SetDrawingFromJson(crow::json::rvalue json)
+void Scribble::SetDrawingFromString(const std::string& string)
 {
     m_drawing.clear();
-    for (const auto& elem : json)
+    for (const auto& kvStr : split(string, ","))
     {
-        const auto firstPointX{ json["firstPointX"].i() };
-        const auto firstPointY{ json["firstPointY"].i() };
-        const auto secondPointX{ json["secondPointX"].i() };
-        const auto secondPointY{ json["secondPointY"].i() };
+        const auto& kvVector{ std::move(split(kvStr, " ")) };
 
-        m_drawing.push_back({ {firstPointX, firstPointY}, {secondPointX, secondPointY} });
+        if (kvVector.size() != 4)
+            break;
+
+        const int& firstX{ std::stoi(kvVector[0]) };
+        const int& firstY{ std::stoi(kvVector[1]) };
+        const int& secondX{ std::stoi(kvVector[2]) };
+        const int& secondY{ std::stoi(kvVector[3]) };
+
+        m_drawing.push_back({ { firstX, firstY }, { secondX, secondY } });
     }
 }
 
@@ -119,36 +138,29 @@ void Scribble::refresh()
     m_refreshTimer.stop();
 
     cpr::Response response = cpr::Get(
-        cpr::Url{ "http://localhost:18080/getcandraw" },
+        cpr::Url{ "http://localhost:18080/checkstate" },
         cpr::Parameters{
         { "id" , std::to_string(m_userId) },
         { "code", m_roomCode }
         }
     );
 
-    if (response.status_code == 203)
-    {
-        m_canDraw = false;
-        cpr::Response response = cpr::Get(
-            cpr::Url{ "http://localhost:18080/getdrawing" },
-            cpr::Parameters{
-            { "id", std::to_string(m_userId) },
-            { "code", m_roomCode }
-            }
-        );
-
-        auto json = crow::json::load(response.text);
-        if (json["code"].i() == 200)
-        {
-            SetDrawingFromJson(json["drawing"]);
-            m_refreshTimer.start();
-        }
+    if (response.status_code != 200)
         return;
-    }
 
-    if (response.status_code == 200)
+    auto json = crow::json::load(response.text);
+
+
+    if (json["code"].i() == 404)
     {
-        m_canDraw = true;
+        QMessageBox::critical(this, "Error", "game room is gone");
+        return;
+
+    }
+    m_canDraw = json["canDraw"].b();
+    
+    if (m_canDraw)
+    {
         cpr::Response response = cpr::Get(
             cpr::Url{ "http://localhost:18080/putdrawing" },
             cpr::Parameters{
@@ -161,7 +173,8 @@ void Scribble::refresh()
         return;
     }
 
-    QMessageBox::critical(this, "Error", "something went wrong");
+    SetDrawingFromString(json["drawing"].s());
+    m_refreshTimer.start();
 }
 
 

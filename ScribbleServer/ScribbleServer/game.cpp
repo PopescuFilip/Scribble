@@ -3,36 +3,21 @@
 
 using namespace ScribbleServer;
 
-Game::Game(const std::shared_ptr<GameStorage>& db, int ownerId):
+Game::Game(std::shared_ptr<GameStorage> db, int ownerId):
     m_db{ db },
     m_roundTimer{ kRoundDuration },
     m_gameState{ GameState::NotStarted },
 	m_ownerId{ ownerId }
 {}
 
-void Game::SetDrawingFromString(const std::string& string)
+void Game::SetDrawing(const std::string& string)
 {
-	m_drawing.clear();
-	for (const auto& kvStr : split(string, ","))
-	{
-		const auto& kvVector{ std::move(split(kvStr, " ")) };
-
-		if (kvVector.size() != 4)
-			break;
-
-		const int& firstX{ std::stoi(kvVector[0]) };
-		const int& firstY{ std::stoi(kvVector[1]) };
-		const int& secondX{ std::stoi(kvVector[2]) };
-		const int& secondY{ std::stoi(kvVector[3]) };
-
-		m_drawing.push_back({ { firstX, firstY }, { secondX, secondY } });
-	}
+	m_drawingString = string;
 }
 
 void Game::AddPlayer(const int userId)
 {
-    auto sp = m_db.lock();
-    User user{ sp->GetUser(userId) };
+    User user{ m_db->GetUser(userId) };
 	m_players.emplace(userId, std::move(Player{ user }));
 }
 
@@ -68,8 +53,7 @@ void Game::RunOneRound()
 
 void Game::RunSubRound(const int& painterId)
 {
-	auto sp = m_db.lock();
-	m_currentWord = std::move(sp->GetRandomWord());
+	m_currentWord = std::move(m_db->GetRandomWord());
 
 	Timer startRevealing{ static_cast<uint16_t>(kRoundDuration / 2) };
 	Timer revealInterval{ static_cast<uint16_t>(kRoundDuration / m_currentWord.GetNoOfCharacters()) };
@@ -162,9 +146,9 @@ int ScribbleServer::Game::GetOwnerId() const
 	return m_ownerId;
 }
 
-std::deque<Game::Line> Game::GetDrawing() const
+std::string Game::GetDrawing() const
 {
-	return m_drawing;
+	return m_drawingString;
 }
 
 std::deque<Score> Game::GetScores() const
