@@ -17,7 +17,7 @@ Score::Score(int user_id) :
 
 }
 
-int16_t Score::GetScore() const
+int16_t Score::GetScoreValue() const
 {
 	return m_score;
 }

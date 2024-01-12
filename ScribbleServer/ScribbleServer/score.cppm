@@ -14,7 +14,7 @@ namespace ScribbleServer
 
 		int GetScoreId() const;
 		int GetUserId() const;
-		int16_t GetScore() const;
+		int16_t GetScoreValue() const;
 
 		void SetScoreId(const int& scoreId);
 		void SetUserId(const int& userId);
