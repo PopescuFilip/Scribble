@@ -4,7 +4,7 @@
 
 Scribble::Scribble(int username, QWidget *parent)
     : QMainWindow(parent),
-      m_drawing(false),
+      m_isDrawing(false),
       m_guessedCorrectly(false),
       m_userId(username)
 {
@@ -27,14 +27,14 @@ Scribble::~Scribble()
 
 void Scribble::mousePressEvent(QMouseEvent* event)
 {
-    m_drawing = true;
+    m_isDrawing = true;
     m_lastDrawnPoint = { event->pos().x(), event->pos().y() };
     update();
 }
 
 void Scribble::mouseMoveEvent(QMouseEvent* event)
 {
-    if (!m_drawing)
+    if (!m_isDrawing)
         return;
     Coordinate newPoint { event->pos().x(), event->pos().y() };
     m_lines.push_back({ m_lastDrawnPoint,newPoint });
@@ -44,7 +44,7 @@ void Scribble::mouseMoveEvent(QMouseEvent* event)
 
 void Scribble::mouseReleaseEvent(QMouseEvent* event)
 {
-    m_drawing = false;
+    m_isDrawing = false;
 }
 
 void Scribble::paintEvent(QPaintEvent* event)
@@ -57,15 +57,27 @@ void Scribble::paintEvent(QPaintEvent* event)
         painter.drawLine(line.first.first, line.first.second, line.second.first, line.second.second);
 }
 
+std::string Scribble::DrawingToString()
+{
+    std::stringstream ss;
+    ss << "nodes=";
+    for (size_t i = 0; i < m_lines.size(); ++i)
+    {
+        const auto& [firstPoint, secondPoint] = m_lines[i];
+        const auto& [firstX, firstY] = firstPoint;
+        const auto& [secondX, secondY] = secondPoint;
+        
+        ss << firstX << " " << firstY << " " << secondX << " " << secondY;
+        if (i == m_lines.size() - 1)
+            break;
+        ss << ",";
+    }
+    return ss.str();
+}
+
 
 void Scribble::clearWindow()
 {
     m_lines.clear();
     update();
-}
-
-void Scribble::clickedOnButton(int username)
-{
-    JoinRoom* newWindow = new JoinRoom(username);
-    newWindow->show();
 }

@@ -1,7 +1,6 @@
 #include "WaitingRoom.h"
 #include <QPixmap>
 #include <qmessagebox.h>
-#include <sstream>
 
 WaitingRoom::WaitingRoom(int username, std::string code, bool isOwner, QWidget* parent)
 	: QMainWindow(parent),

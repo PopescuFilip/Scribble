@@ -135,13 +135,22 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 			const std::string stringId{ req.url_params.get("id") };
 			const int id{ std::stoi(stringId) };
 
+			crow::json::wvalue returnedJson;
+
 			if (m_games.find(code) == m_games.end())
-				return crow::response(404);
+			{
+				returnedJson["code"] = std::to_string(404);
+				return returnedJson;
+			}
 
 			if (m_games.at(code).GetPainterId() == id)
-				return crow::response(203);
+			{
+				returnedJson["code"] = std::to_string(203);
+				return returnedJson;
+			}
 			
-			/*std::vector<crow::json::wvalue> drawingJson;
+			
+			std::vector<crow::json::wvalue> drawingJson;
 			for (const auto& line : m_games.at(code).GetDrawing())
 			{
 				const auto& [firstPoint, secondPoint] = line;
@@ -154,10 +163,12 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 				json["secondPointX"] = std::to_string(secondPointX);
 				json["secondPointY"] = std::to_string(secondPointY);
 				drawingJson.push_back(json);
-
 			}
 
-			return crow::json::wvalue{ drawingJson };*/
+			returnedJson["code"] = std::to_string(200);
+			returnedJson["drawing"] = crow::json::wvalue{ drawingJson };
+
+			return returnedJson;
 		});
 
 
@@ -166,21 +177,3 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 
 	m_app.port(18080).multithreaded().run();
 }
-
-//std::string Routing::DrawingToString(const std::deque<Game::Line>& vec)
-//{
-//	std::stringstream ss;
-//	ss << "nodes=";
-//	for (size_t i = 0; i < vec.size(); ++i)
-//	{
-//		const auto& [firstPoint, secondPoint] = vec[i];
-//		const auto& [firstX, firstY] = firstPoint;
-//		const auto& [secondX, secondY] = secondPoint;
-//
-//		ss << firstX << " " << firstY << " " << secondX << " " << secondY;
-//		if (i == vec.size() - 1)
-//			break;
-//		ss << ",";
-//	}
-//	return ss.str();
-//}

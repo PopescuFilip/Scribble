@@ -4,10 +4,10 @@
 #include "ui_Scribble.h"
 #include <QMouseEvent>
 #include <QPainter>
-#include <set>
 
 #include <cpr/cpr.h>
 #include <crow.h>
+#include <sstream>
 #include "GameState.h"
 
 class Scribble : public QMainWindow
@@ -25,7 +25,9 @@ public:
     virtual void mouseMoveEvent(QMouseEvent* event) override;
     virtual void mouseReleaseEvent(QMouseEvent* event) override;
     virtual void paintEvent(QPaintEvent* event) override;
-    void clickedOnButton(int username);
+
+public:
+    std::string DrawingToString();
 
 private slots:
     void clearWindow();
@@ -33,7 +35,7 @@ private slots:
 
 private:
     Ui::ScribbleClass ui;
-    bool m_drawing;
+    bool m_isDrawing;
     bool m_guessedCorrectly;
     Coordinate m_lastDrawnPoint;
     std::vector<Line> m_lines;
