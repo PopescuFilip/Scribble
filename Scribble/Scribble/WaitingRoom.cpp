@@ -25,7 +25,7 @@ WaitingRoom::WaitingRoom(int username, std::string code, bool isOwner, QWidget* 
 		connect(ui.startButton, SIGNAL(clicked()), this, SLOT(clickOnStartButton()));
 	
 	QObject::connect(&m_refreshTimer, &QTimer::timeout, this, &WaitingRoom::checkGameState);
-	m_refreshTimer.setInterval(10000);
+	m_refreshTimer.setInterval(5000);
 	m_refreshTimer.start();
 
 	ShowPlayers();
@@ -38,7 +38,7 @@ WaitingRoom::~WaitingRoom()
 
 void WaitingRoom::clickOnStartButton()
 {
-	/*cpr::Response response = cpr::Get(
+	cpr::Response response = cpr::Get(
 		cpr::Url{ "http://localhost:18080/start" },
 		cpr::Parameters{
 		{ "id" , std::to_string(m_userId) },
@@ -56,10 +56,11 @@ void WaitingRoom::clickOnStartButton()
 	{
 		QMessageBox::critical(this, "Error", "something went wrong");
 		return;
-	}*/
+	}
 
+	m_refreshTimer.stop();
 	close();
-	Scribble* newWindow = new Scribble(m_userId);
+	Scribble* newWindow = new Scribble(m_userId, m_roomCode);
 	newWindow->show();
 }
 
@@ -121,8 +122,9 @@ void WaitingRoom::CheckState()
 
 	if (GetGameStateFromString(stringState) == GameState::Running)
 	{
+		m_refreshTimer.stop();
 		close();
-		Scribble* newWindow = new Scribble(m_userId);
+		Scribble* newWindow = new Scribble(m_userId, m_roomCode);
 		newWindow->show();
 		return;
 	}
@@ -136,7 +138,10 @@ void WaitingRoom::checkGameState()
 	ShowPlayers();
 
 	if (m_isOwner)
+	{
+		m_refreshTimer.start();
 		return;
+	}
 
 	CheckState();
 }

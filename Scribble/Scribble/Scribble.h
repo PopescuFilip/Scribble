@@ -8,6 +8,8 @@
 #include <cpr/cpr.h>
 #include <crow.h>
 #include <sstream>
+#include <qmessagebox.h>
+#include <qtimer.h>
 #include "GameState.h"
 
 class Scribble : public QMainWindow
@@ -18,7 +20,7 @@ public:
     using Coordinate = std::pair<uint16_t, uint16_t>;
     using Line = std::pair<Coordinate, Coordinate>;
 public:
-    Scribble(int userId, QWidget * parent = nullptr );
+    Scribble(int userId, std::string roomCode, QWidget * parent = nullptr );
     ~Scribble();
 
     virtual void mousePressEvent(QMouseEvent* event) override;
@@ -28,22 +30,29 @@ public:
 
 public:
     std::string DrawingToString();
+    void SetDrawingFromJson(crow::json::rvalue json);
     bool IsInDrawingFrame(const QPoint& point);
 
 private slots:
     void clearWindow();
+    void refresh();
 
 
 private:
     Ui::ScribbleClass ui;
-    const QRect m_drawingArea;
     
     int m_userId;
     std::string m_roomCode;
 
-    bool m_isDrawing;
+    bool m_canDraw;
     bool m_guessedCorrectly;
+
+    bool m_isDrawing;
     Coordinate m_lastDrawnPoint;
-    std::vector<Line> m_lines;
+    std::vector<Line> m_drawing;
+
+    QTimer m_refreshTimer;
+
+    const QRect m_drawingArea;
     const uint16_t kBrushSize = 5;
 };

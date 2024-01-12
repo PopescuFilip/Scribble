@@ -3,7 +3,6 @@
 #include <QMainWindow>
 #include "ui_WaitingRoom.h"
 #include "Scribble.h"
-#include <qtimer.h>
 
 class WaitingRoom : public QMainWindow
 {

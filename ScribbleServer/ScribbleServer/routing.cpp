@@ -127,6 +127,10 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 			if (m_games.at(code).GetPainterId() != id)
 				return crow::response(203);
 
+			const auto drawingString{ req.url_params.get("drawing") };
+			m_games.at(code).SetDrawingFromString(drawingString);
+
+			return crow::response(200);
 		});
 
 	CROW_ROUTE(m_app, "/getdrawing")([&](const crow::request& req) 
@@ -171,7 +175,20 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 			return returnedJson;
 		});
 
+	CROW_ROUTE(m_app, "/getcandraw")([&](const crow::request& req)
+		{
+			const auto code{ req.url_params.get("code") };
+			const std::string stringId{ req.url_params.get("id") };
+			const int id{ std::stoi(stringId) };
 
+			if (m_games.find(code) == m_games.end())
+				return crow::response(404);
+
+			if (m_games.at(code).GetPainterId() != id)
+				return crow::response(203);
+
+			return crow::response(200);
+		});
 
 	
 

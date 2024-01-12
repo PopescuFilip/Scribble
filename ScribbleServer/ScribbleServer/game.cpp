@@ -10,6 +10,25 @@ Game::Game(const std::shared_ptr<GameStorage>& db, int ownerId):
 	m_ownerId{ ownerId }
 {}
 
+void Game::SetDrawingFromString(const std::string& string)
+{
+	m_drawing.clear();
+	for (const auto& kvStr : split(string, ","))
+	{
+		const auto& kvVector{ std::move(split(kvStr, " ")) };
+
+		if (kvVector.size() != 4)
+			break;
+
+		const int& firstX{ std::stoi(kvVector[0]) };
+		const int& firstY{ std::stoi(kvVector[1]) };
+		const int& secondX{ std::stoi(kvVector[2]) };
+		const int& secondY{ std::stoi(kvVector[3]) };
+
+		m_drawing.push_back({ { firstX, firstY }, { secondX, secondY } });
+	}
+}
+
 void Game::AddPlayer(const int userId)
 {
     auto sp = m_db.lock();

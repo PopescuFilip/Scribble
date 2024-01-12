@@ -25,6 +25,7 @@ namespace ScribbleServer
 		int GetPainterId() const;
 		std::deque<Player> GetPlayers() const;
 
+		void SetDrawingFromString(const std::string& string);
 	    void AddPlayer(const int userId);
 		void Run();
 		void GuessWord(int playerId, const std::string& word);
