@@ -129,10 +129,35 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 
 		});
 
-	CROW_ROUTE(m_app, "/drawing")([](const crow::request& req) 
+	CROW_ROUTE(m_app, "/getdrawing")([&](const crow::request& req) 
 		{
+			const auto code{ req.url_params.get("code") };
+			const std::string stringId{ req.url_params.get("id") };
+			const int id{ std::stoi(stringId) };
 
-			return crow::response(200);
+			if (m_games.find(code) == m_games.end())
+				return crow::response(404);
+
+			if (m_games.at(code).GetPainterId() == id)
+				return crow::response(203);
+			
+			/*std::vector<crow::json::wvalue> drawingJson;
+			for (const auto& line : m_games.at(code).GetDrawing())
+			{
+				const auto& [firstPoint, secondPoint] = line;
+				const auto& [firstPointX, firstPointY] = firstPoint;
+				const auto& [secondPointX, secondPointY] = secondPoint;
+
+				crow::json::wvalue json;
+				json["firstPointX"] = std::to_string(firstPointX);
+				json["firstPointY"] = std::to_string(firstPointY);
+				json["secondPointX"] = std::to_string(secondPointX);
+				json["secondPointY"] = std::to_string(secondPointY);
+				drawingJson.push_back(json);
+
+			}
+
+			return crow::json::wvalue{ drawingJson };*/
 		});
 
 
@@ -142,20 +167,20 @@ void Routing::Run(std::shared_ptr<GameStorage>& storage)
 	m_app.port(18080).multithreaded().run();
 }
 
-std::string Routing::DrawingToString(const std::deque<Game::Line>& vec)
-{
-	std::stringstream ss;
-	ss << "nodes=";
-	for (size_t i = 0; i < vec.size(); ++i)
-	{
-		const auto& [firstPoint, secondPoint] = vec[i];
-		const auto& [firstX, firstY] = firstPoint;
-		const auto& [secondX, secondY] = secondPoint;
-
-		ss << firstX << " " << firstY << " " << secondX << " " << secondY;
-		if (i == vec.size() - 1)
-			break;
-		ss << ",";
-	}
-	return ss.str();
-}
+//std::string Routing::DrawingToString(const std::deque<Game::Line>& vec)
+//{
+//	std::stringstream ss;
+//	ss << "nodes=";
+//	for (size_t i = 0; i < vec.size(); ++i)
+//	{
+//		const auto& [firstPoint, secondPoint] = vec[i];
+//		const auto& [firstX, firstY] = firstPoint;
+//		const auto& [secondX, secondY] = secondPoint;
+//
+//		ss << firstX << " " << firstY << " " << secondX << " " << secondY;
+//		if (i == vec.size() - 1)
+//			break;
+//		ss << ",";
+//	}
+//	return ss.str();
+//}

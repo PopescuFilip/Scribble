@@ -26,7 +26,7 @@ WaitingRoom::WaitingRoom(int username, std::string code, bool isOwner, QWidget* 
 		connect(ui.startButton, SIGNAL(clicked()), this, SLOT(clickOnStartButton()));
 	
 	QObject::connect(&m_refreshTimer, &QTimer::timeout, this, &WaitingRoom::checkGameState);
-	m_refreshTimer.setInterval(2000);
+	m_refreshTimer.setInterval(10000);
 	m_refreshTimer.start();
 
 	ShowPlayers();
@@ -97,10 +97,8 @@ void WaitingRoom::ShowPlayers()
 	ui.textEditPlayers->setReadOnly(true);
 }
 
-void WaitingRoom::checkGameState()
+void WaitingRoom::CheckState()
 {
-	m_refreshTimer.stop();
-
 	cpr::Response response = cpr::Get(
 		cpr::Url{ "http://localhost:18080/gamestate" },
 		cpr::Parameters{
@@ -129,7 +127,17 @@ void WaitingRoom::checkGameState()
 		newWindow->show();
 		return;
 	}
+	m_refreshTimer.start();
+}
+
+void WaitingRoom::checkGameState()
+{
+	m_refreshTimer.stop();
 
 	ShowPlayers();
-	m_refreshTimer.start();
+
+	if (m_isOwner)
+		return;
+
+	CheckState();
 }

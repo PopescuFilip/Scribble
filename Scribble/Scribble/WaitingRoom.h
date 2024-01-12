@@ -15,6 +15,7 @@ public:
 
 	void paintEvent(QPaintEvent* event) override;
 	void ShowPlayers();
+	void CheckState();
 
 private slots:
 	void clickOnStartButton();

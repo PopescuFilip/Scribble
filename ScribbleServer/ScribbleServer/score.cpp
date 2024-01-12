@@ -67,6 +67,9 @@ void Score::CalculateScoreGuesser(uint16_t time)
 
 void Score::CalculateScorePainter(const std::vector<uint16_t>& times)
 {
+	if (!times.size())
+		return;
+
 	bool atLeastOneGuessed = false;
 	int16_t averageTime = 0;
 	for (const int16_t& time : times)
