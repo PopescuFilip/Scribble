@@ -199,8 +199,15 @@ void Scribble::refresh()
         m_refreshTimer->start();
         return;
     }
-
-    SetDrawingFromString(json["drawing"].s());
+    //std::string string{ json["drawing"].s() };
+    std::shared_ptr<std::string> sp = std::make_shared<std::string>(json["drawing"].s());
+    auto SetDrawing = [&](const std::string& drawing)
+        {
+            SetDrawingFromString(drawing);
+        };
+    std::thread setThread(SetDrawing, *sp);
+    setThread.detach();
+    //SetDrawingFromString(json["drawing"].s());
     m_refreshTimer->start();
 }
 
