@@ -6,7 +6,7 @@ import <string>;
 import <unordered_set>;
 
 
-export class Word
+export class __declspec(dllexport) Word
 {
 public:
 	Word();

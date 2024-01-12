@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScribbleServer", "ScribbleServer\ScribbleServer.vcxproj", "{901C08B1-60E9-4D4C-A0A1-8ADD4BFFA482}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WordManager", "WordManager\WordManager.vcxproj", "{32512683-D9A8-429E-A80F-8770E63BAEC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{901C08B1-60E9-4D4C-A0A1-8ADD4BFFA482}.Release|x64.Build.0 = Release|x64
 		{901C08B1-60E9-4D4C-A0A1-8ADD4BFFA482}.Release|x86.ActiveCfg = Release|Win32
 		{901C08B1-60E9-4D4C-A0A1-8ADD4BFFA482}.Release|x86.Build.0 = Release|Win32
+		{32512683-D9A8-429E-A80F-8770E63BAEC7}.Debug|x64.ActiveCfg = Debug|x64
+		{32512683-D9A8-429E-A80F-8770E63BAEC7}.Debug|x64.Build.0 = Debug|x64
+		{32512683-D9A8-429E-A80F-8770E63BAEC7}.Debug|x86.ActiveCfg = Debug|Win32
+		{32512683-D9A8-429E-A80F-8770E63BAEC7}.Debug|x86.Build.0 = Debug|Win32
+		{32512683-D9A8-429E-A80F-8770E63BAEC7}.Release|x64.ActiveCfg = Release|x64
+		{32512683-D9A8-429E-A80F-8770E63BAEC7}.Release|x64.Build.0 = Release|x64
+		{32512683-D9A8-429E-A80F-8770E63BAEC7}.Release|x86.ActiveCfg = Release|Win32
+		{32512683-D9A8-429E-A80F-8770E63BAEC7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
