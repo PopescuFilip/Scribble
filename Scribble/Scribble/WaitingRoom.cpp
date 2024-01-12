@@ -11,6 +11,7 @@ WaitingRoom::WaitingRoom(int username, std::string code, bool isOwner, QWidget* 
 	ui.setupUi(this);
 	ui.textEdit->setPlainText(QString::fromUtf8(m_roomCode.c_str()));
 	ui.textEdit->setReadOnly(true);
+	setAttribute(Qt::WA_DeleteOnClose);
 
 	QPixmap background("Images/Background.png");
 	background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);

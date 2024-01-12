@@ -1,5 +1,7 @@
 #include "Scribble.h"
 #include "JoinRoom.h"
+#include "EndScreen.h"
+#include <thread>
 
 std::vector<std::string> split(const std::string& str, const std::string& delim)
 {
@@ -26,6 +28,9 @@ Scribble::Scribble(int username, std::string roomCode, QWidget *parent)
       m_drawingArea(QPoint(90, 130), QPoint(1190, 600))
 {
     ui.setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
+
+    m_refreshTimer = new QTimer(this);
 
     QPixmap background("Images/ScribbleBackground.png");
     background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);
@@ -38,9 +43,9 @@ Scribble::Scribble(int username, std::string roomCode, QWidget *parent)
 
     connect(ui.ClearWindowButton, SIGNAL(clicked()), this, SLOT(clearWindow()));
 
-    QObject::connect(&m_refreshTimer, &QTimer::timeout, this, &Scribble::refresh);
-    m_refreshTimer.setInterval(5000);
-    m_refreshTimer.start();
+    QObject::connect(m_refreshTimer, &QTimer::timeout, this, &Scribble::refresh);
+    m_refreshTimer->setInterval(500);
+    m_refreshTimer->start();
 }
 
 Scribble::~Scribble()
@@ -135,7 +140,7 @@ bool Scribble::IsInDrawingFrame(const QPoint& point)
 
 void Scribble::refresh()
 {
-    m_refreshTimer.stop();
+    m_refreshTimer->stop();
 
     cpr::Response response = cpr::Get(
         cpr::Url{ "http://localhost:18080/checkstate" },
@@ -157,29 +162,54 @@ void Scribble::refresh()
         return;
 
     }
+    std::string gameStateString{ json["gameState"].s() };
+    GameState gameState{ GetGameStateFromString(std::move(gameStateString)) };
+    if (gameState == GameState::Ended)
+    {
+        m_refreshTimer->stop();
+        close();
+        EndScreen* endScreen = new EndScreen(m_userId);
+        endScreen->show();
+    }
+    if (gameState == GameState::BetweenRounds)
+    {
+        m_canDraw = false;
+        m_drawing.clear();
+        m_refreshTimer->start();
+        return;
+    }
     m_canDraw = json["canDraw"].b();
     
     if (m_canDraw)
     {
-        cpr::Response response = cpr::Get(
-            cpr::Url{ "http://localhost:18080/putdrawing" },
-            cpr::Parameters{
-            { "id", std::to_string(m_userId) },
-            { "code", m_roomCode },
-            { "drawing", DrawingToString()}
-            }
-        );
-        m_refreshTimer.start();
+        auto SendDrawingToServer = [&](const int userId, const std::string roomCode)
+            {
+                cpr::Response response = cpr::Get(
+                    cpr::Url{ "http://localhost:18080/putdrawing" },
+                    cpr::Parameters{
+                    { "id", std::to_string(userId) },
+                    { "code", roomCode },
+                    { "drawing", DrawingToString()}
+                    }
+                );
+            };
+        std::thread pushDrawingThread(SendDrawingToServer, m_userId, m_roomCode);
+        pushDrawingThread.detach();
+        
+        m_refreshTimer->start();
         return;
     }
 
     SetDrawingFromString(json["drawing"].s());
-    m_refreshTimer.start();
+    m_refreshTimer->start();
 }
 
 
 void Scribble::clearWindow()
 {
+    if (!m_canDraw)
+        return;
+
     m_drawing.clear();
     update();
 }

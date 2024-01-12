@@ -117,11 +117,12 @@ void Game::UpdateScores(const int& painterId)
 
 void Game::Reset()
 {
-	for ( auto& keyValue : m_players)
+	for (auto& keyValue : m_players)
 	{
 		auto& [playerId, player] = keyValue;
 		player.Reset();
 	}
+	m_drawingString.clear();
 }
 
 uint16_t Game::GetTime() const

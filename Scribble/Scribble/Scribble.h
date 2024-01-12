@@ -51,7 +51,7 @@ private:
     Coordinate m_lastDrawnPoint;
     std::vector<Line> m_drawing;
 
-    QTimer m_refreshTimer;
+    QTimer* m_refreshTimer;
 
     const QRect m_drawingArea;
     const uint16_t kBrushSize = 5;
