@@ -85,15 +85,41 @@ background-color:rgba();
      </property>
     </widget>
    </widget>
-   <widget class="QTextEdit" name="textEditPlayers">
+   <widget class="QWidget" name="widget_2" native="true">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>280</y>
-      <width>181</width>
-      <height>131</height>
+      <x>80</x>
+      <y>360</y>
+      <width>281</width>
+      <height>221</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;</string>
+    </property>
+    <widget class="QTextEdit" name="textEditPlayers">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>30</y>
+       <width>231</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(11, 21, 65);
+border:none;
+border-bottom:2px solid rgba(105, 118,132, 255);
+color:rgba(255,255, 255, 230);
+padding-bottom:7px;
+radius-border:20xp;</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

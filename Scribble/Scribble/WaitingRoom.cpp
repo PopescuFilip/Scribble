@@ -13,7 +13,7 @@ WaitingRoom::WaitingRoom(int username, std::string code, bool isOwner, QWidget* 
 	ui.textEdit->setReadOnly(true);
 	setAttribute(Qt::WA_DeleteOnClose);
 
-	QPixmap background("Images/Background.png");
+	QPixmap background("Images/WaitingRoomBackground.png");
 	background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);
 	QPalette palette;
 	palette.setBrush(QPalette::Window, background);
