@@ -37,6 +37,8 @@ namespace ScribbleServer
 		void UpdateScores(const int& painterId);
 		void Reset();
 
+		void PutScoresToDb();
+
 	private:
 		std::shared_ptr<GameStorage> m_db;
 		GameState m_gameState;
@@ -51,7 +53,7 @@ namespace ScribbleServer
 
 		static const uint16_t kNoOfRounds = 1;
 		static const uint16_t kRoundDuration = 60;
-		static const uint16_t kMilisecondBetweenRounds = 2000;
+		static const uint16_t kMilisecondBetweenRounds = 5000;
 
 	};
 }

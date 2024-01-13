@@ -2,17 +2,22 @@
 
 #include <QMainWindow>
 #include "ui_EndScreen.h"
+#include "Routes.h"
+#include <sstream>
+#include <qmessagebox.h>
 
 class EndScreen : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	EndScreen(int username, QWidget *parent = nullptr);
+	EndScreen(const std::string& roomCode, QWidget *parent = nullptr);
 	~EndScreen();
+
+public:
+	void ShowRanking();
 
 private:
 	Ui::EndScreenClass ui;
-	int m_userId;
 	std::string m_roomCode;
 };

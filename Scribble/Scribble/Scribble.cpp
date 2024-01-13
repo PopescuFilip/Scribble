@@ -1,6 +1,5 @@
 #include "Scribble.h"
 #include "JoinRoom.h"
-#include "EndScreen.h"
 #include <thread>
 
 std::vector<std::string> split(const std::string& str, const std::string& delim)
@@ -47,7 +46,7 @@ Scribble::Scribble(int username, std::string roomCode, QWidget *parent)
     QObject::connect(ui.sendButton, &QPushButton::clicked, this, &Scribble::guessWord);
     QObject::connect(m_refreshTimer, &QTimer::timeout, this, &Scribble::refresh);
 
-    m_refreshTimer->setInterval(1000);
+    m_refreshTimer->setInterval(3000);
     //m_refreshTimer->start();
     refresh();
 }
@@ -159,15 +158,10 @@ void Scribble::ThreadedPutDrawingToServer()
     pushDrawingThread.detach();
 }
 
-void Scribble::UpdateScreen()
-{
-    ShowPlayers();
-    ShowWord();
-}
-
 void Scribble::ShowPlayers()
 {
     cpr::Response response{ GetPlayers(m_roomCode) };
+
     if (response.status_code != 200)
     {
         QMessageBox::critical(this, "Error", "something went wrong");
@@ -231,21 +225,21 @@ void Scribble::refresh()
     if (gameState == GameState::Ended)
     {
         close();
-        EndScreen* endScreen = new EndScreen(m_userId);
+        EndScreen* endScreen = new EndScreen(m_roomCode);
         endScreen->show();
         return;
     }
-
-    UpdateScreen();
 
     if (gameState == GameState::BetweenRounds)
     {
         m_canDraw = false;
         m_guessedCorrectly = false;
+        ShowPlayers();
         m_drawing.clear();
         m_refreshTimer->start();
         return;
     }
+    ShowWord();
     m_canDraw = json["canDraw"].b();
     
     if (m_canDraw)

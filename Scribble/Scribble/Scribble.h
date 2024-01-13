@@ -4,10 +4,7 @@
 #include "ui_Scribble.h"
 #include <QMouseEvent>
 #include <QPainter>
-
-#include "Routes.h"
-#include <sstream>
-#include <qmessagebox.h>
+#include "EndScreen.h"
 #include <qtimer.h>
 
 class Scribble : public QMainWindow
@@ -32,7 +29,6 @@ public:
     bool IsInDrawingFrame(const QPoint& point);
     void ThreadedPutDrawingToServer();
     
-    void UpdateScreen();
     void ShowPlayers();
     void ShowWord();
 

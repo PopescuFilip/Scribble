@@ -29,6 +29,7 @@ void Game::Run()
 		RunOneRound();
 	}
 	m_gameState = GameState::Ended;
+	PutScoresToDb();
 }
 
 bool Game::GuessWord(int playerId, const std::string& word)
@@ -149,12 +150,21 @@ void Game::UpdateScores(const int& painterId)
 
 void Game::Reset()
 {
-	for (auto& keyValue : m_players)
-	{
-		auto& [playerId, player] = keyValue;
-		player.Reset();
-	}
+	std::ranges::for_each(m_players, [&](auto& keyValue)
+		{
+			auto& [playerId, player] = keyValue;
+			player.Reset();
+		});
 	m_drawingString.clear();
+}
+
+void Game::PutScoresToDb()
+{
+	std::ranges::for_each(m_players, [&](const auto& keyValue)
+		{
+			const auto& [playerId, player] = keyValue;
+			m_db->AddScore(std::move(player.GetScore()));
+		});
 }
 
 uint16_t Game::GetTime() const
