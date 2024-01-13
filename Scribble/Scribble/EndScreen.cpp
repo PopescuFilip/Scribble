@@ -2,7 +2,7 @@
 #include <QPixmap>
 
 EndScreen::EndScreen(const std::string& roomCode, QWidget* parent)
-	: QMainWindow(parent),
+	: QMainWindow{ parent },
 	m_roomCode{ roomCode }
 {
 	ui.setupUi(this);

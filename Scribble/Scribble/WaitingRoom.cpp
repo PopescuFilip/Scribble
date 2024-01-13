@@ -3,10 +3,10 @@
 #include <qmessagebox.h>
 
 WaitingRoom::WaitingRoom(int username, std::string code, bool isOwner, QWidget* parent)
-	: QMainWindow(parent),
+	: QMainWindow{ parent },
 	m_isOwner{ isOwner },
-	m_userId(username),
-	m_roomCode(code)
+	m_userId{ username },
+	m_roomCode{ code }
 {
 	ui.setupUi(this);
 	ui.textEdit->setPlainText(QString::fromUtf8(m_roomCode.c_str()));
@@ -61,7 +61,7 @@ void WaitingRoom::clickOnStartButton()
 
 	m_refreshTimer.stop();
 	close();
-	Scribble* newWindow = new Scribble(m_userId, m_roomCode);
+	Scribble* newWindow = new Scribble{ m_userId, m_roomCode };
 	newWindow->show();
 }
 

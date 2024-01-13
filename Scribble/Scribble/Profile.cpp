@@ -3,8 +3,8 @@
 #include "Routes.h"
 
 Profile::Profile(int username, QWidget *parent)
-	: QMainWindow(parent),
-	m_userId(username)
+	: QMainWindow{ parent },
+	m_userId{ username }
 {
 	ui.setupUi(this);
 

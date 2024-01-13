@@ -4,7 +4,7 @@
 #include <qmessagebox.h>
 
 Login::Login(QWidget *parent)
-	: QMainWindow(parent)
+	: QMainWindow{ parent }
 {
 	ui.setupUi(this);
 
@@ -53,7 +53,7 @@ void Login::clickedOnLogInButton()
 	int userId{ std::stoi(response.text) };
 
 	close();
-	JoinRoom* newWindow = new JoinRoom(userId);
+	JoinRoom* newWindow = new JoinRoom{ userId };
 	newWindow->show();
 }
 
@@ -85,7 +85,7 @@ void Login::clickedOnRegisterButton()
 	int userId{ std::stoi(response.text) };
 
 	close();
-	JoinRoom* newWindow = new JoinRoom(userId);
+	JoinRoom* newWindow = new JoinRoom{ userId };
 	newWindow->show();
 }
 

@@ -18,13 +18,13 @@ std::vector<std::string> split(const std::string& str, const std::string& delim)
 }
 
 Scribble::Scribble(int username, std::string roomCode, QWidget *parent)
-    : QMainWindow(parent),
-      m_isDrawing(false),
-      m_canDraw(false),
-      m_guessedCorrectly(false),
-      m_userId(username),
+    : QMainWindow{ parent },
+    m_isDrawing{ false },
+    m_canDraw{ false },
+    m_guessedCorrectly{ false },
+    m_userId{ username },
       m_roomCode{ roomCode },
-      m_drawingArea(QPoint(90, 130), QPoint(1190, 600))
+    m_drawingArea{ QPoint(90, 130), QPoint(1190, 600) }
 {
     ui.setupUi(this);
     ui.textEditPlayersScore->setReadOnly(true);

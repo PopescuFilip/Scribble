@@ -3,8 +3,8 @@
 #include <qmessagebox.h>
 
 JoinRoom::JoinRoom(int username, QWidget* parent)
-	: QMainWindow(parent),
-	  m_userId(username)
+	: QMainWindow{ parent },
+	m_userId{ username }
 {
 	ui.setupUi(this);
 
@@ -53,7 +53,7 @@ void JoinRoom::clickOnInsertButton()
 	}
 
 	close();
-	WaitingRoom* newWindow = new WaitingRoom(m_userId, code);
+	WaitingRoom* newWindow = new WaitingRoom{ m_userId, code };
 	newWindow->show();
 }
 
@@ -75,12 +75,12 @@ void JoinRoom::clickOnCreateButton()
 	const auto code{ response.text };
 
 	close();
-	WaitingRoom* newWindow = new WaitingRoom(m_userId, code, true);
+	WaitingRoom* newWindow = new WaitingRoom{ m_userId, code, true };
 	newWindow->show();
 }
 
 void JoinRoom::clickOnProfileButton()
 {
-	Profile* newWindow = new Profile(m_userId, this);
+	Profile* newWindow = new Profile{ m_userId, this };
 	newWindow->show();
 }
