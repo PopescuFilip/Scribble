@@ -23,7 +23,7 @@
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>250</y>
+      <y>230</y>
       <width>280</width>
       <height>400</height>
      </rect>
@@ -130,31 +130,6 @@ padding-bottom:7px;</string>
       </property>
       <property name="placeholderText">
        <string>Password</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>231</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Lucida Sans Unicode</family>
-        <pointsize>20</pointsize>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color:rgba(255,255,255,210);
-</string>
-      </property>
-      <property name="text">
-       <string>LogIn or Register</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButtonRegister">

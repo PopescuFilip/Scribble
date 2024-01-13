@@ -8,7 +8,7 @@ Login::Login(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	QPixmap background("Images/Background.png");
+	QPixmap background("Images/LogInBackground.png");
 	background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);
 	QPalette palette;
 	palette.setBrush(QPalette::Window, background);
