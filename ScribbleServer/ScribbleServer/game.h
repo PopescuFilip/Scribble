@@ -26,14 +26,14 @@ namespace ScribbleServer
 		void SetDrawing(const std::string& string);
 	    void AddPlayer(const int userId);
 		void Run();
-		void GuessWord(int playerId, const std::string& word);
+		bool GuessWord(int playerId, const std::string& word);
 	
 	private:
 		bool AllHaveGuessed();
 		void RunOneRound();
 		void RunSubRound();
 		void PreSubRoundSetup(const int& painterId);
-		void PostSubRoundSetup(const int& painterId);
+		void PostSubRoundSetup();
 		void UpdateScores(const int& painterId);
 		void Reset();
 

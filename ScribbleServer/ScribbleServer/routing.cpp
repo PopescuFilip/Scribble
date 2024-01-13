@@ -43,7 +43,7 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 			const int id{ std::stoi(stringId) };
 
 			const std::string newCode{ GetRandomUniqueCode(m_codes) };
-			//std::cout << "created game room with code " << newCode;
+
 			m_codes.emplace(newCode);
 			m_games.emplace(newCode, Game(storage, id));
 			m_games.at(newCode).AddPlayer(id);
@@ -178,7 +178,33 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 			return crow::response(200);
 		});
 
-	
+	CROW_ROUTE(m_app, "/getword")([&](const crow::request& req)
+	{
+		const auto code{ req.url_params.get("code") };
+		const std::string stringId{ req.url_params.get("id") };
+		const int id{ std::stoi(stringId) };
+
+		if (m_games.find(code) == m_games.end())
+			return crow::response(404);
+
+		return crow::response(200, m_games.at(code).GetWord(id));
+	});
+
+	CROW_ROUTE(m_app, "/guessword")([&](const crow::request& req) 
+		{
+			const auto code{ req.url_params.get("code") };
+			const std::string stringId{ req.url_params.get("id") };
+			const int id{ std::stoi(stringId) };
+			const auto word{ req.url_params.get("word") };
+
+			if (m_games.find(code) == m_games.end())
+				return crow::response(404);
+
+			if (m_games.at(code).GuessWord(id, word))
+				return crow::response(200, "correct");
+
+			return crow::response(200, "incorrect");
+		});
 
 	m_app.port(18080).multithreaded().run();
 }

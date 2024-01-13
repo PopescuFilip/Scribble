@@ -31,13 +31,20 @@ void Game::Run()
 	m_gameState = GameState::Ended;
 }
 
-void Game::GuessWord(int playerId, const std::string& word)
+bool Game::GuessWord(int playerId, const std::string& word)
 {
+	if (playerId == m_painterId)
+		return false;
+
+	if (m_gameState != GameState::Running)
+		return false;
+
 	uint16_t time{ std::move(GetTime()) };
 	if (m_currentWord != word)
-		return;
+		return false;
 
 	m_players.at(playerId).GuessWord(time);
+	return true;
 }
 
 bool ScribbleServer::Game::AllHaveGuessed()
@@ -61,7 +68,7 @@ void Game::RunOneRound()
 			const auto& [playerId, player] = keyValue;
 			PreSubRoundSetup(playerId);
 			RunSubRound();
-			PostSubRoundSetup(playerId);
+			PostSubRoundSetup();
 			Sleep(kMilisecondBetweenRounds);
 
 		});
@@ -108,10 +115,10 @@ void Game::PreSubRoundSetup(const int& painterId)
 	m_gameState = GameState::Running;
 }
 
-void Game::PostSubRoundSetup(const int& painterId)
+void Game::PostSubRoundSetup()
 {
 	m_gameState = GameState::BetweenRounds;
-	UpdateScores(painterId);
+	UpdateScores(m_painterId);
 	Reset();
 }
 
