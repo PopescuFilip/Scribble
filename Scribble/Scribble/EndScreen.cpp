@@ -7,7 +7,7 @@ EndScreen::EndScreen(int username, QWidget *parent)
 {
 	ui.setupUi(this);
 
-	QPixmap background("");
+	QPixmap background("Images/EndScreenBackground.png");
 	background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);
 	QPalette palette;
 	palette.setBrush(QPalette::Window, background);
