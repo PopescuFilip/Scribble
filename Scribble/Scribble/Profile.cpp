@@ -7,8 +7,8 @@ Profile::Profile(int username, QWidget *parent)
 {
 	ui.setupUi(this);
 
-	QPixmap background("");
-	background = background.scaled(1280, 1440, Qt::IgnoreAspectRatio);
+	QPixmap background("Images/PlayerProfileBackground.png");
+	background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);
 	QPalette palette;
 	palette.setBrush(QPalette::Window, background);
 	setPalette(palette);

@@ -6,23 +6,60 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>25</pointsize>
+    <italic>true</italic>
+    <bold>true</bold>
+    <underline>true</underline>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Profile</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>161</width>
-      <height>171</height>
+      <x>460</x>
+      <y>350</y>
+      <width>191</width>
+      <height>261</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;</string>
+    </property>
+    <widget class="QTextEdit" name="textEdit">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>131</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>25</pointsize>
+       <italic>true</italic>
+       <bold>true</bold>
+       <underline>true</underline>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(11, 21, 65);
+border:none;
+border-bottom:2px solid rgba(105, 118,132, 255);
+color:rgba(255,255, 255, 230);
+padding-bottom:7px;
+radius-border:20xp;</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -30,8 +67,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
-     <height>22</height>
+     <width>1280</width>
+     <height>50</height>
     </rect>
    </property>
   </widget>
