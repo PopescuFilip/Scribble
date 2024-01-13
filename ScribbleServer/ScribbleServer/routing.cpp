@@ -206,5 +206,24 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 			return crow::response(200, "incorrect");
 		});
 
+	CROW_ROUTE(m_app, "/profile")([&storage](const crow::request& req)
+		{
+			const std::string stringId{ req.url_params.get("id") };
+			const int id{ std::stoi(stringId) };
+
+			auto scores{ storage->GetLast5Scores(id) };
+
+			std::vector<crow::json::wvalue> scoresJson;
+			std::ranges::for_each(scores, [&scoresJson](const auto& score) 
+				{
+					crow::json::wvalue json;
+					json["score"] = std::to_string(score.GetScoreValue());
+					scoresJson.push_back(json);
+				});
+			
+			return crow::json::wvalue{ scoresJson };
+
+		});
+
 	m_app.port(18080).multithreaded().run();
 }

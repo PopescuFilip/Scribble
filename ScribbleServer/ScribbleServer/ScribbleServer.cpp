@@ -15,9 +15,13 @@ int main()
     std::cout << "users:\n";
     for (const auto& user : users)
     {
-        std::cout << user.GetUsername() << " " << user.GetPassword() << "\n";
+        std::cout << user.GetUserId() << " " << user.GetUsername() << " " << user.GetPassword() << "\n";
+        /*auto scores{ storage->GetLast5Scores(user.GetUserId()) };
+        for (const auto& score : scores)
+        {
+            std::cout << score.GetScoreId() << " " << score.GetScoreValue() << "\n";
+        }*/
     }
-
     Routing r;
     r.Run(storage);
 

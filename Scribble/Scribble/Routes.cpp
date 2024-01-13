@@ -42,3 +42,13 @@ cpr::Response GuessWord(const int id, const std::string& roomCode, const std::st
 		}
 	);
 }
+
+cpr::Response GetProfile(const int id)
+{
+	return cpr::Get(
+		cpr::Url{ "http://localhost:18080/profile" },
+		cpr::Parameters{
+		{ "id", std::to_string(id) }
+		}
+	);
+}
