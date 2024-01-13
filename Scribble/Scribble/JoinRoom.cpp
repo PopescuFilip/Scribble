@@ -10,7 +10,7 @@ JoinRoom::JoinRoom(int username, QWidget* parent)
 
 	setAttribute(Qt::WA_DeleteOnClose);
 
-	QPixmap background("Images/Background.png");
+	QPixmap background("Images/JoinRoomBackground.png");
 	background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);
 	QPalette palette;
 	palette.setBrush(QPalette::Window, background);
