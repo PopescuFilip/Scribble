@@ -20,17 +20,20 @@ namespace ScribbleServer
 		std::string GetDrawing()const;
 		std::deque<Score> GetScores() const;
 		int GetPainterId() const;
+		std::string GetWord(const int& playerId) const;
 		std::deque<Player> GetPlayers() const;
 
 		void SetDrawing(const std::string& string);
 	    void AddPlayer(const int userId);
 		void Run();
 		void GuessWord(int playerId, const std::string& word);
-		bool AllHaveGuessed();
 	
 	private:
+		bool AllHaveGuessed();
 		void RunOneRound();
-		void RunSubRound(const int& painterId);
+		void RunSubRound();
+		void PreSubRoundSetup(const int& painterId);
+		void PostSubRoundSetup(const int& painterId);
 		void UpdateScores(const int& painterId);
 		void Reset();
 
@@ -46,9 +49,9 @@ namespace ScribbleServer
 
 		Timer m_roundTimer;
 
-		static const uint16_t kNoOfRounds = 4;
+		static const uint16_t kNoOfRounds = 1;
 		static const uint16_t kRoundDuration = 60;
-		static const uint16_t kMilisecondBetweenRounds = 5000;
+		static const uint16_t kMilisecondBetweenRounds = 1000;
 
 	};
 }

@@ -27,15 +27,17 @@ void Game::Run()
 	{
 		Sleep(kMilisecondBetweenRounds);
 		RunOneRound();
-		//Reset();
 	}
 	m_gameState = GameState::Ended;
 }
 
 void Game::GuessWord(int playerId, const std::string& word)
 {
-	uint16_t time = GetTime();
-	m_players.at(playerId).GuessWord(word, time);
+	uint16_t time{ std::move(GetTime()) };
+	if (m_currentWord != word)
+		return;
+
+	m_players.at(playerId).GuessWord(time);
 }
 
 bool ScribbleServer::Game::AllHaveGuessed()
@@ -43,7 +45,7 @@ bool ScribbleServer::Game::AllHaveGuessed()
 	for (auto& keyValue : m_players)
 	{
 		auto& [playerId, player] = keyValue;
-		if (playerId== m_painterId)
+		if (playerId == m_painterId)
 			continue;
 		if (player.HasGuessedCorrectly())
 			continue;
@@ -57,23 +59,19 @@ void Game::RunOneRound()
 	std::ranges::for_each(m_players, [&](const auto& keyValue)
 		{
 			const auto& [playerId, player] = keyValue;
-			RunSubRound(playerId);
-			UpdateScores(playerId);
-			Reset();
+			PreSubRoundSetup(playerId);
+			RunSubRound();
+			PostSubRoundSetup(playerId);
 			Sleep(kMilisecondBetweenRounds);
 
 		});
 }
 
-void Game::RunSubRound(const int& painterId)
+void Game::RunSubRound()
 {
-	m_currentWord = std::move(m_db->GetRandomWord());
-
 	Timer startRevealing{ static_cast<uint16_t>(kRoundDuration / 2) };
 	Timer revealInterval{ static_cast<uint16_t>(kRoundDuration / m_currentWord.GetNoOfCharacters()) };
 
-	m_gameState = GameState::Running;
-	m_painterId = painterId;
 	m_roundTimer.Start();
 	startRevealing.Start();
 
@@ -82,13 +80,14 @@ void Game::RunSubRound(const int& painterId)
 		if (revealInterval.IsActive() && revealInterval.ReachedThreshold())
 		{
 			m_currentWord.RevealRandomCharacter();
-			std::cout << m_currentWord.GetVisibleCharacters() << '\n';
+			//std::cout << m_currentWord.GetVisibleCharacters() << '\n';
 			revealInterval.Start();
 		}
 
 		std::cout << m_roundTimer.GetElapsedTime() << "\n";
-		//std::this_thread::sleep_for(std::chrono::seconds(1));
-		Sleep(1000);
+		if (AllHaveGuessed())
+			return;
+		Sleep(500);
 
 		if (!startRevealing.IsActive())
 			continue;
@@ -100,8 +99,20 @@ void Game::RunSubRound(const int& painterId)
 	}
 	m_roundTimer.Stop();
 	revealInterval.Stop();
+}
 
+void Game::PreSubRoundSetup(const int& painterId)
+{
+	m_currentWord = std::move(m_db->GetRandomWord());
+	m_painterId = painterId;
+	m_gameState = GameState::Running;
+}
+
+void Game::PostSubRoundSetup(const int& painterId)
+{
 	m_gameState = GameState::BetweenRounds;
+	UpdateScores(painterId);
+	Reset();
 }
 
 void Game::UpdateScores(const int& painterId)
@@ -141,14 +152,10 @@ void Game::Reset()
 
 uint16_t Game::GetTime() const
 {
-	if (m_gameState == GameState::Running && m_roundTimer.IsActive())
-	{
+	if (m_gameState == GameState::Running)
 		return m_roundTimer.GetElapsedTime();
-	}
-	else
-	{
-		return 0;
-	}
+	
+	return kRoundDuration;
 }
 
 GameState Game::GetGameState() const
@@ -156,7 +163,7 @@ GameState Game::GetGameState() const
 	return m_gameState;
 }
 
-int ScribbleServer::Game::GetOwnerId() const
+int Game::GetOwnerId() const
 {
 	return m_ownerId;
 }
@@ -181,6 +188,14 @@ std::deque<Score> Game::GetScores() const
 int Game::GetPainterId() const
 {
 	return m_painterId;
+}
+
+std::string Game::GetWord(const int& playerId) const
+{
+	if (playerId == m_painterId)
+		return m_currentWord.GetWord();
+
+	return m_currentWord.GetVisibleCharacters();
 }
 
 std::deque<Player> Game::GetPlayers() const
