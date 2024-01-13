@@ -3,10 +3,10 @@
 
 using namespace ScribbleServer;
 
-Game::Game(std::shared_ptr<GameStorage> db, int ownerId):
-    m_db{ db },
-    m_roundTimer{ kRoundDuration },
-    m_gameState{ GameState::NotStarted },
+Game::Game(std::shared_ptr<GameStorage> db, int ownerId) :
+	m_db{ db },
+	m_roundTimer{ kRoundDuration },
+	m_gameState{ GameState::NotStarted },
 	m_ownerId{ ownerId }
 {}
 
@@ -17,7 +17,7 @@ void Game::SetDrawing(const std::string& string)
 
 void Game::AddPlayer(const int userId)
 {
-    User user{ m_db->GetUser(userId) };
+	User user{ m_db->GetUser(userId) };
 	m_players.emplace(userId, std::move(Player{ user }));
 }
 
@@ -36,6 +36,20 @@ void Game::GuessWord(int playerId, const std::string& word)
 {
 	uint16_t time = GetTime();
 	m_players.at(playerId).GuessWord(word, time);
+}
+
+bool ScribbleServer::Game::AllHaveGuessed()
+{
+	for (auto& keyValue : m_players)
+	{
+		auto& [playerId, player] = keyValue;
+		if (playerId== m_painterId)
+			continue;
+		if (player.HasGuessedCorrectly())
+			continue;
+		return false;
+	}
+	return true;
 }
 
 void Game::RunOneRound()
@@ -94,7 +108,7 @@ void Game::UpdateScores(const int& painterId)
 {
 	std::vector<uint16_t> times;
 
-	std::ranges::for_each(m_players, [&painterId, &times](auto& keyValue) 
+	std::ranges::for_each(m_players, [&painterId, &times](auto& keyValue)
 		{
 			auto& [playerId, player] = keyValue;
 			if (playerId == painterId)
@@ -127,19 +141,19 @@ void Game::Reset()
 
 uint16_t Game::GetTime() const
 {
-    if (m_gameState == GameState::Running && m_roundTimer.IsActive()) 
-    {
-        return m_roundTimer.GetElapsedTime();
-    }
-    else
-    {
-        return 0;
-    }
+	if (m_gameState == GameState::Running && m_roundTimer.IsActive())
+	{
+		return m_roundTimer.GetElapsedTime();
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 GameState Game::GetGameState() const
 {
-    return m_gameState;
+	return m_gameState;
 }
 
 int ScribbleServer::Game::GetOwnerId() const
