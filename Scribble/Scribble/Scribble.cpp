@@ -28,10 +28,12 @@ Scribble::Scribble(int username, std::string roomCode, QWidget *parent)
       m_drawingArea(QPoint(90, 130), QPoint(1190, 600))
 {
     ui.setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
+    ui.textEditPlayersScore->setReadOnly(true);
+    ui.Word->setReadOnly(true);
 
     m_refreshTimer = new QTimer(this);
 
+    setAttribute(Qt::WA_DeleteOnClose);
     QPixmap background("Images/ScribbleBackground.png");
     background = background.scaled(1280, 720, Qt::IgnoreAspectRatio);
     QPalette palette;
@@ -42,10 +44,12 @@ Scribble::Scribble(int username, std::string roomCode, QWidget *parent)
     setGeometry(140, 70, 2560, 1440);
 
     connect(ui.ClearWindowButton, SIGNAL(clicked()), this, SLOT(clearWindow()));
-
+    QObject::connect(ui.sendButton, &QPushButton::clicked, this, &Scribble::guessWord);
     QObject::connect(m_refreshTimer, &QTimer::timeout, this, &Scribble::refresh);
-    m_refreshTimer->setInterval(500);
-    m_refreshTimer->start();
+
+    m_refreshTimer->setInterval(1000);
+    //m_refreshTimer->start();
+    refresh();
 }
 
 Scribble::~Scribble()
@@ -138,6 +142,66 @@ bool Scribble::IsInDrawingFrame(const QPoint& point)
     return m_drawingArea.contains(point);
 }
 
+void Scribble::ThreadedPutDrawingToServer()
+{
+    auto SendDrawingToServer = [&](const int userId, const std::string roomCode)
+        {
+            cpr::Response response = cpr::Get(
+                cpr::Url{ "http://localhost:18080/putdrawing" },
+                cpr::Parameters{
+                { "id", std::to_string(userId) },
+                { "code", roomCode },
+                { "drawing", DrawingToString()}
+                }
+            );
+        };
+    std::thread pushDrawingThread(SendDrawingToServer, m_userId, m_roomCode);
+    pushDrawingThread.detach();
+}
+
+void Scribble::UpdateScreen()
+{
+    ShowPlayers();
+    ShowWord();
+}
+
+void Scribble::ShowPlayers()
+{
+    cpr::Response response{ GetPlayers(m_roomCode) };
+    if (response.status_code != 200)
+    {
+        QMessageBox::critical(this, "Error", "something went wrong");
+        return;
+    }
+
+    std::stringstream ss;
+    auto players = crow::json::load(response.text);
+    for (const auto& player : players)
+    {
+        ss << player["name"].s() << " " << player["score"].i() << "\n";
+    }
+    ui.textEditPlayersScore->setReadOnly(false);
+    ui.textEditPlayersScore->setPlainText(QString::fromUtf8(ss.str().c_str()));
+    ui.textEditPlayersScore->setReadOnly(true);
+}
+
+void Scribble::ShowWord()
+{
+    cpr::Response response{ GetWord(m_userId, m_roomCode) };
+
+    if (response.status_code != 200)
+    {
+        QMessageBox::critical(this, "Error", "something went wrong");
+        return;
+    }
+
+    std::string word{ response.text };
+
+    ui.Word->setReadOnly(false);
+    ui.Word->setPlainText(QString::fromUtf8(word.c_str()));
+    ui.Word->setReadOnly(true);
+}
+
 void Scribble::refresh()
 {
     m_refreshTimer->stop();
@@ -160,20 +224,24 @@ void Scribble::refresh()
     {
         QMessageBox::critical(this, "Error", "game room is gone");
         return;
-
     }
+
     std::string gameStateString{ json["gameState"].s() };
     GameState gameState{ GetGameStateFromString(std::move(gameStateString)) };
     if (gameState == GameState::Ended)
     {
-        m_refreshTimer->stop();
         close();
         EndScreen* endScreen = new EndScreen(m_userId);
         endScreen->show();
+        return;
     }
+
+    UpdateScreen();
+
     if (gameState == GameState::BetweenRounds)
     {
         m_canDraw = false;
+        m_guessedCorrectly = false;
         m_drawing.clear();
         m_refreshTimer->start();
         return;
@@ -181,34 +249,54 @@ void Scribble::refresh()
     m_canDraw = json["canDraw"].b();
     
     if (m_canDraw)
+        ThreadedPutDrawingToServer();
+    else
     {
-        auto SendDrawingToServer = [&](const int userId, const std::string roomCode)
+        std::shared_ptr<std::string> sp = std::make_shared<std::string>(json["drawing"].s());
+        auto SetDrawing = [&](const std::string& drawing)
             {
-                cpr::Response response = cpr::Get(
-                    cpr::Url{ "http://localhost:18080/putdrawing" },
-                    cpr::Parameters{
-                    { "id", std::to_string(userId) },
-                    { "code", roomCode },
-                    { "drawing", DrawingToString()}
-                    }
-                );
+                SetDrawingFromString(drawing);
             };
-        std::thread pushDrawingThread(SendDrawingToServer, m_userId, m_roomCode);
-        pushDrawingThread.detach();
-        
-        m_refreshTimer->start();
-        return;
+        std::thread setThread(SetDrawing, *sp);
+        setThread.detach();
     }
-    //std::string string{ json["drawing"].s() };
-    std::shared_ptr<std::string> sp = std::make_shared<std::string>(json["drawing"].s());
-    auto SetDrawing = [&](const std::string& drawing)
-        {
-            SetDrawingFromString(drawing);
-        };
-    std::thread setThread(SetDrawing, *sp);
-    setThread.detach();
     //SetDrawingFromString(json["drawing"].s());
     m_refreshTimer->start();
+}
+
+void Scribble::guessWord()
+{
+    std::string word{ ui.chatlineEdit->text().toUtf8().constData() };
+    ui.chatlineEdit->clear();
+
+    if (m_canDraw)
+    {
+        QMessageBox::information(this, "Info", "you are the painter, you can't guess");
+        return;
+    }
+
+    if (m_guessedCorrectly)
+    {
+        QMessageBox::information(this, "Info", "you have already guessed correctly");
+        return;
+    }
+
+    cpr::Response response{ GuessWord(m_userId, m_roomCode, word) };
+
+    if (response.status_code != 200)
+    {
+        QMessageBox::critical(this, "Error", "game room is gone");
+        return;
+    }
+     
+    if (response.text == "correct")
+    {
+        m_guessedCorrectly = true;
+        QMessageBox::information(this, "Congrats!!", "you have guessed correctly");
+        return;
+    }
+    
+    QMessageBox::information(this, "Incorrect", "unfortunately that's not the word");
 }
 
 

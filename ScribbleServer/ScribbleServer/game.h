@@ -51,7 +51,7 @@ namespace ScribbleServer
 
 		static const uint16_t kNoOfRounds = 1;
 		static const uint16_t kRoundDuration = 60;
-		static const uint16_t kMilisecondBetweenRounds = 1000;
+		static const uint16_t kMilisecondBetweenRounds = 2000;
 
 	};
 }

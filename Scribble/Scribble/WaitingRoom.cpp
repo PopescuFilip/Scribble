@@ -74,12 +74,7 @@ void WaitingRoom::paintEvent(QPaintEvent* event)
 
 void WaitingRoom::ShowPlayers()
 {
-	cpr::Response response = cpr::Get(
-		cpr::Url{ "http://localhost:18080/getplayers" },
-		cpr::Parameters{
-		{ "code", m_roomCode }
-		}
-	);
+	cpr::Response response{ GetPlayers(m_roomCode) };
 
 	if (response.status_code != 200)
 	{
@@ -100,12 +95,7 @@ void WaitingRoom::ShowPlayers()
 
 void WaitingRoom::CheckState()
 {
-	cpr::Response response = cpr::Get(
-		cpr::Url{ "http://localhost:18080/gamestate" },
-		cpr::Parameters{
-		{ "code", m_roomCode }
-		}
-	);
+	cpr::Response response{ GetGameState(m_roomCode) };
 
 	if (response.status_code == 404)
 	{

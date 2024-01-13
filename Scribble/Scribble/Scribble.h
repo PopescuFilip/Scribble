@@ -5,12 +5,10 @@
 #include <QMouseEvent>
 #include <QPainter>
 
-#include <cpr/cpr.h>
-#include <crow.h>
+#include "Routes.h"
 #include <sstream>
 #include <qmessagebox.h>
 #include <qtimer.h>
-#include "GameState.h"
 
 class Scribble : public QMainWindow
 {
@@ -20,7 +18,7 @@ public:
     using Coordinate = std::pair<uint16_t, uint16_t>;
     using Line = std::pair<Coordinate, Coordinate>;
 public:
-    Scribble(int userId, std::string roomCode, QWidget * parent = nullptr );
+    Scribble(int userId, std::string roomCode, QWidget * parent = nullptr);
     ~Scribble();
 
     virtual void mousePressEvent(QMouseEvent* event) override;
@@ -32,11 +30,16 @@ public:
     std::string DrawingToString();
     void SetDrawingFromString(const std::string& string);
     bool IsInDrawingFrame(const QPoint& point);
+    void ThreadedPutDrawingToServer();
+    
+    void UpdateScreen();
+    void ShowPlayers();
+    void ShowWord();
 
 private slots:
     void clearWindow();
     void refresh();
-
+    void guessWord();
 
 private:
     Ui::ScribbleClass ui;

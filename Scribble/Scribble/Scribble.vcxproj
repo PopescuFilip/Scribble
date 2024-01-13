@@ -109,6 +109,7 @@
     <ClCompile Include="JoinRoom.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Profile.cpp" />
+    <ClCompile Include="Routes.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
     <QtRcc Include="Scribble.qrc" />
     <QtUic Include="EndScreen.ui" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Routes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
