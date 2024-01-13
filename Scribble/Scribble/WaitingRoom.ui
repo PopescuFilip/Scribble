@@ -109,6 +109,9 @@ background-color:rgba();
      <property name="font">
       <font>
        <pointsize>20</pointsize>
+       <italic>true</italic>
+       <bold>true</bold>
+       <underline>true</underline>
       </font>
      </property>
      <property name="styleSheet">
