@@ -46,7 +46,7 @@ Scribble::Scribble(int username, std::string roomCode, QWidget *parent)
     QObject::connect(ui.sendButton, &QPushButton::clicked, this, &Scribble::guessWord);
     QObject::connect(m_refreshTimer, &QTimer::timeout, this, &Scribble::refresh);
 
-    m_refreshTimer->setInterval(3000);
+    m_refreshTimer->setInterval(1000);
     //m_refreshTimer->start();
     refresh();
 }
@@ -133,6 +133,7 @@ void Scribble::SetDrawingFromString(const std::string& string)
 
         m_drawing.push_back({ { firstX, firstY }, { secondX, secondY } });
     }
+    update();
 }
 
 bool Scribble::IsInDrawingFrame(const QPoint& point)

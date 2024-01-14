@@ -41,10 +41,12 @@ void EndScreen::ShowRanking()
 
 	std::ranges::sort(ranking, [](const auto& a, const auto& b) { return a.second > b.second; });
 	std::stringstream ss;
-	std::ranges::for_each(ranking, [&ss](const auto& pair)
+	int rank = 1;
+	std::ranges::for_each(ranking, [&ss, &rank](const auto& pair)
 		{
 			const auto& [name, score] = pair;
-			ss << name << " " << std::to_string(score) << "\n";
+			ss << std::to_string(rank) << " " << name << " " << std::to_string(score) << "\n";
+			rank++;
 		});
 
 	ui.textEdit->setPlainText(QString::fromUtf8(ss.str().c_str()));
