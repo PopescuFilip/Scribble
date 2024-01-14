@@ -1,5 +1,5 @@
-//import timer;
-#include "timer.h"
+import timer;
+//#include "timer.h"
 
 using ScribbleServer::Timer;
 

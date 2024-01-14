@@ -1,7 +1,8 @@
 #pragma once
-#include "timer.h"
+//#include "timer.h"
 #include "gameState.h"
 #include "gameDatabase.h"
+import timer;
 import player;
 import word;
 //import timer;

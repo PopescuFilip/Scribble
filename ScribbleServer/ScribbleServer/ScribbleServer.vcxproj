@@ -170,7 +170,6 @@
     <ClInclude Include="gameDatabase.h" />
     <ClInclude Include="gameState.h" />
     <ClInclude Include="routing.h" />
-    <ClInclude Include="timer.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="words.txt" />
