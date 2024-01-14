@@ -39,13 +39,7 @@ WaitingRoom::~WaitingRoom()
 
 void WaitingRoom::clickOnStartButton()
 {
-	cpr::Response response = cpr::Get(
-		cpr::Url{ "http://localhost:18080/start" },
-		cpr::Parameters{
-		{ "id" , std::to_string(m_userId) },
-		{ "code", m_roomCode }
-		}
-	);
+	cpr::Response response{ Start(m_userId,m_roomCode) };
 
 	if (response.status_code == 203)
 	{

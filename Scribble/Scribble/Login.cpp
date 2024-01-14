@@ -33,13 +33,7 @@ void Login::clickedOnLogInButton()
 	qDebug() << user;
 	qDebug() << password;
 
-	cpr::Response response = cpr::Get(
-		cpr::Url{ "http://localhost:18080/checkuser" },
-		cpr::Parameters{
-			{ "username" , user },
-			{ "password", password }
-		}
-	);
+	cpr::Response response{ CheckUser(user,password) }; 
 
 	if (response.status_code != 200)
 	{
@@ -65,13 +59,7 @@ void Login::clickedOnRegisterButton()
 	qDebug() << user;
 	qDebug() << password;
 
-	cpr::Response response = cpr::Get(
-		cpr::Url{ "http://localhost:18080/adduser" },
-		cpr::Parameters{
-			{ "username" , user },
-			{ "password", password }
-		}
-	);
+	cpr::Response response{ AddUser(user,password) };
 
 	if (response.status_code != 200)
 	{

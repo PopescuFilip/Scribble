@@ -36,14 +36,7 @@ void JoinRoom::paintEvent(QPaintEvent* event)
 void JoinRoom::clickOnInsertButton()
 {
 	std::string code{ ui.lineEdit->text().toUtf8().constData() };
-
-	cpr::Response response = cpr::Get(
-		cpr::Url{ "http://localhost:18080/joinroom" },
-		cpr::Parameters{
-		{ "id" , std::to_string(m_userId) },
-		{ "code", code }
-		}
-	);
+	cpr::Response response{ JoinRoomRoute(m_userId,code) };
 
 	if (response.status_code != 200)
 	{
@@ -59,12 +52,7 @@ void JoinRoom::clickOnInsertButton()
 
 void JoinRoom::clickOnCreateButton()
 {
-	cpr::Response response = cpr::Get(
-		cpr::Url{ "http://localhost:18080/createroom" },
-		cpr::Parameters{
-			{ "id" , std::to_string(m_userId) }
-		}
-	);
+	cpr::Response response{ CreateRoom(m_userId) };
 
 	if (response.status_code != 200)
 	{

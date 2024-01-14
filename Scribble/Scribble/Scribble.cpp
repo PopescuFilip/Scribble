@@ -145,14 +145,8 @@ void Scribble::ThreadedPutDrawingToServer()
 {
     auto SendDrawingToServer = [&](const int userId, const std::string roomCode)
         {
-            cpr::Response response = cpr::Get(
-                cpr::Url{ "http://localhost:18080/putdrawing" },
-                cpr::Parameters{
-                { "id", std::to_string(userId) },
-                { "code", roomCode },
-                { "drawing", DrawingToString()}
-                }
-            );
+            cpr::Response response{ PutDrawing(userId,roomCode,DrawingToString()) }; 
+
         };
     std::thread pushDrawingThread(SendDrawingToServer, m_userId, m_roomCode);
     pushDrawingThread.detach();
@@ -200,13 +194,7 @@ void Scribble::refresh()
 {
     m_refreshTimer->stop();
 
-    cpr::Response response = cpr::Get(
-        cpr::Url{ "http://localhost:18080/checkstate" },
-        cpr::Parameters{
-        { "id" , std::to_string(m_userId) },
-        { "code", m_roomCode }
-        }
-    );
+    cpr::Response response{ CheckState(m_userId,m_roomCode) }; 
 
     if (response.status_code != 200)
         return;
