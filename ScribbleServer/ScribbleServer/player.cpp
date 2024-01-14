@@ -7,7 +7,7 @@ using namespace ScribbleServer;
 Player::Player(const User& user) :
 	User{ user },
 	m_guessedCorrectly{ false },
-	m_score{ user.GetUserId() }
+	m_score{ std::move(user.GetUserId()) }
 {
 }
 

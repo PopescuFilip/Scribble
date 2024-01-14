@@ -17,7 +17,7 @@ void Game::SetDrawing(const std::string& string)
 
 void Game::AddPlayer(const int userId)
 {
-	User user{ m_db->GetUser(userId) };
+	User user{ std::move(m_db->GetUser(userId)) };
 	m_players.emplace(userId, std::move(Player{ user }));
 }
 
@@ -78,7 +78,7 @@ void Game::RunOneRound()
 void Game::RunSubRound()
 {
 	Timer startRevealing{ static_cast<uint16_t>(kRoundDuration / 2) };
-	Timer revealInterval{ static_cast<uint16_t>(kRoundDuration / m_currentWord.GetNoOfCharacters()) };
+	Timer revealInterval{ static_cast<uint16_t>(kRoundDuration / std::move(m_currentWord.GetNoOfCharacters())) };
 
 	m_roundTimer.Start();
 	startRevealing.Start();
@@ -196,7 +196,7 @@ std::deque<Score> Game::GetScores() const
 	for (const auto& keyValue : m_players)
 	{
 		const auto& [playerId, player] = keyValue;
-		scores.emplace_back(player.GetScore());
+		scores.emplace_back(std::move(player.GetScore()));
 	}
 
 	return scores;

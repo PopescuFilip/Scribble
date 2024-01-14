@@ -40,9 +40,9 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 	CROW_ROUTE(m_app, "/createroom")([&](const crow::request& req) 
 		{
 			const std::string stringId{ req.url_params.get("id") };
-			const int id{ std::stoi(stringId) };
+			const int id{ std::stoi(std::move(stringId)) };
 
-			const std::string newCode{ GetRandomUniqueCode(m_codes) };
+			const std::string newCode{ std::move(GetRandomUniqueCode(m_codes)) };
 
 			m_codes.emplace(newCode);
 			m_games.emplace(newCode, Game(storage, id));
@@ -56,7 +56,7 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 		{
 			const auto code{ req.url_params.get("code") };
 			const std::string stringId{ req.url_params.get("id") };
-			const int id{ std::stoi(stringId) };
+			const int id{ std::stoi(std::move(stringId)) };
 
 			if (m_games.find(code) == m_games.end())
 				return crow::response(404);
@@ -77,8 +77,8 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 			std::ranges::for_each(players, [&playersJson](const auto& player)
 				{
 					crow::json::wvalue playerJson;
-					playerJson["name"] = player.GetUsername();
-					playerJson["score"] = player.GetScore().GetScoreValue();
+					playerJson["name"] = std::move(player.GetUsername());
+					playerJson["score"] = std::move(player.GetScore().GetScoreValue());
 					playersJson.push_back(playerJson);
 				});
 
@@ -90,7 +90,7 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 		{
 			const auto code{ req.url_params.get("code") };
 			const std::string stringId{ req.url_params.get("id") };
-			const int id{ std::stoi(stringId) };
+			const int id{ std::stoi(std::move(stringId)) };
 
 			if (m_games.find(code) == m_games.end())
 				return crow::response(404);
@@ -120,7 +120,7 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 		{
 			const auto code{ req.url_params.get("code") };
 			const std::string stringId{ req.url_params.get("id") };
-			const int id{ std::stoi(stringId) };
+			const int id{ std::stoi(std::move(stringId)) };
 
 			if (m_games.find(code) == m_games.end())
 				return crow::response(404);
@@ -138,13 +138,13 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 		{
 			const auto code{ req.url_params.get("code") };
 			const std::string stringId{ req.url_params.get("id") };
-			const int id{ std::stoi(stringId) };
+			const int id{ std::stoi(std::move(stringId)) };
 
 			crow::json::wvalue returnedJson;
 
 			if (m_games.find(code) == m_games.end())
 			{
-				returnedJson["code"] = std::to_string(404);
+				returnedJson["code"] = "404";
 				return returnedJson;
 			}
 
@@ -152,12 +152,12 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 			const GameState gameState{ std::move(m_games.at(code).GetGameState()) };
 			const std::string gameStateString{ std::move(GetStringFromGameState(gameState)) };
 			
-			returnedJson["code"] = std::to_string(200);
+			returnedJson["code"] = "202";
 			returnedJson["canDraw"] = crow::json::wvalue(canDraw);
-			returnedJson["gameState"] = gameStateString;
+			returnedJson["gameState"] = std::move(gameStateString);
 			
 			if (!canDraw)
-				returnedJson["drawing"] = m_games.at(code).GetDrawing();
+				returnedJson["drawing"] = std::move(m_games.at(code).GetDrawing());
 
 			return returnedJson;
 		});
@@ -166,7 +166,7 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 		{
 			const auto code{ req.url_params.get("code") };
 			const std::string stringId{ req.url_params.get("id") };
-			const int id{ std::stoi(stringId) };
+			const int id{ std::stoi(std::move(stringId)) };
 
 			if (m_games.find(code) == m_games.end())
 				return crow::response(404);
@@ -181,12 +181,12 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 	{
 		const auto code{ req.url_params.get("code") };
 		const std::string stringId{ req.url_params.get("id") };
-		const int id{ std::stoi(stringId) };
+		const int id{ std::stoi(std::move(stringId)) };
 
 		if (m_games.find(code) == m_games.end())
 			return crow::response(404);
 
-		return crow::response(200, m_games.at(code).GetWord(id));
+		return crow::response(200, std::move(m_games.at(code).GetWord(id)));
 	});
 
 	CROW_ROUTE(m_app, "/guessword")([&](const crow::request& req) 

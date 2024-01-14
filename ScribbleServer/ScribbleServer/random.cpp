@@ -15,7 +15,7 @@ std::string GetRandomCode(size_t size)
     std::string code;
     for (int i = 0; i < size; i++)
     {
-        code += GetRandomChar();
+        code += std::move(GetRandomChar());
     }
     return code;
 }
@@ -27,7 +27,7 @@ std::string GetRandomUniqueCode(const std::unordered_set<std::string>& codes)
 
     while (!isUnique)
     {
-        code = GetRandomCode(4);
+        code = std::move(GetRandomCode(4));
 
         if (std::find(codes.begin(), codes.end(), code) == codes.end())
         {
