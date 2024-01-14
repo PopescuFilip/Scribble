@@ -98,8 +98,7 @@ void Routing::Run(std::shared_ptr<GameStorage> storage)
 			if (m_games.at(code).GetOwnerId() != id)
 				return crow::response(203);
 
-			std::thread runThread([&](std::string code) {m_games.at(code).Run(); }, code);
-
+			std::thread runThread([&](std::string code) { m_games.at(code).Run(); }, code);
 			runThread.detach();
 
 			return crow::response(200);

@@ -48,7 +48,7 @@ bool Game::GuessWord(int playerId, const std::string& word)
 	return true;
 }
 
-bool ScribbleServer::Game::AllHaveGuessed()
+bool Game::AllHaveGuessed()
 {
 	for (auto& keyValue : m_players)
 	{
